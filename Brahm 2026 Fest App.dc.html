@@ -466,6 +466,46 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .navb.on{color:#4a1a1c}
 }
 @media (min-width:1080px) and (hover:hover){.navb:not(.on):hover{background:rgba(224,149,44,.1);color:var(--maroon)}}
+
+/* The desktop landing page is a true photographic cover. Other screens keep
+   the editorial rail so long-form schedules and rules remain easy to read. */
+@media (min-width:1080px){
+  .app:has(.home-screen) .rail{display:none}
+  .app:has(.home-screen) .ambient{width:100%;opacity:.5}
+  .app:has(.home-screen) .pane{width:100%;flex:1 1 100%;background:var(--ivory);box-shadow:none}
+  .app:has(.home-screen) .appmain>section.home-screen{max-width:none}
+  .app:has(.home-screen) .navbar{position:absolute;top:22px;left:50%;right:auto;bottom:auto;transform:translateX(-50%);
+    width:min(780px,calc(100% - 48px));z-index:60;padding:7px;border-radius:999px;
+    background:linear-gradient(180deg,rgba(82,14,31,.82),rgba(55,7,21,.76));
+    border:1px solid rgba(255,226,177,.22);box-shadow:0 16px 46px rgba(32,3,13,.32),inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35)}
+  .app:has(.home-screen) .navb{flex:1;min-height:48px;padding:0 22px;border-radius:999px;color:rgba(253,247,236,.76)}
+  .app:has(.home-screen) .navb.on{color:#4a1a1c}
+  .app:has(.home-screen) .navb:not(.on):hover{background:rgba(255,255,255,.09);color:#fff7e9}
+
+  .home-screen>.hero{min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;overflow:hidden;background:#2a0a14}
+  .home-screen .hero-art{display:block;inset:0;height:100%;background:#2a0a14;isolation:isolate}
+  .home-screen .hero-art::before{content:"";position:absolute;inset:-34px;z-index:0;
+    background:url("assets/hero-amma.jpg") center 38%/cover no-repeat;
+    filter:blur(28px) saturate(.92) brightness(.48);transform:scale(1.06)}
+  .home-screen .hero-img{z-index:1;object-fit:contain;object-position:76% 50%;filter:saturate(1.04) brightness(.9);
+    -webkit-mask-image:none;mask-image:none}
+  .home-screen .hero-glow{z-index:3;background:radial-gradient(80% 70% at 18% 82%,rgba(224,149,44,.25),transparent 68%)}
+  .home-screen .hero-wash{z-index:2;height:100%;background:
+    linear-gradient(90deg,rgba(39,5,16,.78) 0%,rgba(39,5,16,.34) 34%,rgba(39,5,16,.08) 58%,rgba(39,5,16,.42) 100%),
+    linear-gradient(180deg,rgba(39,5,16,.42) 0%,transparent 30%,rgba(39,5,16,.14) 55%,rgba(39,5,16,.74) 100%)}
+  .home-screen .hero-crown{display:none}
+  .home-screen .hero-top{display:flex;position:absolute;top:100px;left:0;right:0;padding:0 64px}
+  .home-screen .hero-lock{margin:0;padding:0 64px 64px;align-items:flex-start;text-align:left;max-width:620px}
+  .home-screen .hero-mark{width:176px;filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
+  .home-screen .hero-name{font-size:clamp(110px,10vw,164px);color:#fff8ec;text-shadow:0 8px 34px rgba(35,3,13,.48);margin-top:17px}
+  .home-screen .hero-year{width:310px;justify-content:flex-start}
+  .home-screen .hero-year .sun{font-size:43px}
+  .home-screen .hero-kicker{color:#f7d9a2;text-shadow:0 2px 12px rgba(35,3,13,.6)}
+  .home-screen .hero-dates{color:#f3bc63;text-shadow:0 2px 12px rgba(35,3,13,.6)}
+  .home-screen .hero-line{color:rgba(253,247,236,.88);text-shadow:0 2px 16px rgba(35,3,13,.62)}
+  .home-screen>:not(.hero){max-width:1000px;margin-left:auto;margin-right:auto}
+}
 @media (min-width:1500px){:root{--rail:452px}}
 
 @media (prefers-reduced-motion:reduce){
@@ -503,7 +543,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <main ref="{{ scrollRef }}" class="appmain">
 
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-<section data-screen-label="Home" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both">
+<section class="home-screen" data-screen-label="Home" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both">
 
   <div class="hero">
     <div class="hero-art" aria-hidden="true">
