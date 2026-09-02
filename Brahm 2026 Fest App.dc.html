@@ -153,7 +153,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 22px;
   border-radius:16px;font:700 10.5px/1.2 var(--font-heading);letter-spacing:.15em;text-transform:uppercase;
-  text-align:center;position:relative;isolation:isolate;white-space:nowrap}
+  text-align:center;position:relative;isolation:isolate;min-width:0}
 .btn i{font-size:19px;flex:none}
 .btn-primary{background:var(--gold-fill);color:#4a1a1c;
   box-shadow:0 8px 20px rgba(200,130,40,.30),inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(140,80,10,.18)}
@@ -169,6 +169,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 }
 .btnrow{display:flex;gap:11px;flex-wrap:wrap}
 .btnrow>.btn{flex:1 1 150px}
+/* Side-by-side where there is room; stacked on narrow phones, where two
+   nowrap labels plus padding would otherwise overflow the viewport. */
+.ctapair{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px}
 
 /* ---------- Type helpers ---------- */
 .eyebrow-gold{display:inline-block;font:700 9.5px/1 var(--font-heading);letter-spacing:.26em;text-transform:uppercase;
@@ -515,7 +518,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="ctapair">
       <button onClick="{{ addFestToGoogle }}" class="btn btn-secondary btn-block">
         <i class="ph-duotone ph-google-logo" aria-hidden="true"></i>Google Calendar
       </button>
@@ -919,7 +922,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
     </a>
   </div>
-  <div style="padding:25px var(--gutter) 0;display:grid;grid-template-columns:1fr 1fr;gap:13px">
+  <div class="ctapair" style="padding:25px var(--gutter) 0">
     <a href="{{ directionsUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block">
       <i class="ph-duotone ph-navigation-arrow" style="font-size:18px"></i>Directions
     </a>
