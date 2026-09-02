@@ -236,6 +236,62 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .stickyhead::after{content:"";position:absolute;left:0;right:0;top:100%;height:18px;pointer-events:none;
   background:linear-gradient(180deg,var(--ivory),rgba(253,247,236,0))}
 
+/* ---------- Map: location card ----------
+   Replaces a Google Maps iframe that rendered blank and was the page's only
+   third-party request. Tapping through still opens Maps proper. */
+.placecard{display:block;border-radius:24px;overflow:hidden;background:linear-gradient(168deg,#fffaf1,#f9eeda);
+  box-shadow:var(--sh);color:inherit;transition:box-shadow .3s cubic-bezier(.32,.72,0,1),transform .3s cubic-bezier(.32,.72,0,1)}
+.placecard-art{position:relative;height:170px;overflow:hidden;background:#f0c893}
+.placecard-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.03)}
+.placecard-veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(94,16,32,.14),rgba(94,16,32,.52)),
+  radial-gradient(70% 70% at 50% 50%,rgba(253,247,236,.16),rgba(253,247,236,0) 70%)}
+.placecard-pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--gold-fill);box-shadow:0 8px 22px rgba(74,10,24,.4),inset 0 1px 0 rgba(255,255,255,.5)}
+.placecard-pin i{font-size:27px;color:#4a1a1c}
+.placecard-body{padding:20px 21px 22px}
+.placecard-name{font:400 clamp(22px,6vw,26px)/1.2 var(--display);color:var(--maroon-deep)}
+.placecard-addr{font:400 14.5px/1.6 var(--font-body);color:var(--ink-3);margin-top:9px;text-wrap:pretty;max-width:46ch}
+.placecard-cta{display:inline-flex;align-items:center;gap:8px;margin-top:15px;
+  font:700 9.5px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)}
+.placecard-cta i{font-size:15px;transition:transform .28s cubic-bezier(.32,.72,0,1)}
+@media (hover:hover){
+  .placecard:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+  .placecard:hover .placecard-cta i{transform:translateX(4px)}
+}
+@media (min-width:700px){.placecard-art{height:210px}}
+
+/* ---------- About: Amma's legacy ---------- */
+.legacy{position:relative;overflow:hidden;border-radius:0 0 30px 30px;isolation:isolate;background:#4a0f1c}
+.legacy-art{position:absolute;inset:0;z-index:-1}
+.legacy-art img{width:100%;height:100%;object-fit:cover;object-position:50% 26%}
+.legacy-veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(74,15,28,.30) 0%,rgba(74,15,28,.06) 26%,rgba(74,15,28,.66) 72%,rgba(74,15,28,.95) 100%),
+  radial-gradient(120% 80% at 82% 6%,rgba(243,188,99,.22),rgba(243,188,99,0) 62%)}
+.legacy-lock{position:relative;padding:clamp(150px,30vh,230px) var(--gutter) 26px}
+.legacy-mark{width:min(124px,34vw);height:auto;display:block;margin-bottom:16px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.45))}
+.legacy-title{margin-top:10px;font:300 clamp(36px,9.6vw,48px)/1.05 var(--display);color:#fdf7ec;letter-spacing:-.006em}
+@media (min-width:700px){.legacy-lock{padding:clamp(210px,34vh,300px) 34px 32px}.legacy-title{font-size:clamp(48px,5.6vw,62px)}.legacy-mark{width:150px}}
+
+.pullquote{margin:0;padding:26px 0 0;border-top:1px solid rgba(140,28,46,.16)}
+.pullquote blockquote{margin:0;font:italic 300 clamp(25px,7vw,32px)/1.34 var(--display);color:var(--maroon-deep);text-wrap:pretty}
+.pullquote figcaption{margin-top:14px;font:700 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:var(--marigold-deep)}
+@media (min-width:700px){.pullquote blockquote{font-size:clamp(32px,3.4vw,40px);max-width:26ch}}
+
+.prose{margin:0;font:400 16px/1.7 var(--font-body);color:var(--ink-2);text-wrap:pretty;max-width:68ch}
+.prose.lead{color:var(--ink);font-size:17px}
+
+.figrow{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.fig{display:flex;flex-direction:column;align-items:center;gap:7px;padding:19px 8px;border-radius:18px;
+  background:linear-gradient(168deg,#fdf1dc,#f7e5c4);box-shadow:var(--sh)}
+.fig-n{font:300 clamp(38px,10vw,46px)/1 var(--display);color:var(--maroon-deep);font-variant-numeric:tabular-nums}
+.fig-k{font:700 8.5px/1.3 var(--font-heading);letter-spacing:.16em;text-transform:uppercase;color:var(--marigold-deep);text-align:center}
+
+.creed{background:var(--tint);border-radius:20px;padding:26px var(--gutter);text-align:center;
+  font:italic 300 clamp(22px,6.2vw,26px)/1.36 var(--display);color:var(--maroon-deep);text-wrap:pretty;
+  box-shadow:inset 0 0 0 1px rgba(224,149,44,.20)}
+
 /* ---------- Competition detail facts ---------- */
 .factcard{background:linear-gradient(168deg,#fffaf1,#f9eeda);border-radius:22px;padding:4px 19px;box-shadow:var(--sh)}
 .fact{display:flex;gap:14px;padding:15px 0;box-shadow:inset 0 -1px 0 rgba(140,28,46,.09)}
@@ -721,7 +777,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   </div>
 
   <div style="padding:42px var(--gutter) 46px;display:flex;flex-direction:column;gap:19px">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc7sg6b9mLVtD_WhTb7ia7YcnUVZGN1wE42n2puywMTvcnLWw/viewform" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:11px;min-height:58px;background:linear-gradient(178deg,#f5c374,#dd8d22);color:#4a1a1c;font:700 11.5px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;border-radius:20px;box-shadow:0 12px 28px rgba(200,130,40,.3), inset 0 1px 0 rgba(255,255,255,.5)" style-hover="filter:brightness(1.06)">
+    <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
       <i class="ph-duotone ph-hand-heart" style="font-size:21px"></i>Register for {{ comp.name }}
     </a>
     <button onClick="{{ goRules }}" class="btn btn-secondary btn-block">
@@ -774,7 +830,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </div>
       <div style="font:400 28px/1.15 var(--display);color:var(--maroon-deep)">Nothing saved yet</div>
       <div style="font:400 15px/1.62 var(--font-body);color:var(--ink-3);text-wrap:pretty;max-width:258px">Tap any event in the schedule and save it &mdash; your picks live here, ready for your calendar.</div>
-      <button onClick="{{ goSchedule }}" style="margin-top:8px;display:flex;align-items:center;gap:9px;min-height:52px;padding:0 var(--gutter);background:linear-gradient(178deg,#f5c374,#dd8d22);color:#4a1a1c;font:700 10px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;border-radius:999px;box-shadow:0 10px 24px rgba(200,130,40,.3)" style-hover="filter:brightness(1.06)">
+      <button onClick="{{ goSchedule }}" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
         <i class="ph-duotone ph-calendar-dots" style="font-size:18px"></i>Browse the schedule
       </button>
     </div>
@@ -828,17 +884,22 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <span class="eyebrow-gold">Come and find us</span>
       <h2 class="h-screen" style="margin-top:9px">Map &amp; venues</h2>
   </div>
-  <div style="padding:28px var(--gutter) 0">
-    <div style="border-radius:26px;overflow:hidden;box-shadow:var(--sh)">
-      <iframe src="https://maps.google.com/maps?q=Amrita%20Vishwa%20Vidyapeetham%20Mata%20Amritanandamayi%20Marg%20Sector%2088%20Faridabad%20Haryana%20121002&z=15&output=embed" title="Campus location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:290px;border:0;filter:saturate(.9) sepia(.08)"></iframe>
-    </div>
-  </div>
-  <div style="padding:28px var(--gutter) 0">
-    <div style="font:400 24px/1.2 var(--display);color:var(--maroon-deep)">Amrita Vishwa Vidyapeetham<br>Delhi NCR Campus</div>
-    <div style="font:400 14.5px/1.65 var(--font-body);color:var(--ink-3);margin-top:8px">Mata Amritanandamayi Marg, Sector 88,<br>Faridabad, Haryana 121002 &mdash; near RPS City</div>
+  <div class="pad" style="padding-top:26px">
+    <a href="{{ mapsUrl }}" target="_blank" rel="noopener" class="placecard">
+      <div class="placecard-art" aria-hidden="true">
+        <img src="assets/plate-mandala.jpg" alt="" loading="lazy" decoding="async">
+        <div class="placecard-veil"></div>
+        <span class="placecard-pin"><i class="ph-duotone ph-map-pin" aria-hidden="true"></i></span>
+      </div>
+      <div class="placecard-body">
+        <div class="placecard-name">Amrita Vishwa Vidyapeetham<br>Delhi NCR Campus</div>
+        <div class="placecard-addr">Mata Amritanandamayi Marg, Sector 88, Faridabad, Haryana 121002 &mdash; near RPS City</div>
+        <span class="placecard-cta">Open in Google Maps<i class="ph-duotone ph-arrow-right" aria-hidden="true"></i></span>
+      </div>
+    </a>
   </div>
   <div style="padding:25px var(--gutter) 0;display:grid;grid-template-columns:1fr 1fr;gap:13px">
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Amrita+Vishwa+Vidyapeetham+Mata+Amritanandamayi+Marg+Sector+88+Faridabad+Haryana+121002" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;background:linear-gradient(178deg,#f5c374,#dd8d22);color:#4a1a1c;font:700 10px/1 var(--font-heading);letter-spacing:.16em;text-transform:uppercase;border-radius:18px;box-shadow:0 10px 24px rgba(200,130,40,.28)" style-hover="filter:brightness(1.06)">
+    <a href="{{ directionsUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block">
       <i class="ph-duotone ph-navigation-arrow" style="font-size:18px"></i>Directions
     </a>
     <button onClick="{{ shareLocation }}" class="btn btn-secondary btn-block">
@@ -877,7 +938,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
         <img src="assets/qr-register.png" alt="QR code to the registration form" style="display:block;width:196px;height:196px;image-rendering:pixelated">
       </div>
       <div style="font:400 13px/1.5 var(--font-body);color:var(--ink-3);text-align:center">Scan with your camera, or use the button below</div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc7sg6b9mLVtD_WhTb7ia7YcnUVZGN1wE42n2puywMTvcnLWw/viewform" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:11px;width:100%;min-height:58px;background:linear-gradient(178deg,#f5c374,#dd8d22);color:#4a1a1c;font:700 11.5px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;border-radius:20px;box-shadow:0 12px 28px rgba(200,130,40,.3), inset 0 1px 0 rgba(255,255,255,.5)" style-hover="filter:brightness(1.06)">
+      <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
         <i class="ph-duotone ph-hand-heart" style="font-size:21px"></i>Open the form
       </a>
     </div>
@@ -998,18 +1059,40 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="About" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both;padding-bottom:calc(96px + env(safe-area-inset-bottom))">
-  <div style="position:relative;height:310px;overflow:hidden;background:#f0c893;border-radius:0 0 32px 32px">
-    <img src="assets/hero-amma.jpg" alt="Sri Mata Amritanandamayi Devi" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(94,16,32,.24) 0%,rgba(94,16,32,.02) 34%,rgba(94,16,32,.55) 78%,rgba(94,16,32,.92) 100%)"></div>
-    <div style="position:absolute;left:20px;right:20px;bottom:20px">
-      <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:#f7d9a2;text-transform:uppercase">About the fest</div>
-      <div style="font:300 46px/1.04 var(--display);color:#fdf7ec;margin-top:10px">73 Years of<br>Pure Love &amp; Light</div>
+  <div class="legacy">
+    <div class="legacy-art" aria-hidden="true">
+      <img src="assets/hero-amma-duo.jpg" alt="" loading="lazy" decoding="async">
+      <div class="legacy-veil"></div>
+    </div>
+    <div class="legacy-lock">
+      <img class="legacy-mark" src="assets/mark-73.png" alt="73 years of pure love and light">
+      <span class="eyebrow-gold" style="color:#f3bc63">About the fest</span>
+      <h2 class="legacy-title">73 years of<br>pure love &amp; light</h2>
     </div>
   </div>
-  <div style="padding:34px var(--gutter) 0;display:flex;flex-direction:column;gap:24px">
-    <div style="font:400 16px/1.7 var(--font-body);color:var(--ink);text-wrap:pretty">Brahm 2026 is the Founders&rsquo; Day Fest of Amrita Vishwa Vidyapeetham, Delhi NCR Campus &mdash; five days built around the birth anniversary of Sri Mata Amritanandamayi Devi, celebrated across every Amrita campus.</div>
-    <div style="font:400 16px/1.7 var(--font-body);color:var(--ink-2);text-wrap:pretty">The week opens with seva &mdash; free health check-up camps in the villages nearby &mdash; and moves through nine inter-college cultural competitions, a marathon, an auto expo, carnival and DJ nights, three days of in-house sport, and closes with the Founders&rsquo; Day function in the Main Auditorium on 23 September.</div>
-    <div style="background:var(--tint);border-radius:22px;padding:25px;font:italic 300 25px/1.36 var(--display);color:var(--maroon-deep);text-align:center;text-wrap:pretty">Celebrating health, talent, unity and joy.</div>
+
+  <div class="pad" style="padding-top:32px">
+    <figure class="pullquote">
+      <blockquote>Where there is love, everything is effortless.</blockquote>
+      <figcaption>Sri Mata Amritanandamayi Devi</figcaption>
+    </figure>
+  </div>
+
+  <div class="pad" style="padding-top:30px;display:flex;flex-direction:column;gap:20px">
+    <p class="prose lead">Brahm 2026 is the Founders&rsquo; Day Fest of Amrita Vishwa Vidyapeetham, Delhi NCR Campus &mdash; five days built around the birth anniversary of Sri Mata Amritanandamayi Devi, celebrated across every Amrita campus.</p>
+    <p class="prose">The week opens with seva &mdash; free health check-up camps in the villages nearby &mdash; and moves through nine inter-college cultural competitions, a marathon, an auto expo, carnival and DJ nights, three days of in-house sport, and closes with the Founders&rsquo; Day function in the Main Auditorium on 23 September.</p>
+  </div>
+
+  <div class="pad" style="padding-top:28px">
+    <div class="figrow">
+      <div class="fig"><span class="fig-n">73</span><span class="fig-k">Years of Amma</span></div>
+      <div class="fig"><span class="fig-n">9</span><span class="fig-k">Competitions</span></div>
+      <div class="fig"><span class="fig-n">5</span><span class="fig-k">Days of fest</span></div>
+    </div>
+  </div>
+
+  <div class="pad" style="padding-top:28px">
+    <div class="creed">Celebrating health, talent, unity and joy.</div>
   </div>
   <div style="padding:39px var(--gutter) 46px">
     <button onClick="{{ installApp }}" class="btn btn-secondary btn-block">
@@ -1044,6 +1127,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 const IST = "+05:30";
 const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSc7sg6b9mLVtD_WhTb7ia7YcnUVZGN1wE42n2puywMTvcnLWw/viewform";
 const ADDR = "Amrita Vishwa Vidyapeetham, Mata Amritanandamayi Marg, Sector 88, Faridabad, Haryana 121002";
+const MAPS_SEARCH = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ADDR);
+const MAPS_DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(ADDR);
 const SAVE_KEY = "brahm2026.saved.v1";
 
 const GOLD_FILL = "linear-gradient(178deg,#f5c374,#dd8d22)";
@@ -1465,6 +1550,8 @@ class Component extends DCLogic {
       ],
 
       venues: VENUES.map(v => ({ name:v[0], icon:v[1], what:v[2] })),
+      mapsUrl: MAPS_SEARCH,
+      directionsUrl: MAPS_DIRECTIONS,
       shareLocation: () => this.share("BRAHM 2026 venue", ADDR),
       regNotes: REG_NOTES,
       generalRules: GENERAL_RULES.map((r,i)=>({ n:String(i+1), h:r[0], t:r[1] })),
