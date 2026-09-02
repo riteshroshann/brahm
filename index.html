@@ -108,22 +108,28 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 
 /* ---------- Hero ---------- */
 .hero{position:relative;isolation:isolate}
-.hero-art{position:absolute;left:0;right:0;top:0;height:clamp(430px,64vh,600px);height:clamp(430px,64dvh,600px);z-index:0;overflow:hidden;background:var(--ivory)}
+.hero-art{position:absolute;left:0;right:0;top:0;height:clamp(560px,76vh,700px);height:clamp(560px,76dvh,700px);z-index:0;overflow:hidden;background:var(--ivory)}
 .hero-glow{position:absolute;inset:0;background:radial-gradient(150% 110% at 50% 104%,rgba(243,188,99,.22),rgba(253,247,236,0) 66%)}
 /* The fade runs long and lands fully transparent at 78% of the art box, which sits
    well above the 73 mark — no visible photo edge anywhere. */
+/* The portrait stays fully opaque past her chin. The fade only begins below the
+   face, runs behind the golden 73 mark, and is completely clear before "Brahm".
+   --face is the share of the art box her face occupies; everything above it is
+   untouched image. */
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 24%;
   filter:saturate(1.04) brightness(1.02);
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 30%,rgba(0,0,0,.985) 37%,rgba(0,0,0,.95) 43%,rgba(0,0,0,.89) 48%,rgba(0,0,0,.81) 53%,rgba(0,0,0,.71) 57%,rgba(0,0,0,.60) 61%,rgba(0,0,0,.48) 64.5%,rgba(0,0,0,.37) 68%,rgba(0,0,0,.27) 71%,rgba(0,0,0,.185) 73.5%,rgba(0,0,0,.115) 75.5%,rgba(0,0,0,.062) 77%,rgba(0,0,0,.026) 78.5%,rgba(0,0,0,.007) 80%,transparent 82%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 30%,rgba(0,0,0,.985) 37%,rgba(0,0,0,.95) 43%,rgba(0,0,0,.89) 48%,rgba(0,0,0,.81) 53%,rgba(0,0,0,.71) 57%,rgba(0,0,0,.60) 61%,rgba(0,0,0,.48) 64.5%,rgba(0,0,0,.37) 68%,rgba(0,0,0,.27) 71%,rgba(0,0,0,.185) 73.5%,rgba(0,0,0,.115) 75.5%,rgba(0,0,0,.062) 77%,rgba(0,0,0,.026) 78.5%,rgba(0,0,0,.007) 80%,transparent 82%)}
-/* A second ivory wash over the lower half kills any residual banding on wide-gamut screens. */
-.hero-wash{position:absolute;left:0;right:0;bottom:0;height:56%;
-  background:linear-gradient(180deg,rgba(253,247,236,0) 0%,rgba(253,247,236,.10) 26%,rgba(253,247,236,.34) 46%,rgba(253,247,236,.66) 64%,rgba(253,247,236,.88) 78%,var(--ivory) 92%)}
+  --face:68%;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 var(--face),rgba(0,0,0,.97) 72%,rgba(0,0,0,.90) 76%,rgba(0,0,0,.79) 80%,rgba(0,0,0,.63) 84%,rgba(0,0,0,.44) 88%,rgba(0,0,0,.26) 91.5%,rgba(0,0,0,.12) 94.5%,rgba(0,0,0,.04) 95%,transparent 97.5%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 var(--face),rgba(0,0,0,.97) 72%,rgba(0,0,0,.90) 76%,rgba(0,0,0,.79) 80%,rgba(0,0,0,.63) 84%,rgba(0,0,0,.44) 88%,rgba(0,0,0,.26) 91.5%,rgba(0,0,0,.12) 94.5%,rgba(0,0,0,.04) 95%,transparent 97.5%)}
+/* A second ivory wash, starting only where the mask does, so it never lifts
+   tone off the face. Also kills residual banding on wide-gamut screens. */
+.hero-wash{position:absolute;left:0;right:0;bottom:0;height:34%;
+  background:linear-gradient(180deg,rgba(253,247,236,0) 0%,rgba(253,247,236,.12) 24%,rgba(253,247,236,.36) 46%,rgba(253,247,236,.64) 64%,rgba(253,247,236,.86) 80%,var(--ivory) 96%)}
 .hero-crown{position:absolute;top:0;left:0;right:0;height:24%;
   background:linear-gradient(180deg,rgba(94,16,32,.5) 0%,rgba(94,16,32,.13) 56%,rgba(94,16,32,0) 100%)}
 .hero-top{position:relative;z-index:2;padding:26px var(--gutter) 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .hero-lock{position:relative;z-index:2;padding:0 var(--gutter);display:flex;flex-direction:column;align-items:center;text-align:center;
-  margin-top:clamp(300px,45vh,420px);margin-top:clamp(300px,45dvh,420px)}
+  margin-top:clamp(410px,56vh,520px);margin-top:clamp(410px,56dvh,520px)}
 .hero-mark{width:min(186px,52vw);height:auto;filter:drop-shadow(0 3px 10px rgba(168,107,22,.26))}
 .hero-name{font:300 clamp(78px,23vw,104px)/.84 var(--display);color:var(--maroon-deep);letter-spacing:-.012em;margin-top:14px}
 .hero-year{display:flex;align-items:center;gap:15px;margin-top:10px;width:100%;justify-content:center}
@@ -134,8 +140,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-dates{margin-top:12px;font:600 12px/1 var(--font-heading);letter-spacing:.22em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.22em}
 .hero-line{margin:18px 0 0;font:italic 300 clamp(21px,6.2vw,25px)/1.32 var(--display);color:var(--ink-2);text-wrap:pretty}
 @media (min-width:700px){
-  .hero-art{height:clamp(500px,66vh,660px);height:clamp(500px,66dvh,660px)}
-  .hero-lock{margin-top:clamp(350px,48vh,470px);margin-top:clamp(350px,48dvh,470px)}
+  /* A wider viewport crops the portrait tighter, so the face fills more of the
+     box — hold the mask off until later and give the art more height. */
+  .hero-art{height:clamp(720px,86vh,900px);height:clamp(720px,86dvh,900px)}
+  .hero-img{--face:74%}
+  .hero-lock{margin-top:clamp(560px,66vh,720px);margin-top:clamp(560px,66dvh,720px)}
   .hero-name{font-size:clamp(96px,13vw,124px)}
   .hero-mark{width:214px}
 }
