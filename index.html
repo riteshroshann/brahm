@@ -829,7 +829,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   <div style="position:relative;height:300px;overflow:hidden;background:#f0c893;border-radius:0 0 32px 32px">
     <img src="{{ comp.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(94,16,32,.45) 0%,rgba(94,16,32,.08) 32%,rgba(94,16,32,.94) 100%)"></div>
-    <button onClick="{{ goEvents }}" style="position:absolute;top:16px;left:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(253,247,236,.9);color:var(--maroon-deep)" style-hover="background:#fdf7ec">
+    <button onClick="{{ goEvents }}" aria-label="Back to competitions" style="position:absolute;top:16px;left:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(253,247,236,.9);color:var(--maroon-deep)" style-hover="background:#fdf7ec">
       <i class="ph-duotone ph-arrow-left" style="font-size:20px"></i>
     </button>
     <div style="position:absolute;left:20px;right:20px;bottom:20px">
@@ -873,7 +873,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <a href="{{ comp.gcal }}" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1;min-width:138px;border-radius:999px">
       <i class="ph-duotone ph-calendar-plus" style="font-size:18px"></i>Google Calendar
     </a>
-    <button onClick="{{ comp.onShare }}" style="flex:none;display:flex;align-items:center;justify-content:center;min-height:50px;width:56px;background:var(--ivory-3);color:var(--maroon);border-radius:999px" style-hover="background:var(--ivory-4)">
+    <button onClick="{{ comp.onShare }}" aria-label="Share competition" style="flex:none;display:flex;align-items:center;justify-content:center;min-height:50px;width:56px;background:var(--ivory-3);color:var(--maroon);border-radius:999px" style-hover="background:var(--ivory-4)">
       <i class="ph-duotone ph-share-network" style="font-size:19px"></i>
     </button>
   </div>
