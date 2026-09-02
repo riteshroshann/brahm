@@ -349,6 +349,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 
 /* ---------- Schedule day list ---------- */
 .daylist{display:flex;flex-direction:column;gap:14px}
+.dayitem-t{font:400 clamp(23px,6.4vw,27px)/1.14 var(--display);color:var(--maroon-deep);margin-top:8px;text-wrap:balance}
+/* Titles sit in narrower columns once the list becomes a grid, so ease the size
+   down a step to stop long event names breaking across three lines. */
+@media (min-width:700px){.dayitem-t{font-size:23px}}
+@media (min-width:1080px){.dayitem-t{font-size:22px}}
+/* Wraps to a second line rather than crushing the venue against the badge. */
+.dayitem-meta{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:10px;flex-wrap:wrap}
+.dayitem-venue{display:flex;align-items:center;gap:7px;font:400 13.5px/1.35 var(--font-body);color:var(--ink-3);min-width:0;flex:1 1 auto}
+.dayitem-venue i{font-size:16px;color:var(--maroon);flex:none}
 .dayitem{background:linear-gradient(168deg,#fffaf1,#f9eeda);border-radius:22px;padding:21px 22px;box-shadow:var(--sh);
   transition:box-shadow .3s cubic-bezier(.32,.72,0,1)}
 /* Competition entries carry a gold spine so they read as the headline act of each day. */
@@ -628,10 +637,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
               </span>
             </sc-if>
           </div>
-          <div style="font:400 27px/1.12 var(--display);color:var(--maroon-deep);margin-top:8px;text-wrap:pretty">{{ it.title }}</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px">
-            <span style="display:flex;align-items:center;gap:7px;font:400 13.5px/1.3 var(--font-body);color:var(--ink-3);min-width:0">
-              <i class="ph-duotone ph-map-pin" style="font-size:16px;color:var(--maroon)"></i>{{ it.venue }}
+          <div class="dayitem-t">{{ it.title }}</div>
+          <div class="dayitem-meta">
+            <span class="dayitem-venue">
+              <i class="ph-duotone ph-map-pin" aria-hidden="true"></i>{{ it.venue }}
             </span>
             <sc-if value="{{ it.badge }}" hint-placeholder-val="{{ false }}">
               <span style="flex:none;font:700 8.5px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:{{ it.badgeFg }};background:{{ it.badgeBg }};padding:6px 10px;border-radius:999px">{{ it.badge }}</span>
