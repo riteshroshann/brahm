@@ -16,9 +16,20 @@ calendar as `.ics` downloads.
 ## Stack
 
 A static site with no build step. The UI is authored as a declarative
-template rendered at runtime by `support.js`, which pulls React 18 from a CDN
-with subresource-integrity pinning. Styling comes from the design-system
-bundle in `_ds/` plus Cormorant Garamond and Phosphor Icons.
+template rendered at runtime by `support.js`, which loads React 18 from
+`vendor/` on this origin rather than a CDN — the page makes **no third-party
+requests at all**, so there are no extra DNS lookups or TLS handshakes on a
+cold load.
+
+Typography is Cormorant Garamond (display) with Source Serif 4 (body), both
+self-hosted as latin-subset woff2. Icons are Phosphor Duotone, subset from
+1000+ glyphs down to the 37 the app actually uses — 164 KB to 7 KB.
+
+The layout is responsive across three breakpoints: a single column on phones
+with a slim floating tab bar; two-column grids on tablets; and on screens
+1080px and wider a two-panel editorial spread — a fixed portrait rail beside
+the content, with the tab bar becoming a top bar and marigold petals drifting
+in the background.
 
 ## Layout
 
@@ -27,6 +38,7 @@ bundle in `_ds/` plus Cormorant Garamond and Phosphor Icons.
 | `index.html`    | Entry point — the app template and its logic     |
 | `support.js`    | Runtime that renders the template                |
 | `_ds/`          | Design-system stylesheet and bundle              |
+| `vendor/`       | Self-hosted React, fonts and subset icon font    |
 | `assets/`       | Images, icons and the registration QR code       |
 | `manifest.json` | PWA manifest — name, icons, theme colours        |
 | `vercel.json`   | Hosting config — caching and security headers    |
