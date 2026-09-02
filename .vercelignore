@@ -1,0 +1,6 @@
+scratch/
+uploads/
+.thumbnail
+node_modules/
+*.dc.html
+README.md

@@ -1,0 +1,25 @@
+# Working / source material — not part of the deployed site
+scratch/
+uploads/
+.thumbnail
+
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editor cruft
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+*.swp
+.idea/
+.vscode/
