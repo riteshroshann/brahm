@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.setAttribute("data-screen","home");</script>
 <script>
 // Serve React from this origin instead of unpkg: one less DNS lookup, TLS handshake
 // and third-party round trip on every cold load. Byte-identical to the CDN builds
@@ -19,18 +20,19 @@ window.__resources = {
 <body>
 <x-dc>
 <helmet>
-<title>BRAHM 2026 — Founders&rsquo; Day Fest</title>
+<title>Vishwa Seva Dinam — Brahm 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#fdf7ec">
 <meta name="description" content="Nine inter-college competitions open to every college, plus five days of seva, sport and celebration. BRAHM 2026 — Founders' Day Fest at Amrita Vishwa Vidyapeetham, Delhi NCR Campus, 19–23 September 2026.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="BRAHM 2026">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
-<link rel="icon" href="assets/icon-192.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BRAHM 2026">
-<meta property="og:title" content="BRAHM 2026 — Founders&rsquo; Day Fest">
+<meta property="og:title" content="Vishwa Seva Dinam — Brahm 2026">
 <meta property="og:description" content="Nine inter-college competitions open to every college. 19–23 September 2026 at Amrita Vishwa Vidyapeetham, Delhi NCR Campus.">
 <meta property="og:image" content="assets/hero-amma.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -74,11 +76,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 @keyframes screenIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes petalFall{0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
-  10%{opacity:.5}
-  90%{opacity:.36}
+  10%{opacity:.30}
+  90%{opacity:.20}
   100%{transform:translate3d(var(--dx,40px),110vh,0) rotate(var(--rot,220deg));opacity:0}}
 @keyframes emberDrift{0%{transform:translate3d(0,0,0) scale(1);opacity:0}
-  16%{opacity:.45}
+  16%{opacity:.26}
   100%{transform:translate3d(var(--dx,30px),-92vh,0) scale(.35);opacity:0}}
 
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:462px;margin:0 auto;background:var(--ivory);position:relative;overflow:hidden;box-shadow:0 0 90px rgba(94,16,32,.3)}
@@ -131,9 +133,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-lock{position:relative;z-index:2;padding:0 var(--gutter);display:flex;flex-direction:column;align-items:center;text-align:center;
   margin-top:clamp(410px,56vh,520px);margin-top:clamp(410px,56dvh,520px)}
 .hero-mark{width:min(186px,52vw);height:auto;filter:drop-shadow(0 3px 10px rgba(168,107,22,.26))}
-.hero-name{font:300 clamp(78px,23vw,104px)/.84 var(--display);color:var(--maroon-deep);letter-spacing:-.012em;margin-top:14px}
-.hero-year{display:flex;align-items:center;gap:15px;margin-top:10px;width:100%;justify-content:center}
-.hero-year .sun{font:600 clamp(38px,11.5vw,48px)/1 var(--display);letter-spacing:.07em}
+/* Event name leads; the Brahm 2026 wordmark sits under it at a supporting size. */
+.hero-title{font:600 clamp(46px,13.4vw,64px)/.94 var(--display);color:var(--maroon-deep);letter-spacing:-.014em;margin-top:15px;text-wrap:balance}
+.hero-sub{display:flex;align-items:center;gap:13px;margin-top:15px;width:100%;justify-content:center}
+.hero-sub-name{font:400 clamp(25px,7.4vw,31px)/1 var(--display);color:var(--maroon);letter-spacing:.015em;white-space:nowrap}
+.hero-sub-name .sun{font-weight:600;letter-spacing:.05em}
 .hero-rule{height:2px;flex:1;max-width:66px;border-radius:2px;background:linear-gradient(90deg,rgba(224,149,44,0),rgba(224,149,44,.85))}
 .hero-rule.flip{background:linear-gradient(90deg,rgba(224,149,44,.85),rgba(224,149,44,0))}
 .hero-kicker{margin-top:20px;font:700 12.5px/1 var(--font-heading);letter-spacing:.36em;color:var(--maroon);text-transform:uppercase;text-indent:.36em}
@@ -145,7 +149,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .hero-art{height:clamp(720px,86vh,900px);height:clamp(720px,86dvh,900px)}
   .hero-img{--face:74%}
   .hero-lock{margin-top:clamp(560px,66vh,720px);margin-top:clamp(560px,66dvh,720px)}
-  .hero-name{font-size:clamp(96px,13vw,124px)}
+  .hero-title{font-size:clamp(64px,8.4vw,80px)}
+  .hero-sub-name{font-size:34px}
   .hero-mark{width:214px}
 }
 @media (min-width:1080px){
@@ -154,7 +159,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .hero-art{display:none}
   .hero-top{display:none}
   .hero-lock{margin-top:0;padding-top:70px}
-  .hero-name{font-size:clamp(104px,7.6vw,136px)}
+  .hero-title{font-size:clamp(70px,5.4vw,92px)}
+  .hero-sub-name{font-size:36px}
   .hero-mark{width:230px}
   .hero-line{max-width:34ch}
 }
@@ -298,6 +304,24 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .sponsorsolo{max-width:720px;margin-inline:auto}
 }
 
+/* ---------- Venue cards ---------- */
+.venuecard{display:flex;gap:14px;background:linear-gradient(168deg,#fffaf1,#f9eeda);border-radius:22px;
+  padding:20px;box-shadow:var(--sh);color:inherit;
+  transition:box-shadow .3s cubic-bezier(.32,.72,0,1),transform .3s cubic-bezier(.32,.72,0,1)}
+.venuecard-ic{flex:none;width:42px;height:42px;border-radius:50%;background:var(--tint);display:flex;
+  align-items:center;justify-content:center;color:var(--maroon);transition:background-color .28s}
+.venuecard-ic i{font-size:21px}
+.venuecard-name{font:400 20px/1.2 var(--display);color:var(--maroon-deep);text-wrap:pretty}
+.venuecard-what{font:400 13.5px/1.55 var(--font-body);color:var(--ink-3);margin-top:5px;text-wrap:pretty}
+.venuecard-cta{display:inline-flex;align-items:center;gap:7px;margin-top:11px;
+  font:700 8.5px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon)}
+.venuecard-cta i{font-size:14px;transition:transform .28s cubic-bezier(.32,.72,0,1)}
+@media (hover:hover){
+  .venuecard:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
+  .venuecard:hover .venuecard-ic{background:rgba(224,149,44,.26)}
+  .venuecard:hover .venuecard-cta i{transform:translateX(4px)}
+}
+
 /* ---------- Map: location card ----------
    Replaces a Google Maps iframe that rendered blank and was the page's only
    third-party request. Tapping through still opens Maps proper. */
@@ -417,6 +441,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 @media (min-width:700px){.daylist{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}}
 @media (min-width:1080px){.daylist{grid-template-columns:repeat(3,1fr);gap:18px}}
 
+.appmain>section{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+
 .pad{padding-left:var(--gutter);padding-right:var(--gutter)}
 .grid-cards{display:grid;grid-template-columns:1fr;gap:14px}
 .screenpad{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
@@ -467,44 +493,52 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 }
 @media (min-width:1080px) and (hover:hover){.navb:not(.on):hover{background:rgba(224,149,44,.1);color:var(--maroon)}}
 
-/* The desktop landing page is a true photographic cover. Other screens keep
-   the editorial rail so long-form schedules and rules remain easy to read. */
+/* The desktop landing page is a full-bleed photographic cover. Other screens keep
+   the editorial rail so long-form schedules and rules stay easy to read.
+   Scoped to html[data-screen="home"], set from JS: the runtime strips class off
+   screen <section> elements and applies the mount element's own class only once,
+   so neither can carry layout state. A document attribute always survives. */
 @media (min-width:1080px){
-  .app:has(.home-screen) .rail{display:none}
-  .app:has(.home-screen) .ambient{width:100%;opacity:.5}
-  .app:has(.home-screen) .pane{width:100%;flex:1 1 100%;background:var(--ivory);box-shadow:none}
-  .app:has(.home-screen) .appmain>section.home-screen{max-width:none}
-  .app:has(.home-screen) .navbar{position:absolute;top:22px;left:50%;right:auto;bottom:auto;transform:translateX(-50%);
-    width:min(780px,calc(100% - 48px));z-index:60;padding:7px;border-radius:999px;
-    background:linear-gradient(180deg,rgba(82,14,31,.82),rgba(55,7,21,.76));
-    border:1px solid rgba(255,226,177,.22);box-shadow:0 16px 46px rgba(32,3,13,.32),inset 0 1px 0 rgba(255,255,255,.12);
-    backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35)}
-  .app:has(.home-screen) .navb{flex:1;min-height:48px;padding:0 22px;border-radius:999px;color:rgba(253,247,236,.76)}
-  .app:has(.home-screen) .navb.on{color:#4a1a1c}
-  .app:has(.home-screen) .navb:not(.on):hover{background:rgba(255,255,255,.09);color:#fff7e9}
+  html[data-screen="home"] .app .rail{display:none}
+  html[data-screen="home"] .app .pane{width:100%;flex:1 1 100%;background:var(--ivory);box-shadow:none}
+  html[data-screen="home"] .app .appmain>section{max-width:none}
 
-  .home-screen>.hero{min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;overflow:hidden;background:#2a0a14}
-  .home-screen .hero-art{display:block;inset:0;height:100%;background:#2a0a14;isolation:isolate}
-  .home-screen .hero-art::before{content:"";position:absolute;inset:-34px;z-index:0;
-    background:url("assets/hero-amma.jpg") center 38%/cover no-repeat;
-    filter:blur(28px) saturate(.92) brightness(.48);transform:scale(1.06)}
-  .home-screen .hero-img{z-index:1;object-fit:contain;object-position:76% 50%;filter:saturate(1.04) brightness(.9);
-    -webkit-mask-image:none;mask-image:none}
-  .home-screen .hero-glow{z-index:3;background:radial-gradient(80% 70% at 18% 82%,rgba(224,149,44,.25),transparent 68%)}
-  .home-screen .hero-wash{z-index:2;height:100%;background:
-    linear-gradient(90deg,rgba(39,5,16,.78) 0%,rgba(39,5,16,.34) 34%,rgba(39,5,16,.08) 58%,rgba(39,5,16,.42) 100%),
-    linear-gradient(180deg,rgba(39,5,16,.42) 0%,transparent 30%,rgba(39,5,16,.14) 55%,rgba(39,5,16,.74) 100%)}
-  .home-screen .hero-crown{display:none}
-  .home-screen .hero-top{display:flex;position:absolute;top:100px;left:0;right:0;padding:0 64px}
-  .home-screen .hero-lock{margin:0;padding:0 64px 64px;align-items:flex-start;text-align:left;max-width:620px}
-  .home-screen .hero-mark{width:176px;filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
-  .home-screen .hero-name{font-size:clamp(110px,10vw,164px);color:#fff8ec;text-shadow:0 8px 34px rgba(35,3,13,.48);margin-top:17px}
-  .home-screen .hero-year{width:310px;justify-content:flex-start}
-  .home-screen .hero-year .sun{font-size:43px}
-  .home-screen .hero-kicker{color:#f7d9a2;text-shadow:0 2px 12px rgba(35,3,13,.6)}
-  .home-screen .hero-dates{color:#f3bc63;text-shadow:0 2px 12px rgba(35,3,13,.6)}
-  .home-screen .hero-line{color:rgba(253,247,236,.88);text-shadow:0 2px 16px rgba(35,3,13,.62)}
-  .home-screen>:not(.hero){max-width:1000px;margin-left:auto;margin-right:auto}
+  html[data-screen="home"] .app .hero{position:relative;min-height:calc(100vh - 61px);min-height:calc(100dvh - 61px);display:flex;align-items:flex-end;
+    overflow:hidden;background:
+      radial-gradient(120% 100% at 6% 88%,rgba(120,26,44,.55),transparent 62%),
+      linear-gradient(120deg,#3a0a18 0%,#2a0a14 46%,#20060f 100%)}
+  /* Bleed art. The source is a portrait: stretched across a 16:9 viewport, cover
+     crops so hard that only her forehead survives. So the photograph bleeds off
+     the top, right and bottom of a portrait-shaped column instead, and dissolves
+     into the panel on the left — no letterbox bands, and her face stays whole. */
+  html[data-screen="home"] .app .hero-art{display:block;position:absolute;top:0;bottom:0;right:0;left:auto;
+    width:clamp(46%,54vw,60%);height:100%;background:transparent}
+  html[data-screen="home"] .app .hero-img{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:50% 30%;filter:saturate(1.04) brightness(.97);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 12%,rgba(0,0,0,.62) 26%,rgba(0,0,0,.9) 40%,#000 54%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 12%,rgba(0,0,0,.62) 26%,rgba(0,0,0,.9) 40%,#000 54%)}
+  html[data-screen="home"] .app .hero-glow{z-index:3;background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
+  /* Vignette only — the photograph's own edge is already feathered by its mask. */
+  html[data-screen="home"] .app .hero-wash{z-index:2;inset:0;height:100%;width:100%;background:
+    linear-gradient(180deg,rgba(39,5,16,.46) 0%,rgba(39,5,16,.04) 24%,rgba(39,5,16,.10) 58%,rgba(39,5,16,.62) 100%)}
+  html[data-screen="home"] .app .hero-crown{display:none}
+  html[data-screen="home"] .app .hero-top{display:flex;position:absolute;top:102px;left:0;right:0;padding:0 clamp(40px,4.4vw,72px);z-index:4}
+  html[data-screen="home"] .app .hero-lock{position:relative;z-index:4;margin:0;padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
+    align-items:flex-start;text-align:left;max-width:640px}
+  html[data-screen="home"] .app .hero-mark{width:clamp(150px,12vw,186px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
+  html[data-screen="home"] .app .hero-title{font-size:clamp(66px,6.2vw,104px);color:#fff8ec;text-shadow:0 8px 34px rgba(35,3,13,.5);margin-top:16px}
+  html[data-screen="home"] .app .hero-sub{width:auto;justify-content:flex-start;margin-top:17px}
+  html[data-screen="home"] .app .hero-sub-name{font-size:clamp(28px,2.3vw,38px);color:#fbe6bd;text-shadow:0 3px 16px rgba(35,3,13,.55)}
+  html[data-screen="home"] .app .hero-kicker{color:#f7d9a2;text-shadow:0 2px 12px rgba(35,3,13,.6)}
+  html[data-screen="home"] .app .hero-dates{color:#f3bc63;text-shadow:0 2px 12px rgba(35,3,13,.6)}
+  html[data-screen="home"] .app .hero-line{color:rgba(253,247,236,.9);text-shadow:0 2px 16px rgba(35,3,13,.64)}
+  /* Below the fold the desktop is an editorial spread, not the phone column:
+     the countdown sits beside the competitions callout instead of under it. */
+  html[data-screen="home"] .app .homebelow{max-width:1180px;margin:0 auto}
+  html[data-screen="home"] .app .homeband{padding:52px var(--gutter) 0;
+    display:grid;grid-template-columns:1fr 1.12fr;gap:30px;align-items:start}
+  html[data-screen="home"] .app .homeband>.h-count,
+  html[data-screen="home"] .app .homeband>.h-cta{padding:0!important}
 }
 @media (min-width:1500px){:root{--rail:452px}}
 
@@ -563,10 +597,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 
     <div class="hero-lock">
       <img class="hero-mark" src="assets/mark-73.png" alt="73 years of pure love and light">
-      <h1 class="hero-name">Brahm</h1>
-      <div class="hero-year">
+      <h1 class="hero-title">Vishwa<br>Seva Dinam</h1>
+      <div class="hero-sub">
         <span class="hero-rule"></span>
-        <span class="sun">2026</span>
+        <span class="hero-sub-name">Brahm <span class="sun">2026</span></span>
         <span class="hero-rule flip"></span>
       </div>
       <div class="hero-kicker">Founders&rsquo; Day Fest</div>
@@ -574,8 +608,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       <p class="hero-line">Celebrating health, talent,<br>unity &amp; joy.</p>
     </div>
   </div>
+  <div class="homebelow">
 
-  <div style="padding:36px var(--gutter) 0">
+  <div class="homeband">
+  <div class="h-count" style="padding:36px var(--gutter) 0">
     <div style="background:linear-gradient(168deg,#fdf1dc,#f7e5c4);border-radius:26px;padding:20px 14px 22px;box-shadow:var(--sh)">
       <div style="text-align:center;font:700 9.5px/1 var(--font-heading);letter-spacing:.32em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.32em">{{ cd.label }}</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:18px">
@@ -589,7 +625,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     </div>
   </div>
 
-  <div class="pad" style="padding-top:26px;display:flex;flex-direction:column;gap:16px">
+  <div class="pad h-cta" style="padding-top:26px;display:flex;flex-direction:column;gap:16px">
 
     <div class="callout">
       <div class="callout-glow" aria-hidden="true"></div>
@@ -617,9 +653,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
       </button>
     </div>
   </div>
+  </div>
 
   <sc-if value="{{ upNext }}" hint-placeholder-val="{{ false }}">
-  <div style="padding:39px var(--gutter) 0">
+  <div class="h-first" style="padding:39px var(--gutter) 0">
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:13px">
       <sc-if value="{{ upNext.live }}" hint-placeholder-val="{{ false }}">
         <span style="width:8px;height:8px;border-radius:50%;background:#d0452f;animation:pulseDot 1.8s ease-out infinite"></span>
@@ -693,6 +730,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div style="font:700 9px/1 var(--font-heading);letter-spacing:.26em;color:rgba(247,217,162,.85);text-transform:uppercase;margin-top:16px">Mata Amritanandamayi Mission Trust</div>
     <div style="height:1px;background:rgba(247,217,162,.22);margin:22px auto;max-width:120px"></div>
     <div style="font:400 12.5px/1.65 var(--font-body);color:rgba(253,247,236,.55)">Mata Amritanandamayi Marg, Sector 88<br>Faridabad, Haryana 121002</div>
+  </div>
   </div>
 </section>
 </sc-if>
@@ -1027,15 +1065,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div style="font:400 30px/1.1 var(--display);color:var(--maroon-deep)">On campus</div>
     <div style="display:flex;flex-direction:column;gap:19px;margin-top:16px">
       <sc-for list="{{ venues }}" as="v" hint-placeholder-count="7">
-        <div style="display:flex;gap:14px;background:linear-gradient(168deg,#fffaf1,#f9eeda);border-radius:22px;padding:22px;box-shadow:var(--sh)">
-          <span style="flex:none;width:42px;height:42px;border-radius:50%;background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--maroon)">
-            <i class="ph-duotone {{ v.icon }}" style="font-size:21px"></i>
-          </span>
+        <a href="{{ v.map }}" target="_blank" rel="noopener" class="venuecard">
+          <span class="venuecard-ic"><i class="ph-duotone {{ v.icon }}" aria-hidden="true"></i></span>
           <div style="flex:1;min-width:0">
-            <div style="font:400 20px/1.2 var(--display);color:var(--maroon-deep)">{{ v.name }}</div>
-            <div style="font:400 13.5px/1.55 var(--font-body);color:var(--ink-3);margin-top:5px;text-wrap:pretty">{{ v.what }}</div>
+            <div class="venuecard-name">{{ v.name }}</div>
+            <div class="venuecard-what">{{ v.what }}</div>
+            <span class="venuecard-cta">Open in Maps<i class="ph-duotone ph-arrow-right" aria-hidden="true"></i></span>
           </div>
-        </div>
+        </a>
       </sc-for>
     </div>
   </div>
@@ -1108,13 +1145,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div style="font:italic 300 22px/1.4 var(--display);color:var(--ink-2);margin-top:14px;text-wrap:pretty">Any question, however small &mdash; call, message or write to us.</div>
   </div>
   <div style="padding:31px var(--gutter) 0">
-    <a href="mailto:foundersdayamritafbd@gmail.com" style="display:flex;align-items:center;gap:15px;padding:23px;background:linear-gradient(168deg,#fdf1dc,#f7e5c4);border-radius:24px;box-shadow:var(--sh)" style-hover="box-shadow:var(--sh-lg)">
+    <a href="mailto:amritavarsham@fbd.amrita.edu" style="display:flex;align-items:center;gap:15px;padding:23px;background:linear-gradient(168deg,#fdf1dc,#f7e5c4);border-radius:24px;box-shadow:var(--sh)" style-hover="box-shadow:var(--sh-lg)">
       <span style="flex:none;width:46px;height:46px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--maroon)">
         <i class="ph-duotone ph-envelope-simple" style="font-size:23px"></i>
       </span>
       <span style="flex:1;min-width:0">
         <span style="display:block;font:700 8.5px/1 var(--font-heading);letter-spacing:.2em;color:var(--marigold-deep);text-transform:uppercase">Email</span>
-        <span style="display:block;font:400 15px/1.35 var(--font-body);color:var(--ink);margin-top:5px;word-break:break-all">foundersdayamritafbd@gmail.com</span>
+        <span style="display:block;font:400 15px/1.35 var(--font-body);color:var(--ink);margin-top:5px;word-break:break-all">amritavarsham@fbd.amrita.edu</span>
       </span>
     </a>
   </div>
@@ -1255,19 +1292,19 @@ const GOLD_FILL = "linear-gradient(178deg,#f5c374,#dd8d22)";
 const PETALS = (() => {
   const out = [];
   const seedRand = (n) => { const x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); };
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < 7; i++) {
     const r1 = seedRand(i + 1), r2 = seedRand(i + 41), r3 = seedRand(i + 83);
-    const w = 7 + r2 * 8;
-    out.push({ cls:"petal", css:"left:" + (2 + r1 * 96).toFixed(2) + "%;width:" + w.toFixed(1) + "px;height:" + (w * 1.5).toFixed(1)
-      + "px;--dx:" + (-70 + r3 * 150).toFixed(0) + "px;--rot:" + (160 + r2 * 260).toFixed(0)
-      + "deg;animation-duration:" + (17 + r3 * 15).toFixed(1) + "s;animation-delay:-" + (r1 * 26).toFixed(1) + "s" });
+    const w = 6 + r2 * 5;
+    out.push({ cls:"petal", css:"left:" + (4 + r1 * 88).toFixed(2) + "%;width:" + w.toFixed(1) + "px;height:" + (w * 1.5).toFixed(1)
+      + "px;--dx:" + (-50 + r3 * 110).toFixed(0) + "px;--rot:" + (160 + r2 * 240).toFixed(0)
+      + "deg;animation-duration:" + (34 + r3 * 20).toFixed(1) + "s;animation-delay:-" + (r1 * 48).toFixed(1) + "s" });
   }
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 3; i++) {
     const r1 = seedRand(i + 131), r2 = seedRand(i + 179), r3 = seedRand(i + 223);
-    const d = 2.5 + r2 * 3.5;
-    out.push({ cls:"ember", css:"left:" + (3 + r1 * 94).toFixed(2) + "%;width:" + d.toFixed(1) + "px;height:" + d.toFixed(1)
-      + "px;--dx:" + (-50 + r3 * 100).toFixed(0) + "px;animation-duration:" + (20 + r3 * 14).toFixed(1)
-      + "s;animation-delay:-" + (r1 * 30).toFixed(1) + "s" });
+    const d = 2 + r2 * 2.5;
+    out.push({ cls:"ember", css:"left:" + (8 + r1 * 82).toFixed(2) + "%;width:" + d.toFixed(1) + "px;height:" + d.toFixed(1)
+      + "px;--dx:" + (-36 + r3 * 72).toFixed(0) + "px;animation-duration:" + (40 + r3 * 18).toFixed(1)
+      + "s;animation-delay:-" + (r1 * 52).toFixed(1) + "s" });
   }
   return out;
 })();
@@ -1420,6 +1457,7 @@ class Component extends DCLogic {
   state = { screen:"home", day:0, compId:null, open:{}, saved:{}, now:Date.now(), toast:null, canInstall:false };
 
   componentDidMount(){
+    this.markScreen(this.state.screen);
     try{ const raw = localStorage.getItem(SAVE_KEY); if(raw) this.setState({ saved: JSON.parse(raw)||{} }); }catch(e){}
     this.timer = setInterval(()=>this.setState({ now: Date.now() }), 1000);
     this._ip = (e)=>{ e.preventDefault(); this._prompt = e; this.setState({ canInstall:true }); };
@@ -1429,7 +1467,11 @@ class Component extends DCLogic {
 
   go(screen, compId){
     this.setState({ screen, compId: compId || null });
+    this.markScreen(screen);
     if(this._scroll) this._scroll.scrollTop = 0;
+  }
+  markScreen(screen){
+    try{ document.documentElement.setAttribute("data-screen", screen); }catch(e){}
   }
   flash(msg){ clearTimeout(this._tt); this.setState({ toast: msg }); this._tt = setTimeout(()=>this.setState({ toast:null }), 2200); }
 
@@ -1666,7 +1708,8 @@ class Component extends DCLogic {
         { icon:"ph-calendar-heart", title:"Add the fest to Google Calendar", sub:"Opens Google Calendar with all five days", onSelect:()=>this.addFest() }
       ],
 
-      venues: VENUES.map(v => ({ name:v[0], icon:v[1], what:v[2] })),
+      venues: VENUES.map(v => ({ name:v[0], icon:v[1], what:v[2],
+        map: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v[0] + ", " + ADDR) })),
       mapsUrl: MAPS_SEARCH,
       directionsUrl: MAPS_DIRECTIONS,
       shareLocation: () => this.share("BRAHM 2026 venue", ADDR),
