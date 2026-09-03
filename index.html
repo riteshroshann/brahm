@@ -132,6 +132,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-top{position:relative;z-index:2;padding:26px var(--gutter) 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .hero-lock{position:relative;z-index:2;padding:0 var(--gutter);display:flex;flex-direction:column;align-items:center;text-align:center;
   margin-top:clamp(410px,56vh,520px);margin-top:clamp(410px,56dvh,520px)}
+.hero-img-wide{display:none}
 .hero-mark{width:min(186px,52vw);height:auto;filter:drop-shadow(0 3px 10px rgba(168,107,22,.26))}
 /* Event name leads; the Brahm 2026 wordmark sits under it at a supporting size. */
 .hero-title{font:600 clamp(46px,13.4vw,64px)/.94 var(--display);color:var(--maroon-deep);letter-spacing:-.014em;margin-top:15px;text-wrap:balance}
@@ -297,7 +298,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   text-transform:uppercase;text-align:center;text-indent:.3em}
 .sponsorgrid{margin-top:16px;display:flex;flex-direction:column;gap:15px}
 .sponsorcard{background:linear-gradient(168deg,#fffaf1,#f7e5c4);border-radius:24px;padding:34px 28px;
-  text-align:center;box-shadow:var(--sh);display:flex;flex-direction:column;justify-content:center;min-height:132px}
+  text-align:center;box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:132px}
+.sponsorlogo{max-width:min(230px,74%);max-height:76px;width:auto;height:auto;object-fit:contain;display:block}
+.sponsorname{font:600 clamp(28px,8vw,36px)/1 var(--display);color:var(--maroon-deep);letter-spacing:.02em}
+.sponsorsub{font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);margin-top:10px}
+@media (min-width:700px){.sponsorlogo{max-height:88px}}
 @media (min-width:700px){
   /* Keep the marks from stretching into billboards on a wide screen. */
   .sponsorgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:720px;margin-inline:auto}
@@ -442,6 +447,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 @media (min-width:1080px){.daylist{grid-template-columns:repeat(3,1fr);gap:18px}}
 
 .appmain>section{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+/* The closing card runs to the very bottom edge and carries the tab-bar reserve
+   itself, so no ivory strip is left showing beneath the maroon. */
+html[data-screen="home"] .appmain>section{padding-bottom:0}
+.closer{margin-top:32px;background:linear-gradient(172deg,#7a1527,#5e1020);text-align:center;
+  border-radius:34px 34px 0 0;padding:48px var(--gutter) calc(150px + env(safe-area-inset-bottom))}
 
 .pad{padding-left:var(--gutter);padding-right:var(--gutter)}
 .grid-cards{display:grid;grid-template-columns:1fr;gap:14px}
@@ -481,17 +491,23 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .appmain>section{max-width:1000px;margin:0 auto;width:100%}
   .grid-cards{grid-template-columns:repeat(3,1fr);gap:22px}
   .screenpad{padding-bottom:70px}
-  .navbar{order:1;position:static;flex:0 0 auto;top:0;left:auto;right:auto;bottom:auto;transform:none;width:auto;
-    display:flex;justify-content:center;gap:6px;padding:10px 16px;border-radius:0;
-    background:linear-gradient(180deg,rgba(253,247,236,.97),rgba(249,238,218,.93));
-    border:0;border-bottom:1px solid rgba(140,28,46,.13);
-    box-shadow:0 6px 24px rgba(122,54,22,.08);color:var(--ink-2)}
-  .navb{flex-direction:row;gap:9px;min-height:40px;padding:0 19px;border-radius:13px;color:var(--ink-2)}
-  .navb i{font-size:17px}
-  .navb span{font-size:10.5px;letter-spacing:.11em}
+  /* Floating pill, clear of the page edges. Content scrolls beneath it, so every
+     screen except the full-bleed cover reserves room at the top. */
+  .navbar{order:1;position:absolute;top:18px;left:50%;transform:translateX(-50%);right:auto;bottom:auto;
+    width:min(840px,calc(100% - 56px));z-index:60;display:flex;justify-content:center;gap:6px;
+    padding:8px;border-radius:999px;
+    background:linear-gradient(180deg,rgba(96,17,36,.88),rgba(62,9,24,.84));
+    border:1px solid rgba(255,226,177,.24);
+    box-shadow:0 18px 48px rgba(32,3,13,.34),0 2px 10px rgba(32,3,13,.22),inset 0 1px 0 rgba(255,255,255,.13);
+    backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}
+  .navb{flex:1;flex-direction:row;gap:10px;min-height:54px;padding:0 24px;border-radius:999px;color:rgba(253,247,236,.78)}
+  .navb i{font-size:19px}
+  .navb span{font-size:11px;letter-spacing:.12em}
   .navb.on{color:#4a1a1c}
+  .appmain>section{padding-top:106px}
+  html[data-screen="home"] .appmain>section{padding-top:0}
 }
-@media (min-width:1080px) and (hover:hover){.navb:not(.on):hover{background:rgba(224,149,44,.1);color:var(--maroon)}}
+@media (min-width:1080px) and (hover:hover){.navb:not(.on):hover{background:rgba(255,255,255,.10);color:#fff7e9}}
 
 /* The desktop landing page is a full-bleed photographic cover. Other screens keep
    the editorial rail so long-form schedules and rules stay easy to read.
@@ -503,24 +519,20 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   html[data-screen="home"] .app .pane{width:100%;flex:1 1 100%;background:var(--ivory);box-shadow:none}
   html[data-screen="home"] .app .appmain>section{max-width:none}
 
-  html[data-screen="home"] .app .hero{position:relative;min-height:calc(100vh - 61px);min-height:calc(100dvh - 61px);display:flex;align-items:flex-end;
+  html[data-screen="home"] .app .hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;
     overflow:hidden;background:
       radial-gradient(120% 100% at 6% 88%,rgba(120,26,44,.55),transparent 62%),
       linear-gradient(120deg,#3a0a18 0%,#2a0a14 46%,#20060f 100%)}
-  /* Bleed art. The source is a portrait: stretched across a 16:9 viewport, cover
-     crops so hard that only her forehead survives. So the photograph bleeds off
-     the top, right and bottom of a portrait-shaped column instead, and dissolves
-     into the panel on the left — no letterbox bands, and her face stays whole. */
-  html[data-screen="home"] .app .hero-art{display:block;position:absolute;top:0;bottom:0;right:0;left:auto;
-    width:clamp(46%,54vw,60%);height:100%;background:transparent}
-  html[data-screen="home"] .app .hero-img{position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;object-position:50% 30%;filter:saturate(1.04) brightness(.97);
-    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 12%,rgba(0,0,0,.62) 26%,rgba(0,0,0,.9) 40%,#000 54%);
-    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 12%,rgba(0,0,0,.62) 26%,rgba(0,0,0,.9) 40%,#000 54%)}
+  /* Desktop runs its own wide artwork edge to edge. The phone's portrait crop is
+     a separate element and is switched off here, so the two never interfere. */
+  html[data-screen="home"] .app .hero-art{display:block;position:absolute;inset:0;width:100%;height:100%;background:#2a0a14}
+  html[data-screen="home"] .app .hero-img{display:none}
+  html[data-screen="home"] .app .hero-img-wide{display:block;position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:50% 42%;filter:saturate(1.03) brightness(.98)}
   html[data-screen="home"] .app .hero-glow{z-index:3;background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
-  /* Vignette only — the photograph's own edge is already feathered by its mask. */
   html[data-screen="home"] .app .hero-wash{z-index:2;inset:0;height:100%;width:100%;background:
-    linear-gradient(180deg,rgba(39,5,16,.46) 0%,rgba(39,5,16,.04) 24%,rgba(39,5,16,.10) 58%,rgba(39,5,16,.62) 100%)}
+    linear-gradient(90deg,rgba(34,4,14,.92) 0%,rgba(34,4,14,.74) 24%,rgba(34,4,14,.38) 44%,rgba(34,4,14,.06) 66%,rgba(34,4,14,.22) 100%),
+    linear-gradient(180deg,rgba(34,4,14,.52) 0%,rgba(34,4,14,.06) 26%,rgba(34,4,14,.10) 58%,rgba(34,4,14,.60) 100%)}
   html[data-screen="home"] .app .hero-crown{display:none}
   html[data-screen="home"] .app .hero-top{display:flex;position:absolute;top:102px;left:0;right:0;padding:0 clamp(40px,4.4vw,72px);z-index:4}
   html[data-screen="home"] .app .hero-lock{position:relative;z-index:4;margin:0;padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
@@ -583,6 +595,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     <div class="hero-art" aria-hidden="true">
       <div class="hero-glow"></div>
       <img class="hero-img" src="assets/hero-amma.jpg" alt="" fetchpriority="high" decoding="async">
+      <img class="hero-img-wide" src="assets/hero-amma-wide.jpg" alt="" decoding="async">
       <div class="hero-wash"></div>
       <div class="hero-crown"></div>
     </div>
@@ -724,7 +737,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
     </div>
   </div>
 
-  <div style="margin-top:32px;background:linear-gradient(172deg,#7a1527,#5e1020);padding:48px var(--gutter) 54px;text-align:center;border-radius:34px 34px 0 0">
+  <div class="closer">
     <i class="ph-duotone ph-flower-lotus" style="font-size:30px;color:#f3bc63"></i>
     <div style="font:italic 300 25px/1.42 var(--display);color:#fdf7ec;margin-top:14px;text-wrap:pretty">&ldquo;Where there is love,<br>there is no effort.&rdquo;</div>
     <div style="font:700 9px/1 var(--font-heading);letter-spacing:.26em;color:rgba(247,217,162,.85);text-transform:uppercase;margin-top:16px">Mata Amritanandamayi Mission Trust</div>
@@ -1190,24 +1203,39 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   <div style="padding:36px var(--gutter) 0">
     <div class="sponsor-head">Title sponsors</div>
     <div class="sponsorgrid">
-      <div class="sponsorcard">
-        <div style="font:600 38px/1 var(--display);color:var(--maroon-deep)">Coca&#8209;Cola</div>
-      </div>
-      <div class="sponsorcard">
-        <div style="font:600 34px/1 var(--display);color:var(--maroon-deep);letter-spacing:.03em">BMR</div>
-        <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);margin-top:10px">Realtors</div>
-      </div>
+      <sc-for list="{{ titleSponsors }}" as="sp" hint-placeholder-count="2">
+        <div class="sponsorcard">
+          <sc-if value="{{ sp.hasLogo }}" hint-placeholder-val="{{ false }}">
+            <img class="sponsorlogo" src="{{ sp.logo }}" alt="{{ sp.name }}" loading="lazy" decoding="async">
+          </sc-if>
+          <sc-if value="{{ sp.showText }}" hint-placeholder-val="{{ true }}">
+            <div class="sponsorname">{{ sp.name }}</div>
+            <sc-if value="{{ sp.hasSub }}" hint-placeholder-val="{{ false }}">
+              <div class="sponsorsub">{{ sp.sub }}</div>
+            </sc-if>
+          </sc-if>
+        </div>
+      </sc-for>
     </div>
   </div>
   <div style="padding:39px var(--gutter) 0">
     <div class="sponsor-head">In association with</div>
-    <div class="sponsorcard sponsorsolo" style="margin-top:16px">
-      <div style="font:600 32px/1 var(--display);color:var(--maroon-deep);letter-spacing:.09em">STRADA</div>
-    </div>
+    <sc-for list="{{ assocSponsors }}" as="sp" hint-placeholder-count="1">
+      <div class="sponsorcard sponsorsolo" style="margin-top:16px">
+        <sc-if value="{{ sp.hasLogo }}" hint-placeholder-val="{{ false }}">
+          <img class="sponsorlogo" src="{{ sp.logo }}" alt="{{ sp.name }}" loading="lazy" decoding="async">
+        </sc-if>
+        <sc-if value="{{ sp.showText }}" hint-placeholder-val="{{ true }}">
+          <div class="sponsorname">{{ sp.name }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
   </div>
+  <sc-if value="{{ logosPending }}" hint-placeholder-val="{{ true }}">
   <div style="padding:36px var(--gutter) 46px">
-    <div style="font:400 13px/1.6 var(--font-body);color:var(--ink-3);text-align:center;text-wrap:pretty">Partner marks shown as typographic placeholders &mdash; supply the official logo files and they drop straight in.</div>
+    <div style="font:400 13px/1.6 var(--font-body);color:var(--ink-3);text-align:center;text-wrap:pretty">Awaiting official logo files &mdash; partner marks are shown as type until they arrive.</div>
   </div>
+  </sc-if>
 </section>
 </sc-if>
 
@@ -1286,6 +1314,14 @@ const MAPS_DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=" + 
 const SAVE_KEY = "brahm2026.saved.v1";
 
 const GOLD_FILL = "linear-gradient(178deg,#f5c374,#dd8d22)";
+
+// Drop the official artwork at these paths and it replaces the type automatically —
+// the app probes for each file on load, so no code change is needed.
+const SPONSORS = [
+  { id:"cocacola", tier:"title", name:"Coca‑Cola", sub:"", logo:"assets/sponsor-coca-cola.png" },
+  { id:"bmr", tier:"title", name:"BMR", sub:"Realtors", logo:"assets/sponsor-bmr.png" },
+  { id:"strada", tier:"assoc", name:"STRADA", sub:"", logo:"assets/sponsor-strada.png" }
+];
 
 // Ambient marigold drift for wide screens. Deterministic so renders stay identical;
 // the layer is display:none below 1080px and removed under prefers-reduced-motion.
@@ -1454,16 +1490,17 @@ const REG_NOTES = [
 ];
 
 class Component extends DCLogic {
-  state = { screen:"home", day:0, compId:null, open:{}, saved:{}, now:Date.now(), toast:null, canInstall:false };
+  state = { screen:"home", day:0, compId:null, open:{}, saved:{}, now:Date.now(), toast:null, canInstall:false, logos:{} };
 
   componentDidMount(){
     this.markScreen(this.state.screen);
+    this.probeLogos();
     try{ const raw = localStorage.getItem(SAVE_KEY); if(raw) this.setState({ saved: JSON.parse(raw)||{} }); }catch(e){}
     this.timer = setInterval(()=>this.setState({ now: Date.now() }), 1000);
     this._ip = (e)=>{ e.preventDefault(); this._prompt = e; this.setState({ canInstall:true }); };
     window.addEventListener("beforeinstallprompt", this._ip);
   }
-  componentWillUnmount(){ clearInterval(this.timer); clearTimeout(this._tt); window.removeEventListener("beforeinstallprompt", this._ip); }
+  componentWillUnmount(){ this._dead = true; clearInterval(this.timer); clearTimeout(this._tt); window.removeEventListener("beforeinstallprompt", this._ip); }
 
   go(screen, compId){
     this.setState({ screen, compId: compId || null });
@@ -1472,6 +1509,20 @@ class Component extends DCLogic {
   }
   markScreen(screen){
     try{ document.documentElement.setAttribute("data-screen", screen); }catch(e){}
+  }
+  // A missing logo file must not leave a broken image on the partners page, so each
+  // one is loaded off-document first and only rendered once it resolves.
+  probeLogos(){
+    SPONSORS.forEach(sp => {
+      const img = new Image();
+      img.onload = () => {
+        if(this._dead) return;
+        const logos = Object.assign({}, this.state.logos);
+        logos[sp.id] = sp.logo;
+        this.setState({ logos });
+      };
+      img.src = sp.logo;
+    });
   }
   flash(msg){ clearTimeout(this._tt); this.setState({ toast: msg }); this._tt = setTimeout(()=>this.setState({ toast:null }), 2200); }
 
@@ -1604,6 +1655,11 @@ class Component extends DCLogic {
     });
   }
 
+  sponsorVals(sp){
+    const logo = this.state.logos[sp.id];
+    return { name:sp.name, sub:sp.sub, hasSub:!!sp.sub, logo:logo || "", hasLogo:!!logo, showText:!logo };
+  }
+
   renderVals(){
     const s = this.state;
     const day = DAYS[s.day] || DAYS[0];
@@ -1710,6 +1766,10 @@ class Component extends DCLogic {
 
       venues: VENUES.map(v => ({ name:v[0], icon:v[1], what:v[2],
         map: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v[0] + ", " + ADDR) })),
+      titleSponsors: SPONSORS.filter(x => x.tier === "title").map(x => this.sponsorVals(x)),
+      assocSponsors: SPONSORS.filter(x => x.tier === "assoc").map(x => this.sponsorVals(x)),
+      logosPending: SPONSORS.some(x => !s.logos[x.id]),
+
       mapsUrl: MAPS_SEARCH,
       directionsUrl: MAPS_DIRECTIONS,
       shareLocation: () => this.share("BRAHM 2026 venue", ADDR),
