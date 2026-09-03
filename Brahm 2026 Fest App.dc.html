@@ -506,6 +506,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .navb.on{color:#4a1a1c}
   .appmain>section{padding-top:106px}
   html[data-screen="home"] .appmain>section{padding-top:0}
+  html[data-scrolled="1"] .navbar{
+    background:linear-gradient(180deg,rgba(78,11,26,.98),rgba(54,6,19,.98));
+    box-shadow:0 14px 36px rgba(32,3,13,.32),inset 0 1px 0 rgba(255,255,255,.10);
+    border-color:rgba(255,226,177,.18)}
 }
 @media (min-width:1080px) and (hover:hover){.navb:not(.on):hover{background:rgba(255,255,255,.10);color:#fff7e9}}
 
@@ -1500,12 +1504,14 @@ class Component extends DCLogic {
     this._ip = (e)=>{ e.preventDefault(); this._prompt = e; this.setState({ canInstall:true }); };
     window.addEventListener("beforeinstallprompt", this._ip);
   }
-  componentWillUnmount(){ this._dead = true; clearInterval(this.timer); clearTimeout(this._tt); window.removeEventListener("beforeinstallprompt", this._ip); }
+  componentWillUnmount(){ this._dead = true; if(this._scroll && this._onScroll) this._scroll.removeEventListener("scroll", this._onScroll); clearInterval(this.timer); clearTimeout(this._tt); window.removeEventListener("beforeinstallprompt", this._ip); }
 
   go(screen, compId){
     this.setState({ screen, compId: compId || null });
     this.markScreen(screen);
     if(this._scroll) this._scroll.scrollTop = 0;
+    this._docked = false;
+    try{ document.documentElement.setAttribute("data-scrolled","0"); }catch(e){}
   }
   markScreen(screen){
     try{ document.documentElement.setAttribute("data-screen", screen); }catch(e){}
@@ -1698,7 +1704,20 @@ class Component extends DCLogic {
       : { bg:"#f4e4c9", fg:"rgba(74,26,28,.66)", shadow:"none" };
 
     return {
-      scrollRef: el => { this._scroll = el; },
+      scrollRef: el => {
+        if(el === this._scroll) return;
+        if(this._scroll && this._onScroll) this._scroll.removeEventListener("scroll", this._onScroll);
+        this._scroll = el;
+        if(!el) return;
+        this._onScroll = () => {
+          const docked = el.scrollTop > 12;
+          if(docked === this._docked) return;
+          this._docked = docked;
+          document.documentElement.setAttribute("data-scrolled", docked ? "1" : "0");
+        };
+        el.addEventListener("scroll", this._onScroll, { passive:true });
+        this._onScroll();
+      },
       isHome: s.screen === "home",
       isSchedule: s.screen === "schedule",
       isEvents: s.screen === "events",
