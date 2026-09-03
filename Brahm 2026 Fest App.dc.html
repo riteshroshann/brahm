@@ -226,6 +226,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .openbar-t{font:700 10px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-deep)}
 .openbar-s{margin-top:6px;font:400 14px/1.45 var(--font-body);color:var(--ink-2);text-wrap:pretty}
 
+/* ---------- Competitions banner ---------- */
+.evbanner{position:relative;height:224px;overflow:hidden;background:#f0c893;border-radius:0 0 32px 32px}
+.evbanner-cap{position:absolute;left:var(--gutter);right:var(--gutter);bottom:22px}
+
 /* ---------- Competition cards ---------- */
 .compcard{display:flex;flex-direction:column;width:100%;text-align:left;border-radius:24px;overflow:hidden;
   background:linear-gradient(168deg,#fffaf1,#f9eeda);box-shadow:var(--sh);
@@ -426,6 +430,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 @media (min-width:700px){.morelist{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
 @media (min-width:1080px){.morelist{grid-template-columns:repeat(3,1fr)}}
 
+/* ---------- Schedule day tabs ---------- */
+.daytab{display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 4px;border-radius:18px}
+.daytab-dow{font:700 9px/1 var(--font-heading);letter-spacing:.16em;text-transform:uppercase;opacity:.66}
+.daytab-num{font:400 24px/1 var(--display);font-variant-numeric:tabular-nums}
+
 /* ---------- Schedule day list ---------- */
 .daylist{display:flex;flex-direction:column;gap:14px}
 .dayitem-t{font:400 clamp(23px,6.4vw,27px)/1.14 var(--display);color:var(--maroon-deep);margin-top:8px;text-wrap:balance}
@@ -485,10 +494,56 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .rail-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
   .rail-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,20,.34) 0%,rgba(42,10,20,.05) 24%,rgba(42,10,20,.60) 66%,rgba(42,10,20,.96) 100%)}
   .rail-body{position:relative;padding:0 42px 48px;color:#fdf7ec}
+  .rail-title{font:600 clamp(40px,3.1vw,52px)/.98 var(--display);margin-top:16px;letter-spacing:-.012em;color:#fff8ec}
+  .rail-sub{font:400 21px/1 var(--display);letter-spacing:.03em;color:rgba(253,247,236,.86)}
   .pane{background:var(--ivory);box-shadow:-30px 0 90px rgba(20,4,10,.5);z-index:2}
   .appmain{background:transparent;order:2}
   /* One rule centres every screen's content — no per-screen wrappers to keep in sync. */
-  .appmain>section{max-width:1000px;margin:0 auto;width:100%}
+  .appmain>section{max-width:1180px;margin:0 auto;width:100%}
+
+  /* ---- Desktop type scale ----
+     The phone scale looked hairline blown up to a laptop: 52px headings at
+     weight 300 across a 1000px measure. Desktop gets its own weights and sizes
+     so the page reads as deliberately bold rather than enlarged. */
+  .h-screen{font-weight:600;font-size:clamp(56px,4.4vw,74px);line-height:.98;letter-spacing:-.018em}
+  .sub-screen{font-size:25px;line-height:1.42;color:var(--ink-2);max-width:44ch;margin-top:18px}
+  .eyebrow-gold,.eyebrow{font-size:11px;letter-spacing:.28em}
+  .eyebrow-gold{color:var(--marigold-deep)}
+  .stickyhead>div:first-child,.appmain>section>div:first-child{padding-top:56px}
+  html[data-screen="home"] .appmain>section>div:first-child{padding-top:0}
+
+  /* Cards carry more weight and warmth at this size. */
+  .dayitem{padding:26px 26px 24px;border-radius:24px;
+    background:linear-gradient(168deg,#fffbf3,#f8ead1);
+    box-shadow:0 12px 30px rgba(122,54,22,.10),inset 0 0 0 1px rgba(140,28,46,.06)}
+  .dayitem.is-comp{background:linear-gradient(168deg,#fff7e6,#fbe8c6);
+    box-shadow:0 12px 30px rgba(168,107,22,.16),inset 4px 0 0 var(--marigold),inset 0 0 0 1px rgba(224,149,44,.26)}
+  .dayitem-t{font-size:26px;font-weight:500;line-height:1.12;margin-top:10px}
+  .dayitem-venue{font-size:14.5px}
+  .compcard-name{font-size:40px;font-weight:500}
+  .compcard-cat{font-size:9.5px;letter-spacing:.22em}
+  .compcard-when{font-size:11px}
+  .compcard-venue{font-size:14.5px}
+  .morerow{padding:20px 22px;border-radius:22px}
+  .morerow-t{font-size:23px}
+  .morerow-s{font-size:14px}
+  .rulecard{padding:22px 24px;border-radius:22px}
+  .venuecard{padding:24px}
+  .venuecard-name{font-size:23px}
+  .evbanner{height:300px;border-radius:0 0 36px 36px}
+  .evbanner-cap{bottom:34px}
+  .daytab{padding:17px 6px;border-radius:22px;gap:7px}
+  .daytab-dow{font-size:10.5px;letter-spacing:.2em}
+  .daytab-num{font-size:34px}
+  .callout-title{font-weight:600;font-size:clamp(38px,3.1vw,48px);line-height:1.04}
+  .callout-text{font-size:16.5px;line-height:1.62}
+  .callout-body{padding:36px 40px 38px}
+  .openbar-s{font-size:15.5px}
+  .prose{font-size:17px;line-height:1.72}
+  .prose.lead{font-size:19px}
+  .btn{font-size:11px;letter-spacing:.16em;min-height:56px}
+  .btn-sm{min-height:44px;font-size:10px}
+
   .grid-cards{grid-template-columns:repeat(3,1fr);gap:22px}
   .screenpad{padding-bottom:70px}
   /* Floating pill, clear of the page edges. Content scrolls beneath it, so every
@@ -579,10 +634,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   <div class="rail-body">
     <img src="assets/mark-73.png" alt="" style="width:132px;height:auto;display:block;margin-bottom:20px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.45))">
     <div style="font:600 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:rgba(247,217,162,.82)">Amrita Vishwa Vidyapeetham</div>
-    <div style="font:300 60px/.92 var(--display);margin-top:14px;letter-spacing:-.012em">Brahm</div>
-    <div style="display:flex;align-items:center;gap:11px;margin-top:12px">
+    <div class="rail-title">Vishwa<br>Seva Dinam</div>
+    <div style="display:flex;align-items:center;gap:11px;margin-top:14px">
       <div style="height:1px;width:34px;background:linear-gradient(90deg,rgba(224,149,44,.85),rgba(224,149,44,0))"></div>
-      <div style="font:400 19px/1 var(--display);letter-spacing:.2em;color:#f3bc63">2026</div>
+      <div class="rail-sub">Brahm <span style="color:#f3bc63">2026</span></div>
     </div>
     <div style="font:400 15px/1.6 var(--font-body);color:rgba(253,247,236,.74);margin-top:20px;max-width:270px;text-wrap:pretty">Founders&rsquo; Day Fest &middot; 19&ndash;23 September 2026 &middot; Delhi NCR Campus, Faridabad</div>
   </div>
@@ -761,9 +816,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     </div>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:9px;padding:22px var(--gutter) 19px">
       <sc-for list="{{ dayTabs }}" as="d" hint-placeholder-count="5">
-        <button onClick="{{ d.onSelect }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 4px;background:{{ d.bg }};color:{{ d.fg }};border-radius:18px;box-shadow:{{ d.shadow }}" style-hover="filter:brightness(.98)">
-          <span style="font:700 9px/1 var(--font-heading);letter-spacing:.16em;text-transform:uppercase;opacity:.66">{{ d.dow }}</span>
-          <span style="font:400 24px/1 var(--display);font-variant-numeric:tabular-nums">{{ d.num }}</span>
+        <button onClick="{{ d.onSelect }}" class="daytab" style="background:{{ d.bg }};color:{{ d.fg }};box-shadow:{{ d.shadow }}" style-hover="filter:brightness(.98)">
+          <span class="daytab-dow">{{ d.dow }}</span>
+          <span class="daytab-num">{{ d.num }}</span>
         </button>
       </sc-for>
     </div>
@@ -830,10 +885,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isEvents }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Competitions" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both;padding-bottom:calc(96px + env(safe-area-inset-bottom))">
-  <div style="position:relative;height:224px;overflow:hidden;background:#f0c893;border-radius:0 0 32px 32px">
+  <div class="evbanner">
     <img src="assets/plate-mandala.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(94,16,32,.24),rgba(94,16,32,.9))"></div>
-    <div style="position:absolute;left:20px;right:20px;bottom:20px">
+    <div class="evbanner-cap">
       <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:#f7d9a2;text-transform:uppercase">19 &amp; 20 September</div>
       <div style="font:300 47px/1.02 var(--display);color:#fdf7ec;margin-top:10px">Inter&#8209;College<br>Competitions</div>
     </div>
