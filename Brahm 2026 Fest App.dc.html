@@ -1517,17 +1517,16 @@ class Component extends DCLogic {
     try{ document.documentElement.setAttribute("data-screen", screen); }catch(e){}
   }
   // A missing logo file must not leave a broken image on the partners page, so each
-  // one is loaded off-document first and only rendered once it resolves.
+  // one is fetched first and only rendered once it is known to exist. HEAD keeps a
+  // not-yet-supplied file from logging a failed image request in the console.
   probeLogos(){
     SPONSORS.forEach(sp => {
-      const img = new Image();
-      img.onload = () => {
-        if(this._dead) return;
+      fetch(sp.logo, { method:"HEAD" }).then(res => {
+        if(!res.ok || this._dead) return;
         const logos = Object.assign({}, this.state.logos);
         logos[sp.id] = sp.logo;
         this.setState({ logos });
-      };
-      img.src = sp.logo;
+      }).catch(()=>{});
     });
   }
   flash(msg){ clearTimeout(this._tt); this.setState({ toast: msg }); this._tt = setTimeout(()=>this.setState({ toast:null }), 2200); }
