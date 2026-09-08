@@ -3,7 +3,7 @@
 Official companion web app for **BRAHM 2026**, the Founders' Day Fest at
 Amrita Vishwa Vidyapeetham, Delhi NCR Campus, Faridabad.
 
-**19 – 23 September 2026**
+**19th – 23rd September 2026**
 
 ## About
 
@@ -26,9 +26,9 @@ self-hosted as latin-subset woff2. Icons are Phosphor Duotone, subset from
 1000+ glyphs down to the 37 the app actually uses — 164 KB to 7 KB.
 
 The layout is responsive across three breakpoints: a single column on phones
-with a slim floating tab bar; two-column grids on tablets; and on screens
+with a tab bar docked to the bottom edge; two-column grids on tablets; and on screens
 1080px and wider a two-panel editorial spread — a fixed portrait rail beside
-the content, with the tab bar becoming a top bar and marigold petals drifting
+the content, with the tab bar becoming a thin bar docked to the top and marigold petals drifting
 in the background.
 
 ## Layout

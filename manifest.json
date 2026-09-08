@@ -1,12 +1,12 @@
 {
   "name": "BRAHM 2026 — Founders' Day Fest",
   "short_name": "BRAHM 2026",
-  "description": "Official companion app for BRAHM 2026, Amrita Vishwa Vidyapeetham Delhi NCR Campus, 19–23 September 2026.",
+  "description": "Official companion app for BRAHM 2026, Amrita Vishwa Vidyapeetham Delhi NCR Campus, 19th–23rd September 2026.",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#4a0a18",
-  "theme_color": "#4a0a18",
+  "background_color": "#101c39",
+  "theme_color": "#101c39",
   "icons": [
     {
       "src": "assets/icon-192.png",
