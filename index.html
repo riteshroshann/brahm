@@ -149,6 +149,16 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-rule.flip{background:linear-gradient(90deg,rgba(224,149,44,.85),rgba(224,149,44,0))}
 .hero-dates{margin-top:17px;font:600 12px/1 var(--font-heading);letter-spacing:.22em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.22em}
 .hero-line{margin:18px 0 0;font:italic 300 clamp(21px,6.2vw,25px)/1.32 var(--display);color:var(--ink-2);text-wrap:pretty}
+/* The countdown closes the lockup: the fest's own clock, in the fest's own
+   numerals, on the screen people open first. */
+.hero-count{width:100%;margin-top:26px;padding:20px 14px 22px;border-radius:26px;
+  background:linear-gradient(168deg,#fdf1dc,#f7e5c4);box-shadow:var(--sh)}
+.hero-count-label{text-align:center;font:700 9.5px/1 var(--font-heading);letter-spacing:.32em;
+  color:var(--marigold-deep);text-transform:uppercase;text-indent:.32em}
+.hero-count-cells{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:18px}
+.hero-count-cell{display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-count-v{font:400 46px/1 var(--display);color:var(--night);font-variant-numeric:tabular-nums}
+.hero-count-k{font:700 8.5px/1 var(--font-heading);letter-spacing:.22em;color:var(--ink-3);text-transform:uppercase}
 @media (min-width:700px){
   /* A wider viewport crops the portrait tighter, so the face fills more of the
      box — hold the mask off until later and give the art more height. */
@@ -158,6 +168,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .hero-title{font-size:clamp(78px,10.4vw,98px)}
   .hero-sub-name{font-size:29px}
   .hero-mark{width:214px}
+  .hero-count{max-width:560px;margin-top:30px;padding:24px 22px 26px}
+  .hero-count-v{font-size:54px}
 }
 @media (min-width:1080px){
   /* The rail already carries Amma's portrait, so the in-page photo would be a
@@ -661,12 +673,21 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-sub-name{font-size:clamp(24px,1.9vw,32px);color:#fbe6bd;text-shadow:0 3px 16px rgba(7,13,30,.55)}
   html[data-screen="home"] .app .hero-dates{color:#f3bc63;text-shadow:0 2px 12px rgba(7,13,30,.6)}
   html[data-screen="home"] .app .hero-line{color:rgba(253,247,236,.9);text-shadow:0 2px 16px rgba(7,13,30,.64)}
-  /* Below the fold the desktop is an editorial spread, not the phone column:
-     the countdown sits beside the competitions callout instead of under it. */
+  /* A cream card would punch a hole in the photograph, so on the cover the
+     countdown becomes glass: the numerals carry it, not the container. */
+  html[data-screen="home"] .app .hero-count{max-width:568px;margin-top:32px;
+    padding:22px 26px 24px;border-radius:22px;
+    background:rgba(10,18,40,.40);box-shadow:inset 0 0 0 1px rgba(251,230,189,.22);
+    backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+  html[data-screen="home"] .app .hero-count-label{text-align:left;text-indent:0;color:#f3bc63;
+    text-shadow:0 2px 12px rgba(7,13,30,.6)}
+  html[data-screen="home"] .app .hero-count-cells{gap:12px;margin-top:16px}
+  html[data-screen="home"] .app .hero-count-cell{align-items:flex-start;gap:9px}
+  html[data-screen="home"] .app .hero-count-v{font-size:clamp(44px,3.6vw,56px);color:#fff8ec;
+    text-shadow:0 3px 16px rgba(7,13,30,.55)}
+  html[data-screen="home"] .app .hero-count-k{color:rgba(253,247,236,.70)}
   html[data-screen="home"] .app .homebelow{max-width:1180px;margin:0 auto}
-  html[data-screen="home"] .app .homeband{padding:52px var(--gutter) 0;
-    display:grid;grid-template-columns:1fr 1.12fr;gap:30px;align-items:start}
-  html[data-screen="home"] .app .homeband>.h-count,
+  html[data-screen="home"] .app .homeband{padding:52px var(--gutter) 0}
   html[data-screen="home"] .app .homeband>.h-cta{padding:0!important}
 }
 
@@ -783,26 +804,23 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
       </div>
       <div class="hero-dates">19th &ndash; 23rd September 2026</div>
       <p class="hero-line">Celebrating health, talent,<br>unity &amp; joy.</p>
+      <div class="hero-count">
+        <div class="hero-count-label">{{ cd.label }}</div>
+        <div class="hero-count-cells">
+          <sc-for list="{{ cd.cells }}" as="c" hint-placeholder-count="4">
+            <div class="hero-count-cell">
+              <span class="hero-count-v">{{ c.v }}</span>
+              <span class="hero-count-k">{{ c.k }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
     </div>
   </div>
   <div class="homebelow">
 
   <div class="homeband">
-  <div class="h-count" style="padding:36px var(--gutter) 0">
-    <div style="background:linear-gradient(168deg,#fdf1dc,#f7e5c4);border-radius:26px;padding:20px 14px 22px;box-shadow:var(--sh)">
-      <div style="text-align:center;font:700 9.5px/1 var(--font-heading);letter-spacing:.32em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.32em">{{ cd.label }}</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:18px">
-        <sc-for list="{{ cd.cells }}" as="c" hint-placeholder-count="4">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-            <span style="font:400 46px/1 var(--display);color:var(--night);font-variant-numeric:tabular-nums">{{ c.v }}</span>
-            <span style="font:700 8.5px/1 var(--font-heading);letter-spacing:.22em;color:var(--ink-3);text-transform:uppercase">{{ c.k }}</span>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </div>
-
-  <div class="pad h-cta" style="padding-top:26px;display:flex;flex-direction:column;gap:16px">
+  <div class="pad h-cta" style="padding-top:42px;display:flex;flex-direction:column;gap:16px">
 
     <div class="callout">
       <div class="callout-glow" aria-hidden="true"></div>
