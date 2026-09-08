@@ -34,11 +34,13 @@ window.__resources = {
 <meta property="og:site_name" content="BRAHM 2026">
 <meta property="og:title" content="Brahm 2026 — Founders’ Day Fest">
 <meta property="og:description" content="Nine inter-college competitions open to every college. 19th–23rd September 2026 at Amrita Vishwa Vidyapeetham, Delhi NCR Campus.">
-<meta property="og:image" content="assets/hero-amma.jpg">
+<meta property="og:image" content="assets/hero-crowd-wide.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="_ds/broadsheet-311c8ad7-0126-44a4-aa52-ec64304392bc/styles.css">
 <script src="_ds/broadsheet-311c8ad7-0126-44a4-aa52-ec64304392bc/_ds_bundle.js"></script>
+<link rel="preload" href="assets/hero-crowd.jpg" as="image" media="(max-width:1079px)" fetchpriority="high">
+<link rel="preload" href="assets/hero-crowd-wide.jpg" as="image" media="(min-width:1080px)" fetchpriority="high">
 <link rel="preload" href="vendor/fonts/cormorant-rm-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="vendor/fonts/sourceserif-rm-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="vendor/icons.woff2" as="font" type="font/woff2" crossorigin>
@@ -113,73 +115,70 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .navb.on::before{opacity:1}
 @media (hover:hover){.navb:not(.on):hover{color:#f7d9a2}}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;isolation:isolate}
-.hero-art{position:absolute;left:0;right:0;top:0;height:clamp(560px,76vh,700px);height:clamp(560px,76dvh,700px);z-index:0;overflow:hidden;background:var(--ivory)}
-.hero-glow{position:absolute;inset:0;background:radial-gradient(150% 110% at 50% 104%,rgba(243,188,99,.22),rgba(253,247,236,0) 66%)}
-/* The fade runs long and lands fully transparent at 78% of the art box, which sits
-   well above the 73 mark — no visible photo edge anywhere. */
-/* The portrait stays fully opaque past her chin. The fade only begins below the
-   face, runs behind the golden 73 mark, and is completely clear before "Brahm".
-   --face is the share of the art box her face occupies; everything above it is
-   untouched image. */
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 24%;
-  filter:saturate(1.04) brightness(1.02);
-  --face:68%;
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 var(--face),rgba(0,0,0,.97) 72%,rgba(0,0,0,.90) 76%,rgba(0,0,0,.79) 80%,rgba(0,0,0,.63) 84%,rgba(0,0,0,.44) 88%,rgba(0,0,0,.26) 91.5%,rgba(0,0,0,.12) 94.5%,rgba(0,0,0,.04) 95%,transparent 97.5%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 var(--face),rgba(0,0,0,.97) 72%,rgba(0,0,0,.90) 76%,rgba(0,0,0,.79) 80%,rgba(0,0,0,.63) 84%,rgba(0,0,0,.44) 88%,rgba(0,0,0,.26) 91.5%,rgba(0,0,0,.12) 94.5%,rgba(0,0,0,.04) 95%,transparent 97.5%)}
-/* A second ivory wash, starting only where the mask does, so it never lifts
-   tone off the face. Also kills residual banding on wide-gamut screens. */
-.hero-wash{position:absolute;left:0;right:0;bottom:0;height:34%;
-  background:linear-gradient(180deg,rgba(253,247,236,0) 0%,rgba(253,247,236,.12) 24%,rgba(253,247,236,.36) 46%,rgba(253,247,236,.64) 64%,rgba(253,247,236,.86) 80%,var(--ivory) 96%)}
-.hero-crown{position:absolute;top:0;left:0;right:0;height:24%;
-  background:linear-gradient(180deg,rgba(17,29,58,.5) 0%,rgba(17,29,58,.13) 56%,rgba(17,29,58,0) 100%)}
-.hero-top{position:relative;z-index:2;padding:26px var(--gutter) 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.hero-lock{position:relative;z-index:2;padding:0 var(--gutter);display:flex;flex-direction:column;align-items:center;text-align:center;
-  margin-top:clamp(410px,56vh,520px);margin-top:clamp(410px,56dvh,520px)}
-.hero-img-wide{display:none}
-.hero-mark{width:min(186px,52vw);height:auto;filter:drop-shadow(0 3px 10px rgba(168,107,22,.26))}
+/* ---------- Hero: the cover ----------
+   A dark stage photograph cannot fade into cream paper and still carry navy
+   text, so the hero is a full-bleed cover at every width: the picture runs edge
+   to edge and the lockup sits on it in cream. The photo is a background rather
+   than an <img> so each device fetches only its own crop instead of both — the
+   head preloads the matching one to keep it the LCP candidate. */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#0c1631;
+  display:flex;align-items:flex-end;
+  min-height:clamp(660px,94vh,920px);min-height:clamp(660px,94dvh,920px)}
+.hero-art{position:absolute;inset:0;z-index:0;background:#0c1631 url("assets/hero-crowd.jpg") 50% 42%/cover no-repeat}
+/* Two stops of shade: enough under the lockup to hold cream text, light enough
+   across the middle that the stage lights still read as lights. */
+.hero-wash{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(8,15,34,.66) 0%,rgba(8,15,34,.18) 22%,rgba(8,15,34,.24) 46%,rgba(8,15,34,.70) 76%,rgba(8,15,34,.84) 100%)}
+/* Warms the foot of the frame, so the gold that carries every CTA downstream
+   has somewhere to start. */
+.hero-glow{position:absolute;inset:0;z-index:2;
+  background:radial-gradient(120% 76% at 50% 100%,rgba(224,149,44,.20),transparent 62%)}
+.hero-top{position:absolute;top:calc(20px + env(safe-area-inset-top));left:0;right:0;z-index:4;
+  padding:0 var(--gutter);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+/* The bottom reserve clears the docked tab bar, so the countdown is never
+   tucked in behind it. */
+.hero-lock{position:relative;z-index:4;width:100%;
+  padding:0 var(--gutter) calc(72px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero-mark{width:min(178px,50vw);height:auto;filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
 /* The wordmark is the headline now, so it takes the headline size; the fest
    name sits beneath it between the two gold rules. */
-.hero-title{font:600 clamp(50px,15.2vw,76px)/.92 var(--display);color:var(--night);letter-spacing:-.02em;margin-top:16px}
+.hero-title{font:600 clamp(50px,15.2vw,76px)/.92 var(--display);color:#fff8ec;letter-spacing:-.02em;
+  margin-top:15px;text-shadow:0 8px 30px rgba(7,13,30,.6)}
 .hero-title .sun{letter-spacing:.01em}
-.hero-sub{display:flex;align-items:center;gap:13px;margin-top:17px;width:100%;justify-content:center}
-.hero-sub-name{font:400 clamp(22px,6.4vw,27px)/1 var(--display);color:var(--blue);letter-spacing:.015em;white-space:nowrap}
+.hero-sub{display:flex;align-items:center;gap:13px;margin-top:16px;width:100%;justify-content:center}
+.hero-sub-name{font:400 clamp(22px,6.4vw,27px)/1 var(--display);color:#fbe6bd;letter-spacing:.015em;
+  white-space:nowrap;text-shadow:0 3px 14px rgba(7,13,30,.6)}
 .hero-rule{height:2px;flex:1;max-width:66px;border-radius:2px;background:linear-gradient(90deg,rgba(224,149,44,0),rgba(224,149,44,.85))}
 .hero-rule.flip{background:linear-gradient(90deg,rgba(224,149,44,.85),rgba(224,149,44,0))}
-.hero-dates{margin-top:17px;font:600 12px/1 var(--font-heading);letter-spacing:.22em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.22em}
-.hero-line{margin:18px 0 0;font:italic 300 clamp(21px,6.2vw,25px)/1.32 var(--display);color:var(--ink-2);text-wrap:pretty}
+.hero-dates{margin-top:16px;font:600 12px/1 var(--font-heading);letter-spacing:.22em;color:#f3bc63;
+  text-transform:uppercase;text-indent:.22em;text-shadow:0 2px 12px rgba(7,13,30,.7)}
+.hero-line{margin:16px 0 0;font:italic 300 clamp(21px,6.2vw,25px)/1.32 var(--display);
+  color:rgba(253,247,236,.92);text-wrap:pretty;text-shadow:0 2px 14px rgba(7,13,30,.7)}
 /* The countdown closes the lockup: the fest's own clock, in the fest's own
-   numerals, on the screen people open first. */
-.hero-count{width:100%;margin-top:26px;padding:20px 14px 22px;border-radius:26px;
-  background:linear-gradient(168deg,#fdf1dc,#f7e5c4);box-shadow:var(--sh)}
+   numerals, on the screen people open first. Glass rather than cream — a card
+   would punch a hole in the photograph. */
+.hero-count{width:100%;max-width:430px;margin-top:24px;padding:18px 16px 20px;border-radius:22px;
+  background:rgba(10,18,40,.44);box-shadow:inset 0 0 0 1px rgba(251,230,189,.22);
+  backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
 .hero-count-label{text-align:center;font:700 9.5px/1 var(--font-heading);letter-spacing:.32em;
-  color:var(--marigold-deep);text-transform:uppercase;text-indent:.32em}
-.hero-count-cells{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:18px}
-.hero-count-cell{display:flex;flex-direction:column;align-items:center;gap:8px}
-.hero-count-v{font:400 46px/1 var(--display);color:var(--night);font-variant-numeric:tabular-nums}
-.hero-count-k{font:700 8.5px/1 var(--font-heading);letter-spacing:.22em;color:var(--ink-3);text-transform:uppercase}
+  color:#f3bc63;text-transform:uppercase;text-indent:.32em;text-shadow:0 2px 12px rgba(7,13,30,.6)}
+.hero-count-cells{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:15px}
+.hero-count-cell{display:flex;flex-direction:column;align-items:center;gap:7px}
+.hero-count-v{font:400 42px/1 var(--display);color:#fff8ec;font-variant-numeric:tabular-nums;
+  text-shadow:0 3px 16px rgba(7,13,30,.55)}
+.hero-count-k{font:700 8.5px/1 var(--font-heading);letter-spacing:.22em;color:rgba(253,247,236,.72);text-transform:uppercase}
 @media (min-width:700px){
-  /* A wider viewport crops the portrait tighter, so the face fills more of the
-     box — hold the mask off until later and give the art more height. */
-  .hero-art{height:clamp(720px,86vh,900px);height:clamp(720px,86dvh,900px)}
-  .hero-img{--face:74%}
-  .hero-lock{margin-top:clamp(560px,66vh,720px);margin-top:clamp(560px,66dvh,720px)}
+  .hero{min-height:clamp(780px,92vh,1000px);min-height:clamp(780px,92dvh,1000px)}
   .hero-title{font-size:clamp(78px,10.4vw,98px)}
   .hero-sub-name{font-size:29px}
-  .hero-mark{width:214px}
-  .hero-count{max-width:560px;margin-top:30px;padding:24px 22px 26px}
-  .hero-count-v{font-size:54px}
+  .hero-mark{width:206px}
+  .hero-count{max-width:520px;margin-top:30px;padding:24px 22px 26px}
+  .hero-count-v{font-size:52px}
 }
 @media (min-width:1080px){
-  /* The rail already carries Amma's portrait, so the in-page photo would be a
-     duplicate — the home screen opens on the wordmark instead. */
-  .hero-art{display:none}
-  .hero-top{display:none}
-  .hero-lock{margin-top:0;padding-top:70px}
-  .hero-title{font-size:clamp(84px,6.6vw,108px)}
-  .hero-sub-name{font-size:31px}
-  .hero-mark{width:230px}
+  /* The wide crop only — a desktop never fetches the phone's portrait frame. */
+  .hero-art{background-image:url("assets/hero-crowd-wide.jpg");background-position:50% 46%}
   .hero-line{max-width:34ch}
 }
 
@@ -645,47 +644,29 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .pane{width:100%;flex:1 1 100%;background:var(--ivory);box-shadow:none}
   html[data-screen="home"] .app .appmain>section{max-width:none}
 
-  html[data-screen="home"] .app .hero{position:relative;min-height:calc(100vh - var(--navh));min-height:calc(100dvh - var(--navh));display:flex;align-items:flex-end;
-    overflow:hidden;background:
-      radial-gradient(120% 100% at 6% 88%,rgba(38,62,124,.55),transparent 62%),
-      linear-gradient(120deg,#16244a 0%,#0c1631 46%,#0a1226 100%)}
-  /* Desktop runs its own wide artwork edge to edge. The phone's portrait crop is
-     a separate element and is switched off here, so the two never interfere. */
-  html[data-screen="home"] .app .hero-art{display:block;position:absolute;inset:0;width:100%;height:100%;background:#0c1631}
-  html[data-screen="home"] .app .hero-img{display:none}
-  html[data-screen="home"] .app .hero-img-wide{display:block;position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;object-position:50% 42%;filter:saturate(1.03) brightness(.98)}
-  html[data-screen="home"] .app .hero-glow{z-index:3;background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
-  html[data-screen="home"] .app .hero-wash{z-index:2;inset:0;height:100%;width:100%;background:
-    linear-gradient(90deg,rgba(8,15,34,.92) 0%,rgba(8,15,34,.74) 24%,rgba(8,15,34,.38) 44%,rgba(8,15,34,.06) 66%,rgba(8,15,34,.22) 100%),
-    linear-gradient(180deg,rgba(8,15,34,.52) 0%,rgba(8,15,34,.06) 26%,rgba(8,15,34,.10) 58%,rgba(8,15,34,.60) 100%)}
-  html[data-screen="home"] .app .hero-crown{display:none}
-  html[data-screen="home"] .app .hero-top{display:flex;position:absolute;top:34px;left:0;right:0;padding:0 clamp(40px,4.4vw,72px);z-index:4}
-  html[data-screen="home"] .app .hero-lock{position:relative;z-index:4;margin:0;padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
+  html[data-screen="home"] .app .hero{min-height:calc(100vh - var(--navh));min-height:calc(100dvh - var(--navh))}
+  /* Shade rakes in from the left instead of straight down, because the lockup
+     is left-aligned here — the right of the frame keeps its stage lights. */
+  html[data-screen="home"] .app .hero-wash{background:
+    linear-gradient(90deg,rgba(8,15,34,.90) 0%,rgba(8,15,34,.72) 26%,rgba(8,15,34,.36) 48%,rgba(8,15,34,.10) 70%,rgba(8,15,34,.26) 100%),
+    linear-gradient(180deg,rgba(8,15,34,.54) 0%,rgba(8,15,34,.06) 26%,rgba(8,15,34,.12) 58%,rgba(8,15,34,.62) 100%)}
+  html[data-screen="home"] .app .hero-glow{background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
+  html[data-screen="home"] .app .hero-top{top:34px;padding:0 clamp(40px,4.4vw,72px)}
+  html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
     align-items:flex-start;text-align:left;max-width:min(820px,64vw)}
   html[data-screen="home"] .app .hero-mark{width:clamp(150px,12vw,186px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
-  html[data-screen="home"] .app .hero-title{font-size:clamp(92px,8.2vw,146px);color:#fff8ec;text-shadow:0 8px 34px rgba(7,13,30,.5);margin-top:18px}
+  html[data-screen="home"] .app .hero-title{font-size:clamp(92px,8.2vw,146px);margin-top:18px}
   /* Left-aligned on the cover, so the rules can no longer stretch to fill a
      centred row: the leading one takes a fixed length and the trailing one goes. */
   html[data-screen="home"] .app .hero-sub{width:auto;justify-content:flex-start;margin-top:17px;gap:16px}
   html[data-screen="home"] .app .hero-rule{flex:0 0 auto;width:44px;max-width:none}
   html[data-screen="home"] .app .hero-rule.flip{display:none}
-  html[data-screen="home"] .app .hero-sub-name{font-size:clamp(24px,1.9vw,32px);color:#fbe6bd;text-shadow:0 3px 16px rgba(7,13,30,.55)}
-  html[data-screen="home"] .app .hero-dates{color:#f3bc63;text-shadow:0 2px 12px rgba(7,13,30,.6)}
-  html[data-screen="home"] .app .hero-line{color:rgba(253,247,236,.9);text-shadow:0 2px 16px rgba(7,13,30,.64)}
-  /* A cream card would punch a hole in the photograph, so on the cover the
-     countdown becomes glass: the numerals carry it, not the container. */
-  html[data-screen="home"] .app .hero-count{max-width:568px;margin-top:32px;
-    padding:22px 26px 24px;border-radius:22px;
-    background:rgba(10,18,40,.40);box-shadow:inset 0 0 0 1px rgba(251,230,189,.22);
-    backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
-  html[data-screen="home"] .app .hero-count-label{text-align:left;text-indent:0;color:#f3bc63;
-    text-shadow:0 2px 12px rgba(7,13,30,.6)}
+  html[data-screen="home"] .app .hero-sub-name{font-size:clamp(24px,1.9vw,32px)}
+  html[data-screen="home"] .app .hero-count{max-width:568px;margin-top:32px;padding:22px 26px 24px}
+  html[data-screen="home"] .app .hero-count-label{text-align:left;text-indent:0}
   html[data-screen="home"] .app .hero-count-cells{gap:12px;margin-top:16px}
   html[data-screen="home"] .app .hero-count-cell{align-items:flex-start;gap:9px}
-  html[data-screen="home"] .app .hero-count-v{font-size:clamp(44px,3.6vw,56px);color:#fff8ec;
-    text-shadow:0 3px 16px rgba(7,13,30,.55)}
-  html[data-screen="home"] .app .hero-count-k{color:rgba(253,247,236,.70)}
+  html[data-screen="home"] .app .hero-count-v{font-size:clamp(44px,3.6vw,56px)}
   html[data-screen="home"] .app .homebelow{max-width:1180px;margin:0 auto}
   html[data-screen="home"] .app .homeband{padding:52px var(--gutter) 0}
   html[data-screen="home"] .app .homeband>.h-cta{padding:0!important}
@@ -778,13 +759,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 <section class="home-screen" data-screen-label="Home" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both">
 
   <div class="hero">
-    <div class="hero-art" aria-hidden="true">
-      <div class="hero-glow"></div>
-      <img class="hero-img" src="assets/hero-amma.jpg" alt="" fetchpriority="high" decoding="async">
-      <img class="hero-img-wide" src="assets/hero-amma-wide.jpg" alt="" decoding="async">
-      <div class="hero-wash"></div>
-      <div class="hero-crown"></div>
-    </div>
+    <div class="hero-art" aria-hidden="true"></div>
+    <div class="hero-wash" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
 
     <div class="hero-top">
       <div style="display:flex;flex-direction:column;gap:5px">
