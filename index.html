@@ -123,28 +123,31 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
    head preloads the matching one to keep it the LCP candidate. */
 .hero{position:relative;isolation:isolate;overflow:hidden;background:#0c1631;
   display:flex;align-items:flex-end;
-  min-height:clamp(660px,94vh,920px);min-height:clamp(660px,94dvh,920px)}
-.hero-art{position:absolute;inset:0;z-index:0;background:#0c1631 url("assets/hero-crowd.jpg") 50% 42%/cover no-repeat}
+  min-height:clamp(790px,100vh,920px);min-height:clamp(790px,100dvh,920px)}
+.hero-art{position:absolute;inset:0 0 auto;height:58%;z-index:0;background-color:#0c1631;
+  background-image:url("assets/hero-crowd.jpg");
+  background-position:50% 42%;background-size:cover;background-repeat:no-repeat}
 /* Two stops of shade: enough under the lockup to hold cream text, light enough
    across the middle that the stage lights still read as lights. */
 .hero-wash{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(180deg,rgba(8,15,34,.66) 0%,rgba(8,15,34,.18) 22%,rgba(8,15,34,.24) 46%,rgba(8,15,34,.70) 76%,rgba(8,15,34,.84) 100%)}
+  linear-gradient(180deg,rgba(15,7,18,.34) 0%,rgba(15,7,18,.08) 28%,rgba(30,6,15,.42) 47%,rgba(30,6,15,.96) 61%,rgba(12,21,46,.98) 100%)}
 /* Warms the foot of the frame, so the gold that carries every CTA downstream
    has somewhere to start. */
 .hero-glow{position:absolute;inset:0;z-index:2;
   background:radial-gradient(120% 76% at 50% 100%,rgba(224,149,44,.20),transparent 62%)}
 .hero-top{position:absolute;top:calc(20px + env(safe-area-inset-top));left:0;right:0;z-index:4;
   padding:0 var(--gutter);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.hero-top-mark{width:clamp(72px,20vw,96px);height:auto;flex:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
 /* The bottom reserve clears the docked tab bar, so the countdown is never
    tucked in behind it. */
 .hero-lock{position:relative;z-index:4;width:100%;
   padding:0 var(--gutter) calc(72px + env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:center;text-align:center}
-.hero-mark{width:min(178px,50vw);height:auto;filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
+.hero-mark{display:none;width:min(178px,50vw);height:auto;filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
 /* The wordmark is the headline now, so it takes the headline size; the fest
    name sits beneath it between the two gold rules. */
 .hero-title{font:600 clamp(50px,15.2vw,76px)/.92 var(--display);color:#fff8ec;letter-spacing:-.02em;
-  margin-top:15px;text-shadow:0 8px 30px rgba(7,13,30,.6)}
+  margin-top:0;text-shadow:0 8px 30px rgba(7,13,30,.6)}
 .hero-title .sun{letter-spacing:.01em}
 .hero-sub{display:flex;align-items:center;gap:13px;margin-top:16px;width:100%;justify-content:center}
 .hero-sub-name{font:400 clamp(22px,6.4vw,27px)/1 var(--display);color:#fbe6bd;letter-spacing:.015em;
@@ -172,13 +175,12 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .hero{min-height:clamp(780px,92vh,1000px);min-height:clamp(780px,92dvh,1000px)}
   .hero-title{font-size:clamp(78px,10.4vw,98px)}
   .hero-sub-name{font-size:29px}
-  .hero-mark{width:206px}
   .hero-count{max-width:520px;margin-top:30px;padding:24px 22px 26px}
   .hero-count-v{font-size:52px}
 }
 @media (min-width:1080px){
   /* The wide crop only — a desktop never fetches the phone's portrait frame. */
-  .hero-art{background-image:url("assets/hero-crowd-wide.jpg");background-position:50% 46%}
+  .hero-art{inset:0;height:100%;background-image:url("assets/hero-crowd-wide.jpg");background-position:50% 46%;background-size:cover}
   .hero-line{max-width:34ch}
 }
 
@@ -253,6 +255,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .compcard-art{position:relative;height:164px;overflow:hidden;background:#f0c893;flex:none}
 .compcard-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:transform .55s cubic-bezier(.32,.72,0,1)}
+img[src*="ev-dhwani"],img[src*="ev-euphony"],img[src*="ev-thillana"]{object-position:50% 28%!important}
+img[src*="ev-junoon"],img[src*="ev-malhar"]{object-position:50% 36%!important}
 .compcard-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,29,58,.04) 38%,rgba(17,29,58,.9))}
 .compcard-cap{position:absolute;left:16px;right:16px;bottom:13px}
 .compcard-name{font:400 clamp(30px,8vw,36px)/1 var(--display);color:#fdf7ec;letter-spacing:.02em}
@@ -327,6 +331,23 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   /* Keep the marks from stretching into billboards on a wide screen. */
   .sponsorgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:720px;margin-inline:auto}
   .sponsorsolo{max-width:720px;margin-inline:auto}
+}
+
+/* ---------- Homepage registration ---------- */
+.home-register{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;padding:24px;
+  border-radius:26px;background:linear-gradient(150deg,#17264e,#0d1733);color:#fdf7ec;
+  box-shadow:0 18px 44px rgba(17,29,58,.2);overflow:hidden}
+.home-register-copy{min-width:0;text-align:center}
+.home-register-title{font:500 clamp(29px,8vw,38px)/1.05 var(--display);text-wrap:balance}
+.home-register-text{margin:10px auto 0;max-width:35ch;font:400 14px/1.55 var(--font-body);color:rgba(253,247,236,.72);text-wrap:pretty}
+.home-register-link{display:inline-flex;align-items:center;gap:8px;margin-top:15px;color:#f3bc63;
+  font:700 10px/1.2 var(--font-heading);letter-spacing:.15em;text-transform:uppercase}
+.home-register-qr{justify-self:center;display:block;padding:10px;border-radius:18px;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.home-register-qr img{display:block;width:148px;height:148px;image-rendering:pixelated}
+@media (min-width:700px){
+  .home-register{grid-template-columns:minmax(0,1fr) auto;padding:30px 34px}
+  .home-register-copy{text-align:left}.home-register-text{margin-left:0}
+  .home-register-qr img{width:164px;height:164px}
 }
 
 /* ---------- Venue cards ---------- */
@@ -521,11 +542,13 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     background:radial-gradient(circle,rgba(255,226,172,.9),rgba(224,149,44,0) 70%);
     animation:emberDrift linear infinite;will-change:transform,opacity}
   .rail{display:flex;position:relative;width:var(--rail);flex:0 0 var(--rail);height:100vh;height:100dvh;overflow:hidden;
-    flex-direction:column;justify-content:flex-end;background:#0c1631;z-index:2}
-  .rail-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-  .rail-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,49,.34) 0%,rgba(12,22,49,.05) 24%,rgba(12,22,49,.60) 66%,rgba(12,22,49,.96) 100%)}
-  .rail-body{position:relative;padding:0 42px 48px;color:#fdf7ec}
-  .rail-title{font:600 clamp(40px,3.6vw,60px)/.96 var(--display);margin-top:16px;letter-spacing:-.02em;color:#fff8ec}
+    flex-direction:column;justify-content:flex-end;background:#180811;z-index:2}
+  .rail-img{position:absolute;inset:0 0 auto;width:100%;height:60%;object-fit:contain;object-position:50% 0;background:#180811}
+  .rail-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,49,.12) 0%,transparent 48%,rgba(12,22,49,.34) 58%,#0c1631 62%,#0c1631 100%)}
+  .rail-body{position:relative;z-index:1;min-height:40%;padding:22px 34px 28px;color:#fdf7ec;
+    display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,rgba(12,22,49,.97),#0c1631)}
+  .rail-mark{width:92px;height:auto;display:block;margin-bottom:11px;filter:drop-shadow(0 5px 15px rgba(0,0,0,.42))}
+  .rail-title{font:600 clamp(38px,3.3vw,54px)/.96 var(--display);margin-top:9px;letter-spacing:-.02em;color:#fff8ec}
   .rail-sub{font:400 19px/1 var(--display);letter-spacing:.03em;color:rgba(253,247,236,.86)}
   .pane{background:var(--ivory);box-shadow:-30px 0 90px rgba(5,10,24,.5);z-index:2}
   .appmain{background:transparent;order:2}
@@ -611,7 +634,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     background:var(--ivory);backdrop-filter:none;-webkit-backdrop-filter:none;
     box-shadow:none;transition:box-shadow .3s cubic-bezier(.32,.72,0,1)}
   .navbrand{display:flex;align-items:center;gap:9px;margin-right:auto;padding-left:2px;
-    color:var(--night)}
+    color:var(--night);border-radius:10px;padding-block:8px;padding-right:10px}
   .navbrand i{font-size:19px;color:var(--marigold-deep)}
   .navbrand span{font:600 19px/1 var(--display);letter-spacing:.005em;white-space:nowrap}
   .navbrand em{font-style:normal;color:var(--marigold-deep)}
@@ -648,14 +671,14 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   /* Shade rakes in from the left instead of straight down, because the lockup
      is left-aligned here — the right of the frame keeps its stage lights. */
   html[data-screen="home"] .app .hero-wash{background:
-    linear-gradient(90deg,rgba(8,15,34,.90) 0%,rgba(8,15,34,.72) 26%,rgba(8,15,34,.36) 48%,rgba(8,15,34,.10) 70%,rgba(8,15,34,.26) 100%),
-    linear-gradient(180deg,rgba(8,15,34,.54) 0%,rgba(8,15,34,.06) 26%,rgba(8,15,34,.12) 58%,rgba(8,15,34,.62) 100%)}
+    linear-gradient(90deg,rgba(24,5,14,.98) 0%,rgba(24,5,14,.94) 27%,rgba(24,5,14,.76) 43%,rgba(24,5,14,.13) 65%,rgba(24,5,14,.18) 100%),
+    linear-gradient(180deg,rgba(8,15,34,.34) 0%,rgba(8,15,34,.02) 48%,rgba(8,15,34,.46) 100%)}
   html[data-screen="home"] .app .hero-glow{background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
   html[data-screen="home"] .app .hero-top{top:34px;padding:0 clamp(40px,4.4vw,72px)}
   html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
-    align-items:flex-start;text-align:left;max-width:min(820px,64vw)}
-  html[data-screen="home"] .app .hero-mark{width:clamp(150px,12vw,186px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
-  html[data-screen="home"] .app .hero-title{font-size:clamp(92px,8.2vw,146px);margin-top:18px}
+    align-items:flex-start;text-align:left;max-width:min(650px,44vw)}
+  html[data-screen="home"] .app .hero-mark{display:block;width:clamp(128px,10vw,158px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
+  html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px);margin-top:14px}
   /* Left-aligned on the cover, so the rules can no longer stretch to fill a
      centred row: the leading one takes a fixed length and the trailing one goes. */
   html[data-screen="home"] .app .hero-sub{width:auto;justify-content:flex-start;margin-top:17px;gap:16px}
@@ -670,6 +693,18 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .homebelow{max-width:1180px;margin:0 auto}
   html[data-screen="home"] .app .homeband{padding:52px var(--gutter) 0}
   html[data-screen="home"] .app .homeband>.h-cta{padding:0!important}
+}
+
+/* Compact, but retain, the branding on short laptop screens. */
+@media (min-width:1080px) and (max-height:820px){
+  html[data-screen="home"] .app .hero-title{margin-top:0;font-size:clamp(76px,6.2vw,104px)}
+  html[data-screen="home"] .app .hero-count{margin-top:22px;padding-block:18px 20px}
+  html[data-screen="home"] .app .hero-line{margin-top:13px}
+  .rail-img{height:56%}
+  .rail-body{min-height:44%;padding:16px 30px 20px}
+  .rail-mark{width:76px;margin-bottom:8px}
+  .rail-title{font-size:clamp(34px,3vw,46px);margin-top:7px}
+  .rail-sub{font-size:17px}
 }
 
 /* ---------- Desktop: every screen laid out for the reading column ----------
@@ -740,7 +775,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   <img class="rail-img" src="assets/hero-amma.jpg" alt="">
   <div class="rail-veil"></div>
   <div class="rail-body">
-    <img src="assets/mark-73.png" alt="" style="width:132px;height:auto;display:block;margin-bottom:20px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.45))">
+    <img class="rail-mark" src="assets/mark-73.png" alt="">
     <div style="font:600 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:rgba(247,217,162,.82)">Amrita Vishwa Vidyapeetham</div>
     <div class="rail-title">Brahm <span style="color:#f3bc63">2026</span></div>
     <div style="display:flex;align-items:center;gap:11px;margin-top:15px">
@@ -768,11 +803,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
         <span style="font:700 10px/1.2 var(--font-heading);letter-spacing:.22em;color:#fdf7ec;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 8px rgba(17,29,58,.6)">Amrita Vishwa Vidyapeetham</span>
         <span style="font:400 9.5px/1 var(--font-body);letter-spacing:.24em;color:rgba(253,247,236,.86);text-transform:uppercase;text-shadow:0 1px 8px rgba(17,29,58,.6)">Delhi NCR Campus, Faridabad</span>
       </div>
-      <i class="ph-duotone ph-flower-lotus" style="font-size:27px;color:#fbe6bd;filter:drop-shadow(0 2px 10px rgba(17,29,58,.55))" aria-hidden="true"></i>
+      <img class="hero-top-mark" src="assets/mark-73.png" alt="73 years of pure love and light">
     </div>
 
     <div class="hero-lock">
-      <img class="hero-mark" src="assets/mark-73.png" alt="73 years of pure love and light">
       <h1 class="hero-title">Brahm <span class="sun">2026</span></h1>
       <div class="hero-sub">
         <span class="hero-rule"></span>
@@ -814,6 +848,20 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
           </button>
         </div>
       </div>
+    </div>
+
+    <div class="home-register">
+      <div class="home-register-copy">
+        <span class="eyebrow-gold">External college registration</span>
+        <h2 class="home-register-title">Scan. Register. Join Brahm.</h2>
+        <p class="home-register-text">Open the official Google Form on your phone, or use the direct link below.</p>
+        <a class="home-register-link" href="{{ formUrl }}" target="_blank" rel="noopener">
+          Open Google Form <i class="ph-duotone ph-arrow-up-right" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a class="home-register-qr" href="{{ formUrl }}" target="_blank" rel="noopener" aria-label="Open the BRAHM 2026 Google registration form">
+        <img src="assets/qr-register.png" alt="QR code for the BRAHM 2026 Google registration form">
+      </a>
     </div>
 
     <div class="ctapair">
@@ -886,13 +934,13 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     <div style="background:linear-gradient(168deg,#fffaf1,#f8ecd8);border-radius:26px;padding:25px;box-shadow:var(--sh);text-align:center">
       <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.3em">Title sponsors</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-top:16px">
-        <span style="font:600 25px/1 var(--display);color:var(--night)">Coca&#8209;Cola</span>
+        <img src="assets/sponsor-coca-cola.svg" alt="Coca-Cola" style="display:block;width:min(176px,42%);height:54px;object-fit:contain">
         <span style="width:1px;height:30px;background:rgba(24,34,63,.14)"></span>
-        <span style="font:600 21px/1.1 var(--display);color:var(--night);text-align:center">BMR<br><span style="font:700 8.5px/1 var(--font-heading);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)">Realtors</span></span>
+        <img src="assets/sponsor-bmr.svg" alt="BMR Realtors" style="display:block;width:min(156px,38%);height:54px;object-fit:contain">
       </div>
       <div style="height:1px;background:rgba(24,34,63,.1);margin:18px 0 16px"></div>
       <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:var(--marigold-deep);text-transform:uppercase;text-indent:.3em">In association with</div>
-      <div style="font:600 22px/1 var(--display);color:var(--night);margin-top:13px;letter-spacing:.07em">STRADA</div>
+      <img src="assets/sponsor-strada.svg" alt="STRADA" style="display:block;width:min(210px,62%);height:54px;object-fit:contain;margin:13px auto 0">
     </div>
   </div>
 
@@ -1037,7 +1085,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 <sc-if value="{{ comp }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Competition detail" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both;padding-bottom:calc(78px + env(safe-area-inset-bottom))">
   <div class="compbanner">
-    <img src="{{ comp.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('{{ comp.img }}');background-size:cover;background-position:50% 30%"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,29,58,.45) 0%,rgba(17,29,58,.08) 32%,rgba(17,29,58,.94) 100%)"></div>
     <button onClick="{{ goEvents }}" aria-label="Back to competitions" style="position:absolute;top:16px;left:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(253,247,236,.9);color:var(--night)" style-hover="background:#fdf7ec">
       <i class="ph-duotone ph-arrow-left" style="font-size:20px"></i>
@@ -1390,11 +1438,6 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
       </div>
     </sc-for>
   </div>
-  <sc-if value="{{ logosPending }}" hint-placeholder-val="{{ true }}">
-  <div style="padding:36px var(--gutter) 46px">
-    <div style="font:400 13px/1.6 var(--font-body);color:var(--ink-3);text-align:center;text-wrap:pretty">Awaiting official logo files &mdash; partner marks are shown as type until they arrive.</div>
-  </div>
-  </sc-if>
 </section>
 </sc-if>
 
@@ -1451,10 +1494,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 </sc-if>
 
 <nav class="navbar" aria-label="Primary">
-  <div class="navbrand" aria-hidden="true">
+  <a class="navbrand" href="https://brahm-plum.vercel.app/" aria-label="Open the deployed BRAHM 2026 website">
     <i class="ph-duotone ph-flower-lotus"></i>
     <span>Brahm <em>2026</em></span>
-  </div>
+  </a>
   <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
     <button onClick="{{ t.onSelect }}" class="{{ t.cls }}" aria-current="{{ t.cur }}">
       <i class="ph-duotone {{ t.icon }}" aria-hidden="true"></i>
@@ -1485,9 +1528,9 @@ const GOLD_FILL = "linear-gradient(178deg,#f5c374,#dd8d22)";
 // Drop the official artwork at these paths and it replaces the type automatically —
 // the app probes for each file on load, so no code change is needed.
 const SPONSORS = [
-  { id:"cocacola", tier:"title", name:"Coca‑Cola", sub:"", logo:"assets/sponsor-coca-cola.png" },
-  { id:"bmr", tier:"title", name:"BMR", sub:"Realtors", logo:"assets/sponsor-bmr.png" },
-  { id:"strada", tier:"assoc", name:"STRADA", sub:"", logo:"assets/sponsor-strada.png" }
+  { id:"cocacola", tier:"title", name:"Coca‑Cola", sub:"", logo:"assets/sponsor-coca-cola.svg" },
+  { id:"bmr", tier:"title", name:"BMR", sub:"Realtors", logo:"assets/sponsor-bmr.svg" },
+  { id:"strada", tier:"assoc", name:"STRADA", sub:"", logo:"assets/sponsor-strada.svg" }
 ];
 
 // Ambient marigold drift for wide screens. Deterministic so renders stay identical;
