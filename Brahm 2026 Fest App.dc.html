@@ -138,6 +138,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-top{position:absolute;top:calc(20px + env(safe-area-inset-top));left:0;right:0;z-index:4;
   padding:0 var(--gutter);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .hero-top-mark{width:clamp(72px,20vw,96px);height:auto;flex:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
+.hero-emblem{display:block;height:clamp(32px,7vw,46px);width:auto;max-width:clamp(150px,46vw,220px);object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55))}
 /* The bottom reserve clears the docked tab bar, so the countdown is never
    tucked in behind it. */
 .hero-lock{position:relative;z-index:4;width:100%;
@@ -663,11 +664,14 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     border:0;border-bottom:1px solid rgba(34,55,110,.11);border-radius:0;
     background:var(--ivory);backdrop-filter:none;-webkit-backdrop-filter:none;
     box-shadow:none;transition:box-shadow .3s cubic-bezier(.32,.72,0,1)}
-  .navbrand{display:flex;align-items:center;gap:9px;margin-right:auto;padding-left:2px;
-    color:var(--night);border-radius:10px;padding-block:8px;padding-right:10px}
-  .navbrand i{font-size:19px;color:var(--marigold-deep)}
-  .navbrand span{font:600 19px/1 var(--display);letter-spacing:.005em;white-space:nowrap}
-  .navbrand em{font-style:normal;color:var(--marigold-deep)}
+  .navbrand{display:flex;align-items:center;gap:10px;margin-right:auto;padding-left:2px;
+    color:var(--night);border-radius:10px;padding-block:6px;padding-right:10px}
+  .navbrand-emblem{display:block;height:28px;width:auto;max-width:180px;object-fit:contain}
+  .navbrand-divider{display:inline-block;width:1px;height:20px;background:rgba(34,55,110,.2);margin:0 2px}
+  .navbrand-text{display:flex;align-items:center;gap:6px}
+  .navbrand-text span{font:600 19px/1 var(--display);letter-spacing:.005em;white-space:nowrap}
+  .navbrand-text em{font-style:normal;color:var(--marigold-deep)}
+  .navbrand i{font-size:18px;color:var(--marigold-deep)}
   .navb{flex:0 0 auto;flex-direction:row;gap:8px;min-height:34px;padding:0 13px;
     border-radius:10px;color:var(--ink-3)}
   .navb i{font-size:16px}
@@ -704,7 +708,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     linear-gradient(90deg,rgba(8,15,34,.98) 0%,rgba(8,15,34,.94) 27%,rgba(8,15,34,.76) 43%,rgba(8,15,34,.13) 65%,rgba(8,15,34,.18) 100%),
     linear-gradient(180deg,rgba(8,15,34,.34) 0%,rgba(8,15,34,.02) 48%,rgba(8,15,34,.46) 100%)}
   html[data-screen="home"] .app .hero-glow{background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
-  html[data-screen="home"] .app .hero-top{top:34px;padding:0 clamp(40px,4.4vw,72px)}
+  html[data-screen="home"] .app .hero-top{top:calc(var(--navh) + 20px);padding:0 clamp(40px,4.4vw,72px)}
+  html[data-screen="home"] .app .hero-emblem{height:clamp(44px,4vw,56px);max-width:240px}
   html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
     align-items:flex-start;text-align:left;max-width:min(650px,44vw)}
   html[data-screen="home"] .app .hero-mark{display:block;width:clamp(128px,10vw,158px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
@@ -806,8 +811,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   <img class="rail-img" src="assets/hero-crowd.jpg" alt="">
   <div class="rail-veil"></div>
   <div class="rail-body">
-    <img class="rail-mark" src="assets/mark-73.png" alt="">
-    <div style="font:600 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:rgba(247,217,162,.82)">Amrita Vishwa Vidyapeetham</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px">
+      <img class="rail-emblem" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))">
+      <img class="rail-mark" src="assets/mark-73.png" alt="" style="margin-bottom:0">
+    </div>
     <div class="rail-title">Brahm <span style="color:#f3bc63">2026</span></div>
     <div style="display:flex;align-items:center;gap:11px;margin-top:15px">
       <div style="height:1px;width:34px;background:linear-gradient(90deg,rgba(224,149,44,.85),rgba(224,149,44,0))"></div>
@@ -829,11 +836,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     <div class="hero-wash" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
 
-    <div class="hero-top">
-      <div style="display:flex;flex-direction:column;gap:5px">
-        <span style="font:700 10px/1.2 var(--font-heading);letter-spacing:.22em;color:#fdf7ec;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 8px rgba(17,29,58,.6)">Amrita Vishwa Vidyapeetham</span>
-        <span style="font:400 9.5px/1 var(--font-body);letter-spacing:.24em;color:rgba(253,247,236,.86);text-transform:uppercase;text-shadow:0 1px 8px rgba(17,29,58,.6)">Delhi NCR Campus, Faridabad</span>
-      </div>
+    <div class="hero-top" style="justify-content:flex-end">
       <img class="hero-top-mark" src="assets/mark-73.png" alt="73 years of pure love and light">
     </div>
 
@@ -1577,8 +1580,12 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <nav class="navbar" aria-label="Primary">
   <a class="navbrand" href="https://brahm-plum.vercel.app/" aria-label="Open the deployed BRAHM 2026 website">
-    <i class="ph-duotone ph-flower-lotus"></i>
-    <span>Brahm <em>2026</em></span>
+    <img class="navbrand-emblem" src="assets/AVVP_Emblem-new-Red.png" alt="Amrita Vishwa Vidyapeetham" height="28">
+    <span class="navbrand-divider" aria-hidden="true"></span>
+    <span class="navbrand-text">
+      <i class="ph-duotone ph-flower-lotus" aria-hidden="true"></i>
+      <span>Brahm <em>2026</em></span>
+    </span>
   </a>
   <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
     <button onClick="{{ t.onSelect }}" class="{{ t.cls }}" aria-current="{{ t.cur }}">
@@ -1693,29 +1700,28 @@ const DAYS = [
   { key:"19", num:"19", dow:"Sat", dateLong:"Saturday 19th September 2026",
     summary:"Seva in the morning, competitions all day, comedy and bhajans by night.",
     items:[
-      { id:"d19-health", time:"Morning", title:"Free Health Check-up Camps", venue:"Nearby villages", detail:"Health check-up camps run in the villages around campus — the fest opens with seva.", s:"2026-09-19T08:00", e:"2026-09-19T12:00", badge:"Seva" },
+      { id:"d19-health", time:"Morning / Afternoon", title:"Free Health Check-up Camps", venue:"Villages", detail:"Health check-up camps at nearby villages.", s:"2026-09-19T08:00", e:"2026-09-19T14:00", badge:"Seva" },
       { id:"d19-yukti", comp:"yukti" },
       { id:"d19-inkspire", comp:"inkspire" },
       { id:"d19-malhar", comp:"malhar" },
       { id:"d19-vistara", comp:"vistara" },
-      { id:"d19-umbrella", time:"Afternoon", title:"Inter-College Competitions", venue:"Multiple venues", detail:"Inter-college competitions are conducted simultaneously at designated venues through the afternoon.", s:"2026-09-19T12:00", e:"2026-09-19T17:00" },
+      { id:"d19-umbrella", time:"Afternoon", title:"Inter-College Competitions", venue:"Multiple venues", detail:"Inter-college competitions conducted simultaneously at designated venues.", s:"2026-09-19T12:00", e:"2026-09-19T17:00" },
       { id:"d19-frames", comp:"frames" },
       { id:"d19-junoon", comp:"junoon" },
-      { id:"d19-comedy", time:"5:00 – 7:00 PM", title:"Stand-up Comedy", venue:"Main Auditorium", detail:"Stand-up comedy programme in the Main Auditorium.", s:"2026-09-19T17:00", e:"2026-09-19T19:00" },
-      { id:"d19-bhajan", time:"7:00 – 9:00 PM", title:"Bhajan Jamming", venue:"Main Auditorium", detail:"A musical devotional evening — bhajan jamming to close the first day.", s:"2026-09-19T19:00", e:"2026-09-19T21:00" }
+      { id:"d19-comedy", time:"5:00 – 6:00 PM", title:"Stand-up Comedy", venue:"Main Auditorium", detail:"Stand-up comedy programme.", s:"2026-09-19T17:00", e:"2026-09-19T18:00" },
+      { id:"d19-bhajan", time:"Night", title:"Bhajan Jamming", venue:"Main Auditorium", detail:"Bhajan jamming / musical devotional evening.", s:"2026-09-19T19:00", e:"2026-09-19T21:00" }
     ]},
   { key:"20", num:"20", dow:"Sun", dateLong:"Sunday 20th September 2026",
-    summary:"A 6 AM marathon, the auto expo, three stage competitions, then carnival and DJ night.",
+    summary:"A community run, the auto expo, three stage competitions, then carnival and DJ night.",
     items:[
-      { id:"d20-marathon", time:"6:00 AM", title:"Marathon", venue:"Starting point: Gate 2", detail:"The fest marathon flags off at Gate 2 and is scheduled to conclude by approximately 10:00 AM.", s:"2026-09-20T06:00", e:"2026-09-20T10:00", badge:"Sport" },
+      { id:"d20-marathon", time:"Early Morning – 10:00 AM", title:"Community Run", venue:"Designated Marathon Route", detail:"Event scheduled to conclude by approximately 10:00 AM.", s:"2026-09-20T06:00", e:"2026-09-20T10:00", badge:"Sport" },
       { id:"d20-dhwani", comp:"dhwani" },
       { id:"d20-lap", time:"12:00 – 3:00 PM", title:"Auto Expo — Lap Race", venue:"Designated Expo Area", detail:"Lap race at the auto expo.", s:"2026-09-20T12:00", e:"2026-09-20T15:00" },
       { id:"d20-thillana", comp:"thillana" },
       { id:"d20-euphony", comp:"euphony" },
-      { id:"d20-cars", time:"3:00 – 5:00 PM", title:"Auto Expo — Car Exhibition", venue:"Designated Expo Area", detail:"Exhibition showcasing cars and automobiles.", s:"2026-09-20T15:00", e:"2026-09-20T17:00" },
-      { id:"d20-band", time:"Evening", title:"Live Band Performance", venue:"Designated Performance Venue", detail:"Live band performance — venue to be confirmed by the organising committee.", s:"2026-09-20T17:30", e:"2026-09-20T18:30" },
-      { id:"d20-carnival", time:"From 6:00 PM", title:"Carnival Night", venue:"Main Ground", detail:"Carnival with games, rides, food stalls and entertainment across the Main Ground.", s:"2026-09-20T18:00", e:"2026-09-20T21:00", badge:"Everyone" },
-      { id:"d20-dj", time:"From 9:00 PM", title:"DJ Night", venue:"Main Ground", detail:"DJ night and evening entertainment to close the weekend.", s:"2026-09-20T21:00", e:"2026-09-20T23:30", badge:"Everyone" }
+      { id:"d20-cars", time:"Day", title:"Auto Expo / Car Exhibition", venue:"Designated Expo Area", detail:"Exhibition showcasing cars and automobiles.", s:"2026-09-20T12:00", e:"2026-09-20T17:00" },
+      { id:"d20-carnival", time:"Evening", title:"Carnival Night", venue:"Designated Event Venue", detail:"Carnival games, fun rides, food stalls and exciting entertainment.", s:"2026-09-20T18:00", e:"2026-09-20T21:00", badge:"Everyone" },
+      { id:"d20-dj", time:"Night", title:"DJ Night", venue:"Designated Night Event Venue", detail:"DJ night and evening entertainment.", s:"2026-09-20T21:00", e:"2026-09-20T23:30", badge:"Everyone" }
     ]},
   { key:"21", num:"21", dow:"Mon", dateLong:"Monday 21st September 2026",
     summary:"In-house sport takes over the campus.",
