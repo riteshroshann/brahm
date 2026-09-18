@@ -144,6 +144,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   padding:0 var(--gutter) calc(72px + env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-mark{display:none;width:min(178px,50vw);height:auto;filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
+.hero-brand-art{display:block;width:100%;max-width:min(340px,78vw);height:auto;object-fit:contain;margin:0 auto 10px;filter:drop-shadow(0 8px 26px rgba(5,12,30,.65))}
+@media (min-width:480px){.hero-brand-art{max-width:380px;margin-bottom:12px}}
 /* The wordmark is the headline now, so it takes the headline size; the fest
    name sits beneath it between the two gold rules. */
 .hero-title{font:600 clamp(50px,15.2vw,76px)/.92 var(--display);color:#fff8ec;letter-spacing:-.02em;
@@ -325,13 +327,40 @@ img[src*="ev-junoon"],img[src*="ev-malhar"]{object-position:50% 36%!important}
   text-align:center;box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:132px}
 .sponsorlogo{max-width:min(230px,74%);max-height:76px;width:auto;height:auto;object-fit:contain;display:block}
 .sponsor-strip{display:block;width:100%;max-width:680px;height:auto;object-fit:contain;margin-inline:auto}
+.sponsor-banner-card{background:linear-gradient(168deg,#111c3a,#0c142b);border-radius:24px;padding:18px 20px;box-shadow:var(--sh-lg);border:1px solid rgba(224,149,44,.28);margin-bottom:20px}
+.sponsor-banner-img{display:block;width:100%;max-width:880px;height:auto;object-fit:contain;margin:0 auto;border-radius:14px}
+.sponsors-grid-6{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+.sponsor-item-card{background:linear-gradient(168deg,#f8faff,#eaf0f8);border-radius:20px;padding:18px 14px 16px;box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(34,55,110,.07);transition:transform .28s cubic-bezier(.32,.72,0,1),box-shadow .28s}
+.sponsor-item-role{font:700 8.5px/1.2 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-deep);margin-bottom:10px}
+.sponsor-item-logo-wrap{height:54px;display:flex;align-items:center;justify-content:center;width:100%;padding:4px 6px;background:rgba(12,22,49,.92);border-radius:12px;box-shadow:inset 0 0 0 1px rgba(251,230,189,.12)}
+.sponsor-item-logo{max-width:100%;max-height:42px;width:auto;height:auto;object-fit:contain;display:block}
+.sponsor-item-name{font:600 14px/1.2 var(--display);color:var(--night);margin-top:10px;letter-spacing:-.01em}
 .sponsorname{font:600 clamp(28px,8vw,36px)/1 var(--display);color:var(--night);letter-spacing:.02em}
 .sponsorsub{font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);margin-top:10px}
-@media (min-width:700px){.sponsorlogo{max-height:88px}}
+@media (min-width:480px){
+  .sponsor-item-role{font-size:9px}
+  .sponsor-item-logo-wrap{height:60px}
+  .sponsor-item-logo{max-height:48px}
+  .sponsor-item-name{font-size:15px}
+}
 @media (min-width:700px){
-  /* Keep the marks from stretching into billboards on a wide screen. */
+  .sponsorlogo{max-height:88px}
+  .sponsors-grid-6{grid-template-columns:repeat(3,1fr);gap:16px}
+  .sponsor-item-card{padding:22px 18px 18px}
+  .sponsor-item-logo-wrap{height:68px}
+  .sponsor-item-logo{max-height:54px}
+  .sponsor-item-name{font-size:16px}
   .sponsorgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:720px;margin-inline:auto}
   .sponsorsolo{max-width:720px;margin-inline:auto}
+}
+@media (min-width:1080px){
+  .sponsors-grid-6{grid-template-columns:repeat(6,1fr);gap:14px}
+  .sponsor-item-card{padding:20px 12px 16px}
+  .sponsor-item-logo-wrap{height:64px}
+  .sponsor-item-logo{max-height:50px}
+}
+@media (hover:hover){
+  .sponsor-item-card:hover{transform:translateY(-2px);box-shadow:var(--sh-lg);border-color:rgba(224,149,44,.35)}
 }
 
 /* ---------- Homepage registration ---------- */
@@ -679,6 +708,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
     align-items:flex-start;text-align:left;max-width:min(650px,44vw)}
   html[data-screen="home"] .app .hero-mark{display:block;width:clamp(128px,10vw,158px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
+  html[data-screen="home"] .app .hero-brand-art{margin-left:0;margin-right:auto;max-width:clamp(340px,28vw,440px);filter:drop-shadow(0 10px 32px rgba(4,10,26,.75))}
   html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px);margin-top:14px}
   /* Left-aligned on the cover, so the rules can no longer stretch to fill a
      centred row: the leading one takes a fixed length and the trailing one goes. */
@@ -808,7 +838,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     </div>
 
     <div class="hero-lock">
-      <h1 class="hero-title">Brahm <span class="sun">2026</span></h1>
+      <img class="hero-brand-art" src="assets/brahm-logo.png" alt="Brahm 2026 – The Amrita Fest" width="856" height="443" fetchpriority="high">
       <div class="hero-sub">
         <span class="hero-rule"></span>
         <span class="hero-sub-name">Founders&rsquo; Day Fest</span>
@@ -932,9 +962,52 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   </div>
 
   <div style="padding:42px var(--gutter) 0">
-    <div style="background:linear-gradient(168deg,#f8faff,#edf2f8);border-radius:26px;padding:25px;box-shadow:var(--sh);text-align:center">
-      <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:var(--blue);text-transform:uppercase;text-indent:.3em;margin-bottom:17px">Our partners</div>
-      <img class="sponsor-strip" src="assets/sponsors-official.png" alt="Title Sponsor BMR Realtors, Hydration Partner Coca-Cola, and Driven By STRADA Motorsports">
+    <div style="background:linear-gradient(168deg,#f8faff,#edf2f8);border-radius:26px;padding:26px 20px;box-shadow:var(--sh)">
+      <div style="font:700 10px/1 var(--font-heading);letter-spacing:.32em;color:var(--marigold-deep);text-transform:uppercase;text-align:center;text-indent:.32em;margin-bottom:18px">Sponsored By &bull; Official Fest Partners</div>
+      <div class="sponsors-grid-6">
+        <div class="sponsor-item-card">
+          <span class="sponsor-item-role">Title Partner</span>
+          <div class="sponsor-item-logo-wrap">
+            <img class="sponsor-item-logo" src="assets/sponsors/bmr.png" alt="BMR Realtors">
+          </div>
+          <div class="sponsor-item-name">BMR Realtors</div>
+        </div>
+        <div class="sponsor-item-card">
+          <span class="sponsor-item-role">Hydration Partner</span>
+          <div class="sponsor-item-logo-wrap">
+            <img class="sponsor-item-logo" src="assets/sponsors/cocacola.png" alt="Coca-Cola">
+          </div>
+          <div class="sponsor-item-name">Coca-Cola</div>
+        </div>
+        <div class="sponsor-item-card">
+          <span class="sponsor-item-role">Driven By</span>
+          <div class="sponsor-item-logo-wrap">
+            <img class="sponsor-item-logo" src="assets/sponsors/strada.png" alt="Strada Motorsports">
+          </div>
+          <div class="sponsor-item-name">Strada Motorsports</div>
+        </div>
+        <div class="sponsor-item-card">
+          <span class="sponsor-item-role">Education Partner</span>
+          <div class="sponsor-item-logo-wrap">
+            <img class="sponsor-item-logo" src="assets/sponsors/marrow.png" alt="Marrow">
+          </div>
+          <div class="sponsor-item-name">Marrow</div>
+        </div>
+        <div class="sponsor-item-card">
+          <span class="sponsor-item-role">In Association With</span>
+          <div class="sponsor-item-logo-wrap">
+            <img class="sponsor-item-logo" src="assets/sponsors/monster.png" alt="Monster Energy">
+          </div>
+          <div class="sponsor-item-name">Monster Energy</div>
+        </div>
+        <div class="sponsor-item-card">
+          <span class="sponsor-item-role">Run Partner</span>
+          <div class="sponsor-item-logo-wrap">
+            <img class="sponsor-item-logo" src="assets/sponsors/decathlon.png" alt="Decathlon">
+          </div>
+          <div class="sponsor-item-name">Decathlon</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1398,12 +1471,53 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 <section data-screen-label="Sponsors" style="animation:screenIn .42s cubic-bezier(.32,.72,0,1) both;padding-bottom:calc(78px + env(safe-area-inset-bottom))">
   <div style="padding:34px var(--gutter) 0">
     <span class="eyebrow-gold">With thanks to</span>
-      <h2 class="h-screen" style="margin-top:9px">Our partners</h2>
+    <h2 class="h-screen" style="margin-top:9px">Our partners</h2>
     <p class="sub-screen">Brahm 2026 is made possible by friends who believe in the students.</p>
   </div>
-  <div style="padding:36px var(--gutter) 46px">
-    <div class="sponsorcard sponsorsolo">
-      <img class="sponsor-strip" src="assets/sponsors-official.png" alt="Title Sponsor BMR Realtors, Hydration Partner Coca-Cola, and Driven By STRADA Motorsports">
+  <div style="padding:32px var(--gutter) 46px">
+    <div class="sponsors-grid-6">
+      <div class="sponsor-item-card">
+        <span class="sponsor-item-role">Title Partner</span>
+        <div class="sponsor-item-logo-wrap">
+          <img class="sponsor-item-logo" src="assets/sponsors/bmr.png" alt="BMR Realtors">
+        </div>
+        <div class="sponsor-item-name">BMR Realtors</div>
+      </div>
+      <div class="sponsor-item-card">
+        <span class="sponsor-item-role">Hydration Partner</span>
+        <div class="sponsor-item-logo-wrap">
+          <img class="sponsor-item-logo" src="assets/sponsors/cocacola.png" alt="Coca-Cola">
+        </div>
+        <div class="sponsor-item-name">Coca-Cola</div>
+      </div>
+      <div class="sponsor-item-card">
+        <span class="sponsor-item-role">Driven By</span>
+        <div class="sponsor-item-logo-wrap">
+          <img class="sponsor-item-logo" src="assets/sponsors/strada.png" alt="Strada Motorsports">
+        </div>
+        <div class="sponsor-item-name">Strada Motorsports</div>
+      </div>
+      <div class="sponsor-item-card">
+        <span class="sponsor-item-role">Education Partner</span>
+        <div class="sponsor-item-logo-wrap">
+          <img class="sponsor-item-logo" src="assets/sponsors/marrow.png" alt="Marrow">
+        </div>
+        <div class="sponsor-item-name">Marrow</div>
+      </div>
+      <div class="sponsor-item-card">
+        <span class="sponsor-item-role">In Association With</span>
+        <div class="sponsor-item-logo-wrap">
+          <img class="sponsor-item-logo" src="assets/sponsors/monster.png" alt="Monster Energy">
+        </div>
+        <div class="sponsor-item-name">Monster Energy</div>
+      </div>
+      <div class="sponsor-item-card">
+        <span class="sponsor-item-role">Run Partner</span>
+        <div class="sponsor-item-logo-wrap">
+          <img class="sponsor-item-logo" src="assets/sponsors/decathlon.png" alt="Decathlon">
+        </div>
+        <div class="sponsor-item-name">Decathlon</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1496,9 +1610,12 @@ const GOLD_FILL = "linear-gradient(178deg,#f5c374,#dd8d22)";
 // Drop the official artwork at these paths and it replaces the type automatically —
 // the app probes for each file on load, so no code change is needed.
 const SPONSORS = [
-  { id:"bmr", tier:"title", name:"BMR Realtors", sub:"Title Sponsor", logo:"assets/sponsors-official.png" },
-  { id:"cocacola", tier:"assoc", name:"Coca‑Cola", sub:"Hydration Partner", logo:"assets/sponsors-official.png" },
-  { id:"strada", tier:"assoc", name:"STRADA Motorsports", sub:"Driven By", logo:"assets/sponsors-official.png" }
+  { id:"bmr", tier:"title", name:"BMR Realtors", sub:"Title Partner", logo:"assets/sponsors/bmr.png" },
+  { id:"cocacola", tier:"assoc", name:"Coca-Cola", sub:"Hydration Partner", logo:"assets/sponsors/cocacola.png" },
+  { id:"strada", tier:"assoc", name:"Strada Motorsports", sub:"Driven By", logo:"assets/sponsors/strada.png" },
+  { id:"marrow", tier:"assoc", name:"Marrow", sub:"Education Partner", logo:"assets/sponsors/marrow.png" },
+  { id:"monster", tier:"assoc", name:"Monster Energy", sub:"In Association with", logo:"assets/sponsors/monster.png" },
+  { id:"decathlon", tier:"assoc", name:"Decathlon", sub:"Run Partner", logo:"assets/sponsors/decathlon.png" }
 ];
 
 // Ambient marigold drift for wide screens. Deterministic so renders stay identical;
@@ -1951,7 +2068,7 @@ class Component extends DCLogic {
         { icon:"ph-hand-heart", title:"Register", sub:"QR code and the inter-college entry form", onSelect:()=>this.go("register") },
         { icon:"ph-scroll", title:"Rules to know", sub:"The 21 rules that apply to every competition", onSelect:()=>this.go("rules") },
         { icon:"ph-hand-waving", title:"Say hello to us", sub:"Call or WhatsApp the student coordinators", onSelect:()=>this.go("contacts") },
-        { icon:"ph-handshake", title:"Our partners", sub:"Coca-Cola, BMR Realtors and STRADA", onSelect:()=>this.go("sponsors") },
+        { icon:"ph-handshake", title:"Our partners", sub:"BMR, Coca-Cola, Strada, Marrow, Monster & Decathlon", onSelect:()=>this.go("sponsors") },
         { icon:"ph-flower-lotus", title:"About Founders’ Day", sub:"73 years of pure love and light", onSelect:()=>this.go("about") },
         { icon:"ph-calendar-heart", title:"Add the fest to Google Calendar", sub:"Opens Google Calendar with all five days", onSelect:()=>this.addFest() }
       ],
