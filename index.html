@@ -78,19 +78,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(208,69,47,.42)}70%{box-shadow:0 0 0 9px rgba(208,69,47,0)}}
 @keyframes screenIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes petalFall{0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
-  10%{opacity:.30}
-  90%{opacity:.20}
-  100%{transform:translate3d(var(--dx,40px),110vh,0) rotate(var(--rot,220deg));opacity:0}}
-@keyframes emberDrift{0%{transform:translate3d(0,0,0) scale(1);opacity:0}
-  16%{opacity:.26}
-  100%{transform:translate3d(var(--dx,30px),-92vh,0) scale(.35);opacity:0}}
 
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:462px;margin:0 auto;background:var(--ivory);position:relative;overflow:hidden;box-shadow:0 0 90px rgba(17,29,58,.3)}
 .pane{display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;position:relative}
 .appmain{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
 .stagewrap{width:100%}
-.ambient{display:none}
 .rail{display:none}
 
 /* Docked to the bottom edge, edge to edge, with the home-inset reserve folded
@@ -562,22 +554,12 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   :root{--gutter:clamp(30px,3.2vw,48px);--rail:clamp(300px,27vw,452px);--navh:56px}
   html,body{background:#070d1e}
   .app{max-width:none;width:100%;flex-direction:row;box-shadow:none;background:transparent}
-  /* Drifts over the portrait rail, where warm petals read against the dark
-     ground. Clipped to the rail so it never floats across the reading column. */
-  .ambient{display:block;position:fixed;left:0;top:0;bottom:0;width:var(--rail);
-    pointer-events:none;z-index:3;overflow:hidden}
-  .petal{position:absolute;top:-8vh;border-radius:62% 8% 62% 8%;
-    background:linear-gradient(150deg,rgba(245,195,116,.8),rgba(221,141,34,.5));
-    animation:petalFall linear infinite;will-change:transform,opacity}
-  .ember{position:absolute;bottom:-3vh;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,226,172,.9),rgba(224,149,44,0) 70%);
-    animation:emberDrift linear infinite;will-change:transform,opacity}
   .rail{display:flex;position:relative;width:var(--rail);flex:0 0 var(--rail);height:100vh;height:100dvh;overflow:hidden;
     flex-direction:column;justify-content:flex-end;background:#0c1631;z-index:2}
-  .rail-img{position:absolute;inset:0 0 auto;width:100%;height:60%;object-fit:cover;object-position:50% 45%;background:#0c1631}
-  .rail-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,49,.12) 0%,transparent 48%,rgba(12,22,49,.34) 58%,#0c1631 62%,#0c1631 100%)}
-  .rail-body{position:relative;z-index:1;min-height:40%;padding:22px 34px 28px;color:#fdf7ec;
-    display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,rgba(12,22,49,.97),#0c1631)}
+  .rail-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;background:#0c1631}
+  .rail-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,49,.4) 0%,rgba(12,22,49,.05) 24%,rgba(12,22,49,.1) 55%,rgba(12,22,49,.94) 84%,#0c1631 100%)}
+  .rail-body{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:22px 34px 28px;color:#fdf7ec;
+    display:flex;flex-direction:column;justify-content:flex-end}
   .rail-mark{width:92px;height:auto;display:block;margin-bottom:11px;filter:drop-shadow(0 5px 15px rgba(0,0,0,.42))}
   .rail-title{font:600 clamp(38px,3.3vw,54px)/.96 var(--display);margin-top:9px;letter-spacing:-.02em;color:#fff8ec}
   .rail-sub{font:400 19px/1 var(--display);letter-spacing:.03em;color:rgba(253,247,236,.86)}
@@ -736,8 +718,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-title{margin-top:0;font-size:clamp(76px,6.2vw,104px)}
   html[data-screen="home"] .app .hero-count{margin-top:22px;padding-block:18px 20px}
   html[data-screen="home"] .app .hero-line{margin-top:13px}
-  .rail-img{height:56%}
-  .rail-body{min-height:44%;padding:16px 30px 20px}
+  .rail-body{padding:16px 30px 20px}
   .rail-mark{width:76px;margin-bottom:8px}
   .rail-title{font-size:clamp(34px,3vw,46px);margin-top:7px}
   .rail-sub{font-size:17px}
@@ -794,16 +775,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
-  .petal,.ember{display:none!important}
 }
 </style>
 </helmet>
-
-<div class="ambient" aria-hidden="true">
-  <sc-for list="{{ petals }}" as="p" hint-placeholder-count="0">
-    <div class="{{ p.cls }}" style="{{ p.css }}"></div>
-  </sc-for>
-</div>
 
 <div class="app">
 
@@ -1625,27 +1599,6 @@ const SPONSORS = [
   { id:"decathlon", tier:"assoc", name:"Decathlon", sub:"Run Partner", logo:"assets/sponsors/decathlon.png" }
 ];
 
-// Ambient marigold drift for wide screens. Deterministic so renders stay identical;
-// the layer is display:none below 1080px and removed under prefers-reduced-motion.
-const PETALS = (() => {
-  const out = [];
-  const seedRand = (n) => { const x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); };
-  for (let i = 0; i < 7; i++) {
-    const r1 = seedRand(i + 1), r2 = seedRand(i + 41), r3 = seedRand(i + 83);
-    const w = 6 + r2 * 5;
-    out.push({ cls:"petal", css:"left:" + (4 + r1 * 88).toFixed(2) + "%;width:" + w.toFixed(1) + "px;height:" + (w * 1.5).toFixed(1)
-      + "px;--dx:" + (-50 + r3 * 110).toFixed(0) + "px;--rot:" + (160 + r2 * 240).toFixed(0)
-      + "deg;animation-duration:" + (34 + r3 * 20).toFixed(1) + "s;animation-delay:-" + (r1 * 48).toFixed(1) + "s" });
-  }
-  for (let i = 0; i < 3; i++) {
-    const r1 = seedRand(i + 131), r2 = seedRand(i + 179), r3 = seedRand(i + 223);
-    const d = 2 + r2 * 2.5;
-    out.push({ cls:"ember", css:"left:" + (8 + r1 * 82).toFixed(2) + "%;width:" + d.toFixed(1) + "px;height:" + d.toFixed(1)
-      + "px;--dx:" + (-36 + r3 * 72).toFixed(0) + "px;animation-duration:" + (40 + r3 * 18).toFixed(1)
-      + "s;animation-delay:-" + (r1 * 52).toFixed(1) + "s" });
-  }
-  return out;
-})();
 const GOLD_SHADOW = "0 8px 20px rgba(200,130,40,.32)";
 
 const COMPS = [
@@ -2097,8 +2050,6 @@ class Component extends DCLogic {
         if(this._prompt){ this._prompt.prompt(); this._prompt = null; this.setState({ canInstall:false }); }
         else this.flash("Use your browser menu → Add to Home Screen");
       },
-
-      petals: PETALS,
 
       tabs: tabDefs.map(t => ({
         label:t[1], icon:t[2],
