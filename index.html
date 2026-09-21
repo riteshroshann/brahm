@@ -23,7 +23,7 @@ window.__resources = {
 <title>Brahm 2026 — Founders’ Day Fest</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f5f7fb">
-<meta name="description" content="Nine inter-college competitions open to every college, plus five days of seva, sport and celebration. BRAHM 2026 — Founders' Day Fest at Amrita Vishwa Vidyapeetham, Delhi NCR Campus, 19th–23rd September 2026.">
+<meta name="description" content="Inter-college competitions open to every college, plus five days of seva, sport and celebration. BRAHM 2026 — Founders' Day Fest at Amrita Vishwa Vidyapeetham, Delhi NCR Campus, 19th–23rd September 2026.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="BRAHM 2026">
@@ -33,12 +33,13 @@ window.__resources = {
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BRAHM 2026">
 <meta property="og:title" content="Brahm 2026 — Founders’ Day Fest">
-<meta property="og:description" content="Nine inter-college competitions open to every college. 19th–23rd September 2026 at Amrita Vishwa Vidyapeetham, Delhi NCR Campus.">
-<meta property="og:image" content="assets/hero-crowd-wide.jpg">
+<meta property="og:description" content="Inter-college competitions open to every college. 19th–23rd September 2026 at Amrita Vishwa Vidyapeetham, Delhi NCR Campus.">
+<meta property="og:image" content="assets/amma-photos/amma-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="_ds/broadsheet-311c8ad7-0126-44a4-aa52-ec64304392bc/styles.css">
 <script src="_ds/broadsheet-311c8ad7-0126-44a4-aa52-ec64304392bc/_ds_bundle.js"></script>
+<link rel="preload" href="assets/amma-photos/amma-2.webp" as="image" fetchpriority="high">
 <link rel="preload" href="assets/hero-crowd.jpg" as="image" fetchpriority="high">
 <link rel="preload" href="assets/hero-crowd-wide.jpg" as="image" media="(min-width:1080px)" fetchpriority="high">
 <link rel="preload" href="vendor/fonts/cormorant-rm-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -64,7 +65,7 @@ html,body{margin:0;padding:0;background:#c8d3e1;-webkit-font-smoothing:antialias
 body{font-family:var(--font-body);color:var(--ink);overscroll-behavior:none}
 *{-webkit-tap-highlight-color:transparent;scrollbar-width:none;box-sizing:border-box}
 *::-webkit-scrollbar{width:0;height:0;display:none}
-button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+button{font:inherit;color:inherit;border:0;background:none;cursor:default}
 a{color:var(--blue);text-decoration:none}
 a:hover{color:var(--marigold-deep)}
 h1,h2,h3,h4{margin:0}
@@ -114,34 +115,71 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
    head preloads the matching one to keep it the LCP candidate. */
 .hero{position:relative;isolation:isolate;overflow:hidden;background:#0c1631;
   display:flex;align-items:flex-end;
+  /* Where the crop sits. Nudging these two moves Amma’s face in the frame on a
+     given device without recutting the file — raise Y to bring her lower in the
+     picture up into view, move X to slide her out from under the lockup. */
+  --hero-focus-x:50%; --hero-focus-y:24%;
   min-height:clamp(790px,100vh,920px);min-height:clamp(790px,100dvh,920px)}
-.hero-art{position:absolute;inset:0 0 auto;height:58%;z-index:0;background-color:#0c1631;
+.hero-art{position:absolute;inset:-3%;z-index:0;background-color:#0c1631;
   background-image:url("assets/hero-crowd.jpg");
-  background-position:50% 42%;background-size:cover;background-repeat:no-repeat}
-/* Two stops of shade: enough under the lockup to hold cream text, light enough
-   across the middle that the stage lights still read as lights. */
+  background-position:var(--hero-focus-x) var(--hero-focus-y);
+  background-size:cover;background-repeat:no-repeat;
+  /* The crowd is the room Amma is standing in, not the subject: thrown out of
+     focus and held down in tone so the portrait in front of it is the only
+     sharp thing in the frame. The inset is negative to give the blur stock to
+     work with, so it never shows a soft edge against the sides. */
+  filter:blur(4px) saturate(.82) brightness(.56)}
+/* The shade is weighted to the foot of the frame and to the very top, so it
+   holds cream type at both ends while the band the portrait occupies stays
+   almost clear — nothing is allowed to fall across the face. A soft vignette
+   over the top closes the corners without touching the centre. */
 .hero-wash{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(180deg,rgba(8,15,34,.38) 0%,rgba(8,15,34,.10) 28%,rgba(8,15,34,.44) 47%,rgba(8,15,34,.94) 61%,rgba(12,21,46,.98) 100%)}
+  radial-gradient(44% 25% at 50% 20%,rgba(243,188,99,.22),transparent 72%),
+  radial-gradient(130% 76% at 50% 22%,rgba(6,12,28,0) 36%,rgba(6,12,28,.30) 80%,rgba(6,12,28,.50) 100%),
+  linear-gradient(180deg,
+    rgba(8,15,34,.58) 0%,
+    rgba(8,15,34,.20) 10%,
+    rgba(8,15,34,.05) 28%,
+    rgba(8,15,34,.22) 40%,
+    rgba(9,17,38,.60) 50%,
+    rgba(10,19,42,.86) 62%,
+    rgba(11,20,44,.96) 74%,
+    rgba(12,21,46,.99) 100%)}
 /* Warms the foot of the frame, so the gold that carries every CTA downstream
    has somewhere to start. */
-.hero-glow{position:absolute;inset:0;z-index:2;
-  background:radial-gradient(120% 76% at 50% 100%,rgba(224,149,44,.20),transparent 62%)}
+/* Amma, cut out and standing in front of the frame. She is masked away at the
+   foot rather than cropped, so there is no cut edge where she meets the type,
+   and the wash never falls on her — it sits behind. */
+.hero-figure{position:absolute;z-index:2;top:3%;left:50%;transform:translateX(-50%);
+  width:min(104%,560px);height:auto;max-height:61%;pointer-events:none;
+  object-fit:contain;object-position:50% 0%;
+  filter:drop-shadow(0 22px 52px rgba(4,9,24,.62));
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%)}
+.hero-glow{position:absolute;inset:0;z-index:3;background:
+  radial-gradient(120% 74% at 50% 100%,rgba(224,149,44,.17),transparent 62%),
+  linear-gradient(180deg,transparent 33%,rgba(9,16,36,.46) 51%,rgba(10,18,40,.82) 67%,
+    rgba(11,20,44,.94) 81%,rgba(12,21,46,.97) 100%)}
 .hero-top{position:absolute;top:calc(20px + env(safe-area-inset-top));left:0;right:0;z-index:4;
-  padding:0 var(--gutter);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  padding:0 var(--gutter);display:flex;align-items:flex-start;justify-content:flex-end;gap:12px}
 .hero-top-mark{width:clamp(72px,20vw,96px);height:auto;flex:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
-.hero-emblem{display:block;height:clamp(32px,7vw,46px);width:auto;max-width:clamp(150px,46vw,220px);object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55))}
 /* The bottom reserve clears the docked tab bar, so the countdown is never
    tucked in behind it. */
 .hero-lock{position:relative;z-index:4;width:100%;
   padding:0 var(--gutter) calc(72px + env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-mark{display:none;width:min(178px,50vw);height:auto;filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
-.hero-brand-art{display:block;width:100%;max-width:min(340px,78vw);height:auto;object-fit:contain;margin:0 auto 10px;filter:drop-shadow(0 8px 26px rgba(5,12,30,.65))}
-@media (min-width:480px){.hero-brand-art{max-width:380px;margin-bottom:12px}}
-/* The wordmark is the headline now, so it takes the headline size; the fest
-   name sits beneath it between the two gold rules. */
+/* A line of quiet type above the name, to place the fest before it announces
+   itself — the poster wordmark used to do this job and shouted it. */
+.hero-eyebrow{display:block;margin-bottom:14px;
+  font:700 clamp(8px,2.4vw,9.5px)/1.5 var(--font-heading);
+  letter-spacing:clamp(.16em,.8vw,.3em);text-transform:uppercase;text-indent:.16em;
+  color:rgba(251,230,189,.82);
+  text-shadow:0 2px 12px rgba(7,13,30,.75)}
+/* Set, not drawn: the fest name is the headline and takes the headline size,
+   with the fest’s own name beneath it between the two gold rules. */
 .hero-title{font:600 clamp(50px,15.2vw,76px)/.92 var(--display);color:#fff8ec;letter-spacing:-.02em;
-  margin-top:0;text-shadow:0 8px 30px rgba(7,13,30,.6)}
+  margin:0;text-shadow:0 8px 30px rgba(7,13,30,.6)}
 .hero-title .sun{letter-spacing:.01em}
 .hero-sub{display:flex;align-items:center;gap:13px;margin-top:16px;width:100%;justify-content:center}
 .hero-sub-name{font:400 clamp(22px,6.4vw,27px)/1 var(--display);color:#fbe6bd;letter-spacing:.015em;
@@ -168,13 +206,16 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 @media (min-width:700px){
   .hero{min-height:clamp(780px,92vh,1000px);min-height:clamp(780px,92dvh,1000px)}
   .hero-title{font-size:clamp(78px,10.4vw,98px)}
+  .hero-eyebrow{font-size:11px;letter-spacing:.3em;text-indent:.3em;margin-bottom:18px}
   .hero-sub-name{font-size:29px}
   .hero-count{max-width:520px;margin-top:30px;padding:24px 22px 26px}
   .hero-count-v{font-size:52px}
 }
 @media (min-width:1080px){
   /* The wide crop only — a desktop never fetches the phone's portrait frame. */
-  .hero-art{inset:0;height:100%;background-image:url("assets/hero-crowd-wide.jpg");background-position:50% 46%;background-size:cover}
+  .hero{--hero-focus-x:50%; --hero-focus-y:46%}
+  .hero-art{inset:-3%;height:auto;background-size:cover;
+    background-image:url("assets/hero-crowd-wide.jpg")}
   .hero-line{max-width:34ch}
 }
 
@@ -272,33 +313,6 @@ img[src*="ev-junoon"],img[src*="ev-malhar"]{object-position:50% 36%!important}
 .stickyhead{position:sticky;top:0;z-index:20;background:var(--ivory)}
 .stickyhead::after{content:"";position:absolute;left:0;right:0;top:100%;height:18px;pointer-events:none;
   background:linear-gradient(180deg,var(--ivory),rgba(245,247,251,0))}
-
-/* ---------- Home tiles ---------- */
-.tilerow{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.tile-hero{position:relative;overflow:hidden;min-height:158px;border-radius:22px;text-align:left;padding:0;
-  background:#c7d5e6;box-shadow:var(--sh);transition:box-shadow .3s cubic-bezier(.32,.72,0,1)}
-.tile-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.32,.72,0,1)}
-.tile-hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,29,58,.05) 30%,rgba(17,29,58,.90))}
-.tile-hero-cap{position:absolute;left:16px;right:16px;bottom:15px}
-.tile-hero-t{font:400 clamp(22px,5.8vw,25px)/1.06 var(--display);color:#fdf7ec}
-.tile-hero-s{font:700 8.5px/1.35 var(--font-heading);letter-spacing:.18em;color:#f7d9a2;text-transform:uppercase;margin-top:7px;text-wrap:pretty}
-.tilestack{display:flex;flex-direction:column;gap:13px}
-.tile-flat{flex:1;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:22px;
-  background:var(--ivory-3);text-align:left;box-shadow:inset 0 0 0 1px rgba(34,55,110,.07);
-  transition:background-color .28s}
-.tile-flat i{font-size:24px;color:var(--blue);flex:none}
-.tile-flat span{font:400 17px/1.18 var(--display);color:var(--night);text-wrap:balance}
-@media (hover:hover){
-  .tile-hero:hover{box-shadow:var(--sh-lg)}
-  .tile-hero:hover img{transform:scale(1.05)}
-  .tile-flat:hover{background:var(--ivory-4)}
-}
-@media (min-width:1080px){
-  /* The competitions tile earns the wider half of the row. */
-  .tilerow{grid-template-columns:1.35fr 1fr;gap:18px}
-  .tile-hero{min-height:186px}
-  .tile-flat span{font-size:19px}
-}
 
 /* ---------- Empty state ---------- */
 .empty{padding:62px var(--gutter) 40px;text-align:center;display:flex;flex-direction:column;align-items:center;
@@ -432,6 +446,19 @@ img[src*="ev-junoon"],img[src*="ev-malhar"]{object-position:50% 36%!important}
 .pullquote blockquote{margin:0;font:italic 300 clamp(25px,7vw,32px)/1.34 var(--display);color:var(--night);text-wrap:pretty}
 .pullquote figcaption{margin-top:14px;font:700 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:var(--marigold-deep)}
 @media (min-width:700px){.pullquote blockquote{font-size:clamp(32px,3.4vw,40px);max-width:26ch}}
+/* The landscape portrait on the About screen. It is the same 1200x630 file the
+   share card uses, so there is one image to keep current rather than two, and
+   the tile carries its exact ratio so nothing is trimmed. */
+.amma-band{margin:0;border-radius:26px;overflow:hidden;box-shadow:var(--sh);
+  outline:1px solid rgba(224,149,44,.30);outline-offset:-1px}
+/* height:auto is load-bearing -- the width/height attributes on the tag are
+   there for layout stability, and without this the attribute height wins and
+   aspect-ratio is ignored. */
+.amma-band img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover}
+.amma-band figcaption{padding:14px 18px 16px;background:linear-gradient(168deg,#fdf6ea,#f6e9d6);
+  font:700 9px/1.5 var(--font-heading);letter-spacing:.22em;text-transform:uppercase;color:var(--marigold-deep)}
+@media (min-width:700px){.amma-band figcaption{padding:16px 22px 18px}}
+
 
 .prose{margin:0;font:400 16px/1.7 var(--font-body);color:var(--ink-2);text-wrap:pretty;max-width:68ch}
 .prose.lead{color:var(--ink);font-size:17px}
@@ -533,8 +560,113 @@ img[src*="ev-junoon"],img[src*="ev-malhar"]{object-position:50% 36%!important}
 /* The closing card runs to the very bottom edge and carries the tab-bar reserve
    itself, so no ivory strip is left showing beneath the navy. */
 html[data-screen="home"] .appmain>section{padding-bottom:0}
+/* The landscape portrait at the head of the closing slab. It bleeds back out
+   of the slab's own padding to the full width, and the veil carries it down
+   into the navy, so the words she is credited with sit under her rather than
+   across her face. Same file the About band and the share card use. */
+.closer-art{position:relative;overflow:hidden;border-radius:34px 34px 0 0;
+  margin:-48px calc(-1 * var(--gutter)) 32px}
+.closer-art img{display:block;width:100%;height:auto;aspect-ratio:1200/560;object-fit:cover;
+  object-position:50% 32%}
+.closer-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(17,29,58,.40) 0%,rgba(17,29,58,.10) 34%,
+    rgba(19,31,62,.66) 76%,rgba(17,29,58,.94) 92%,#111d3a 100%)}
+
 .closer{margin-top:32px;background:linear-gradient(172deg,#1c2d59,#111d3a);text-align:center;
   border-radius:34px 34px 0 0;padding:48px var(--gutter) calc(122px + env(safe-area-inset-bottom))}
+
+.closer-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:12px 22px;
+  border-radius:999px;border:1px solid rgba(247,217,162,.34);background:rgba(247,217,162,.08);
+  font:700 10px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:#f3bc63;
+  transition:background-color .28s,border-color .28s}
+.closer-link i{font-size:15px}
+@media (hover:hover){.closer-link:hover{background:rgba(247,217,162,.16);border-color:rgba(247,217,162,.55)}}
+
+/* ---------- Celebrating the Spirit of Brahm (home) ----------
+   Warm paper between the cool cards above and below it, so the one section on
+   the home screen that is about meaning rather than logistics reads as a pause
+   rather than another card. The mandala and the glow sit behind the content on
+   z-index -1, the way the hero and the legacy header do. */
+.spirit{position:relative;overflow:hidden;isolation:isolate;border-radius:34px;padding:38px 22px 34px;
+  background:linear-gradient(166deg,#fdf6ea 0%,#f9edda 48%,#f3e5d2 100%);box-shadow:var(--sh)}
+.spirit-mandala{position:absolute;z-index:-1;top:-96px;right:-108px;width:300px;height:300px;border-radius:50%;
+  background:url(assets/plate-mandala.jpg) center/cover;opacity:.13;mix-blend-mode:multiply;pointer-events:none}
+.spirit-glow{position:absolute;z-index:-1;left:-78px;bottom:-116px;width:290px;height:290px;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,149,44,.32),transparent 68%);pointer-events:none}
+.spirit-title{margin:12px 0 0;font:300 clamp(34px,8.8vw,44px)/1.04 var(--display);color:var(--night);
+  letter-spacing:-.008em;text-wrap:balance}
+.spirit-title em{font-style:italic;color:var(--marigold-deep)}
+.spirit-rule{display:block;width:64px;height:2px;margin-top:18px;border-radius:2px;background:var(--gold-fill)}
+.spirit-lead{margin:19px 0 0;font:400 17px/1.66 var(--font-body);color:var(--ink);text-wrap:pretty;max-width:64ch}
+.spirit-p{margin:15px 0 0;font:400 15.5px/1.72 var(--font-body);color:var(--ink-2);text-wrap:pretty;max-width:66ch}
+/* A highlighted phrase, drawn as a low gold wash rather than a full background
+   so the serif still sits on paper. */
+.mark-gold{padding:0 2px;font-weight:600;color:var(--ink);
+  background:linear-gradient(transparent 62%,rgba(224,149,44,.36) 62%)}
+.spirit-values{display:grid;grid-template-columns:1fr;gap:11px;margin-top:27px}
+.spirit-val{display:flex;align-items:flex-start;gap:14px;padding:16px 17px;border-radius:19px;
+  background:rgba(255,255,255,.74);border:1px solid rgba(224,149,44,.22);box-shadow:0 6px 18px rgba(22,32,60,.07)}
+.spirit-val-ic{flex:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(224,149,44,.18);color:var(--marigold-deep)}
+.spirit-val-ic i{font-size:20px}
+.spirit-val-t{display:block;font:400 19px/1.16 var(--display);color:var(--night)}
+.spirit-val-s{display:block;margin-top:4px;font:400 13px/1.5 var(--font-body);color:var(--ink-3);text-wrap:pretty}
+.spirit-close{margin-top:25px;padding-top:21px;border-top:1px solid rgba(168,107,22,.26);
+  font:italic 300 clamp(21px,5.6vw,26px)/1.4 var(--display);color:var(--blue);text-wrap:pretty}
+@media (min-width:700px){
+  .spirit{padding:50px 42px 46px;border-radius:38px}
+  .spirit-values{grid-template-columns:repeat(3,1fr);gap:14px}
+  .spirit-val{flex-direction:column;gap:13px}
+}
+/* ---------- About the Founder (home) ----------
+   Portrait beside the biography on a wide pane, portrait above it on a phone.
+   The frame keeps a 4:5 slot whether or not the photograph has been dropped in
+   yet, so the column never changes height when the file arrives. */
+.founder{position:relative;overflow:hidden;isolation:isolate;border-radius:34px;padding:36px 22px 34px;
+  background:linear-gradient(168deg,#f8faff 0%,#eaf0f9 58%,#e2eaf6 100%);box-shadow:var(--sh)}
+.founder-glow{position:absolute;z-index:-1;right:-92px;top:-92px;width:270px;height:270px;border-radius:50%;
+  background:radial-gradient(circle,rgba(34,55,110,.15),transparent 70%);pointer-events:none}
+.founder-grid{display:grid;grid-template-columns:1fr;gap:26px;align-items:start;margin-top:22px}
+.founder-figure{margin:0}
+.founder-frame{position:relative;aspect-ratio:4/5;border-radius:26px;overflow:hidden;
+  background:linear-gradient(168deg,#1c2d59,#111d3a);box-shadow:0 18px 40px rgba(17,29,58,.26);
+  outline:1px solid rgba(224,149,44,.45);outline-offset:-1px}
+/* amma-3 is 3:4 in a 4:5 frame: anchoring to the top keeps her crown and takes
+   the 7% overflow off the hem of the robe, where nothing is lost. */
+.founder-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+/* The portrait is a cut-out, so the frame supplies its own light behind her
+   rather than leaving the figure flat on the navy. */
+.founder-frame::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(64% 46% at 50% 34%,rgba(243,188,99,.20),transparent 70%)}
+/* Same contract as the sponsor logos: a path with no file behind it yet must
+   not leave a broken frame, so the emblem holds the slot until the portrait
+   is dropped at assets/founder/amma.jpg. */
+.founder-plate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:15px;padding:28px;text-align:center}
+.founder-plate img{width:min(140px,46%);height:auto;object-fit:contain}
+.founder-plate span{font:400 15px/1.5 var(--display);color:rgba(253,247,236,.78);text-wrap:pretty}
+.founder-cap{margin-top:14px;display:flex;flex-direction:column;gap:4px}
+.founder-cap b{font:400 20px/1.16 var(--display);color:var(--night)}
+.founder-cap span{font:700 9px/1.5 var(--font-heading);letter-spacing:.22em;text-transform:uppercase;
+  color:var(--marigold-deep)}
+.founder-name{margin:0;font:300 clamp(30px,7.8vw,40px)/1.07 var(--display);color:var(--night);
+  letter-spacing:-.006em;text-wrap:balance}
+.founder-amma{margin-top:10px;font:italic 300 20px/1.38 var(--display);color:var(--blue);text-wrap:pretty}
+.founder-p{margin:16px 0 0;font:400 15.5px/1.72 var(--font-body);color:var(--ink-2);text-wrap:pretty;max-width:62ch}
+/* Two up by default and four across only where the right-hand column is
+   genuinely wide enough. Letting them wrap freely gave a three-plus-one row
+   with the last chip stretched across the full width, which read as a mistake;
+   an even count at every size is tidier than squeezing four in early. */
+.founder-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:23px}
+@media (min-width:1400px){.founder-pillars{grid-template-columns:repeat(4,1fr)}}
+.founder-pill{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:15px;
+  background:rgba(255,255,255,.78);box-shadow:inset 0 0 0 1px rgba(34,55,110,.09);
+  font:700 9.5px/1.3 var(--font-heading);letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}
+.founder-pill i{flex:none;font-size:17px;color:var(--marigold-deep)}
+@media (min-width:700px){
+  .founder{padding:50px 42px 46px;border-radius:38px}
+  .founder-grid{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:38px;margin-top:26px}
+}
 
 .pad{padding-left:var(--gutter);padding-right:var(--gutter)}
 .grid-cards{display:grid;grid-template-columns:1fr;gap:14px}
@@ -647,7 +779,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     box-shadow:none;transition:box-shadow .3s cubic-bezier(.32,.72,0,1)}
   .navbrand{display:flex;align-items:center;gap:10px;margin-right:auto;padding-left:2px;
     color:var(--night);border-radius:10px;padding-block:6px;padding-right:10px}
-  .navbrand-emblem{display:block;height:28px;width:auto;max-width:180px;object-fit:contain}
+  .navbrand-emblem{display:block;height:32px;width:auto;max-width:210px;object-fit:contain}
   .navbrand-divider{display:inline-block;width:1px;height:20px;background:rgba(34,55,110,.2);margin:0 2px}
   .navbrand-text{display:flex;align-items:center;gap:6px}
   .navbrand-text span{font:600 19px/1 var(--display);letter-spacing:.005em;white-space:nowrap}
@@ -686,16 +818,28 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   /* Shade rakes in from the left instead of straight down, because the lockup
      is left-aligned here — the right of the frame keeps its stage lights. */
   html[data-screen="home"] .app .hero-wash{background:
-    linear-gradient(90deg,rgba(8,15,34,.98) 0%,rgba(8,15,34,.94) 27%,rgba(8,15,34,.76) 43%,rgba(8,15,34,.13) 65%,rgba(8,15,34,.18) 100%),
-    linear-gradient(180deg,rgba(8,15,34,.34) 0%,rgba(8,15,34,.02) 48%,rgba(8,15,34,.46) 100%)}
+    linear-gradient(90deg,rgba(8,15,34,.97) 0%,rgba(8,15,34,.92) 26%,rgba(8,15,34,.70) 42%,rgba(8,15,34,.10) 62%,rgba(8,15,34,.06) 100%),
+    linear-gradient(180deg,rgba(8,15,34,.40) 0%,rgba(8,15,34,.02) 42%,rgba(8,15,34,.20) 72%,rgba(8,15,34,.52) 100%)}
   html[data-screen="home"] .app .hero-glow{background:radial-gradient(78% 68% at 16% 84%,rgba(224,149,44,.22),transparent 66%)}
   html[data-screen="home"] .app .hero-top{top:calc(var(--navh) + 20px);padding:0 clamp(40px,4.4vw,72px)}
-  html[data-screen="home"] .app .hero-emblem{height:clamp(44px,4vw,56px);max-width:240px}
   html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
     align-items:flex-start;text-align:left;max-width:min(650px,44vw)}
   html[data-screen="home"] .app .hero-mark{display:block;width:clamp(128px,10vw,158px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
-  html[data-screen="home"] .app .hero-brand-art{margin-left:0;margin-right:auto;max-width:clamp(340px,28vw,440px);filter:drop-shadow(0 10px 32px rgba(4,10,26,.75))}
-  html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px);margin-top:14px}
+  html[data-screen="home"] .app .hero-brandmark{height:clamp(50px,4.2vw,64px);max-width:320px;margin-bottom:clamp(26px,2.4vw,34px)}
+  /* The lockup holds the left of the cover here, so Amma stands to the right of
+     it, full height, with only the hem of the frame masked away. */
+  /* The cut-out has almost no headroom of its own -- her crown sits 0.3% from
+     the top edge of the file -- so the figure has to be capped as well as
+     anchored. Sized by width alone it grew taller than the hero on a short
+     window and rode up behind the tab bar, which cut the top of her head off.
+     Capping the height makes her shrink to fit instead; the width follows,
+     because a replaced element keeps its ratio when max-height clamps it. */
+  html[data-screen="home"] .app .hero-figure{left:auto;transform:none;
+    right:clamp(4px,3vw,72px);top:auto;bottom:0;width:min(46vw,620px);
+    max-height:calc(100% - 26px);object-fit:contain;object-position:100% 100%;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%);
+    mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%)}
+  html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px)}
   /* Left-aligned on the cover, so the rules can no longer stretch to fill a
      centred row: the leading one takes a fixed length and the trailing one goes. */
   html[data-screen="home"] .app .hero-sub{width:auto;justify-content:flex-start;margin-top:17px;gap:16px}
@@ -708,13 +852,14 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-count-cell{align-items:flex-start;gap:9px}
   html[data-screen="home"] .app .hero-count-v{font-size:clamp(44px,3.6vw,56px)}
   html[data-screen="home"] .app .homebelow{max-width:1180px;margin:0 auto}
-  html[data-screen="home"] .app .homeband{padding:52px var(--gutter) 0}
+  html[data-screen="home"] .app .homeband{padding:28px var(--gutter) 0}
   html[data-screen="home"] .app .homeband>.h-cta{padding:0!important}
 }
 
 /* Compact, but retain, the branding on short laptop screens. */
 @media (min-width:1080px) and (max-height:820px){
   html[data-screen="home"] .app .hero-title{margin-top:0;font-size:clamp(76px,6.2vw,104px)}
+  html[data-screen="home"] .app .hero-brandmark{height:clamp(42px,3.4vw,52px);margin-bottom:20px}
   html[data-screen="home"] .app .hero-count{margin-top:22px;padding-block:18px 20px}
   html[data-screen="home"] .app .hero-line{margin-top:13px}
   .rail-body{padding:16px 30px 20px}
@@ -761,6 +906,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .daypicker{gap:15px;margin-top:24px}
   .daytabs{gap:14px}
   .closer{margin-top:46px;padding:60px var(--gutter) 66px}
+  .closer-art{margin:-60px calc(-1 * var(--gutter)) 40px}
+  .closer-art img{aspect-ratio:1200/420}
 
   .sponsorcard{padding:44px 36px;min-height:168px}
   .figrow{gap:18px}
@@ -772,9 +919,342 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .pullquote{padding-top:34px}
 }
 
+
+/* ---------- Back navigation ----------
+   Every screen off the tab bar carries one, and it steps the browser history
+   back rather than jumping to a fixed parent, so the device back button and
+   this button agree. */
+.backrow{padding:14px var(--gutter) 0}
+.backbtn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 17px 0 13px;border-radius:999px;
+  background:var(--ivory-3);color:var(--blue);font:700 9.5px/1 var(--font-heading);letter-spacing:.18em;
+  text-transform:uppercase;box-shadow:var(--sh);cursor:pointer}
+.backbtn i{font-size:17px}
+@media (hover:hover){.backbtn:hover{background:var(--ivory-4)}}
+@media (min-width:1080px){.backrow{padding-top:22px}}
+
+/* ---------- Registrations closed ---------- */
+.closedbar{display:flex;align-items:flex-start;gap:13px;background:linear-gradient(168deg,#fdf2e2,#f7e3c9);
+  border:1px solid rgba(168,107,22,.26);border-radius:20px;padding:16px 18px;box-shadow:var(--sh)}
+.closedbar>i{font-size:25px;color:var(--marigold-deep);flex:none}
+.closedbar-t{font:700 9.5px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-deep)}
+.closedbar-s{margin-top:7px;font:400 14px/1.55 var(--font-body);color:var(--ink-2);text-wrap:pretty}
+.closedbar.dark{background:rgba(251,230,189,.12);border-color:rgba(251,230,189,.32)}
+.closedbar.dark>i,.closedbar.dark .closedbar-t{color:#f3bc63}
+.closedbar.dark .closedbar-s{color:rgba(253,247,236,.82)}
+.closedchip{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:5px 10px;border-radius:999px;
+  background:rgba(168,107,22,.14);color:var(--marigold-deep);
+  font:700 8px/1 var(--font-heading);letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
+.closedchip i{font-size:12px}
+
+/* ---------- Rollout timeline ---------- */
+.rollout{margin-top:20px;display:flex;flex-direction:column;gap:13px}
+.rollstep{display:flex;gap:16px;background:linear-gradient(168deg,#f8faff,#edf2f8);
+  border-radius:20px;padding:18px 19px;box-shadow:var(--sh)}
+.rollstep-d{flex:none;width:48px;text-align:center}
+.rollstep-n{display:block;font:300 31px/1 var(--display);color:var(--night);font-variant-numeric:tabular-nums}
+.rollstep-w{display:block;margin-top:4px;font:700 8px/1 var(--font-heading);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--marigold-deep)}
+.rollstep-t{font:600 17px/1.25 var(--display);color:var(--night);letter-spacing:-.005em}
+.rollstep-s{margin-top:6px;font:400 14px/1.55 var(--font-body);color:var(--ink-2);text-wrap:pretty}
+.rollstep-c{margin-top:9px;font:700 8.5px/1 var(--font-heading);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+@media (min-width:700px){.rollout{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}}
+
+/* ---------- Amrita's Wardrobe (the archive of fests past) ----------
+   Photos and clips are probed before they render, exactly as the sponsor
+   logos are, so a path that has no file behind it yet simply does not appear. */
+.wardrobe-grid{margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.wardrobe-fig{margin:0;border-radius:20px;overflow:hidden;background:var(--ivory-2);box-shadow:var(--sh);
+  display:flex;flex-direction:column}
+/* 3:2 to match the photographs, so nothing is trimmed off the top or foot. */
+.wardrobe-fig img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.wardrobe-cap{padding:11px 13px 14px;font:400 12.5px/1.45 var(--font-body);color:var(--ink-2);text-wrap:pretty}
+.wardrobe-year{display:block;margin-bottom:5px;font:700 8px/1 var(--font-heading);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--marigold-deep)}
+.wardrobe-videos{margin-top:18px;display:flex;flex-direction:column;gap:16px}
+.wardrobe-vid{border-radius:20px;overflow:hidden;background:#0c142b;box-shadow:var(--sh-lg)}
+.wardrobe-vid video{display:block;width:100%;aspect-ratio:16/9;background:#0c142b}
+.wardrobe-vid .wardrobe-cap{color:rgba(253,247,236,.8)}
+.wardrobe-vid .wardrobe-year{color:#f3bc63}
+@media (min-width:700px){
+  .wardrobe-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .wardrobe-videos{display:grid;grid-template-columns:repeat(2,1fr)}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
+
+/* ---------- Story chapters (home) ----------
+   The home screen reads top to bottom as one narrative — Brahm, Founders' Day,
+   the Founder, Brahm 2026, its events, then last year. A chapter head marks
+   each turn: a hairline dropping in, a label, a title. Deliberately the same
+   three parts every time, so the rhythm itself does the signposting and no
+   section needs a decorative band to announce it. */
+.chapter{display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:58px var(--gutter) 0}
+.chapter-rule{width:1px;height:42px;background:linear-gradient(180deg,rgba(224,149,44,0),rgba(224,149,44,.75))}
+.chapter-n{margin-top:18px;font:700 9px/1 var(--font-heading);letter-spacing:.34em;
+  text-transform:uppercase;text-indent:.34em;color:var(--marigold-deep)}
+.chapter-t{margin:14px 0 0;font:300 clamp(34px,8.8vw,44px)/1.05 var(--display);color:var(--night);
+  letter-spacing:-.01em;text-wrap:balance}
+.chapter-t em{font-style:italic;color:var(--marigold-deep)}
+.chapter-s{margin:14px 0 0;font:400 15.5px/1.68 var(--font-body);color:var(--ink-3);
+  max-width:56ch;text-wrap:pretty}
+@media (min-width:700px){
+  .chapter{padding-top:74px}
+  .chapter-t{font-size:clamp(44px,4.4vw,56px);font-weight:300}
+  .chapter-s{font-size:17px}
+}
+
+/* ---------- Founders' Day (home, chapter two) ----------
+   Warm paper like the Spirit section above it, but narrower and quieter: this
+   one is a bridge between what Brahm is and who it is kept for, not a
+   destination of its own. */
+.fday{position:relative;overflow:hidden;isolation:isolate;border-radius:34px;padding:36px 22px 32px;
+  background:linear-gradient(168deg,#fbf6ec,#f5ecdd);box-shadow:var(--sh)}
+.fday-glow{position:absolute;z-index:-1;left:-90px;top:-90px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,149,44,.20),transparent 68%)}
+.fday-p{margin:15px 0 0;font:400 15.5px/1.72 var(--font-body);color:var(--ink-2);text-wrap:pretty;max-width:66ch}
+.fday-p:first-of-type{font-size:17px;line-height:1.66;color:var(--ink)}
+.fday-arc{display:grid;grid-template-columns:1fr;gap:10px;margin-top:26px}
+.fday-step{display:flex;align-items:baseline;gap:14px;padding:14px 16px;border-radius:17px;
+  background:rgba(255,255,255,.62);box-shadow:inset 0 0 0 1px rgba(168,107,22,.14)}
+.fday-step-d{flex:none;font:300 26px/1 var(--display);color:var(--marigold-deep);
+  font-variant-numeric:tabular-nums;min-width:2.2ch}
+.fday-step-t{display:block;font:400 17px/1.2 var(--display);color:var(--night)}
+.fday-step-s{display:block;margin-top:4px;font:400 13px/1.5 var(--font-body);color:var(--ink-3);text-wrap:pretty}
+@media (min-width:700px){
+  .fday{padding:48px 42px 44px;border-radius:38px}
+  .fday-arc{grid-template-columns:repeat(2,1fr);gap:13px}
+}
+@media (min-width:1080px){.fday-arc{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- Memories (home, chapter seven) ----------
+   Last year's photographs at the size they deserve, with empty slots after
+   them for the ones still to be supplied. Uniform tiles: the grid is the
+   composition, not any one frame. */
+.memgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:24px}
+.memgrid figure{margin:0;position:relative;overflow:hidden;border-radius:18px;aspect-ratio:4/3;
+  background:#dfe7f1;box-shadow:var(--sh)}
+.memgrid figure>img{display:block;width:100%;height:100%;object-fit:cover;
+  transition:transform .55s cubic-bezier(.32,.72,0,1)}
+.memgrid figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 13px 12px;
+  font:400 12px/1.4 var(--font-body);color:rgba(253,247,236,.92);text-wrap:pretty;
+  background:linear-gradient(180deg,rgba(17,29,58,0),rgba(17,29,58,.86));
+  opacity:0;transition:opacity .3s cubic-bezier(.32,.72,0,1)}
+@media (hover:hover){.memgrid figure:hover>img{transform:scale(1.05)}.memgrid figure:hover figcaption{opacity:1}}
+@media (max-width:699px){.memgrid figcaption{display:none}}
+@media (min-width:700px){.memgrid{grid-template-columns:repeat(3,1fr);gap:14px}}
+@media (min-width:1080px){.memgrid{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- Follow Brahm (home, the sign-off) ----------
+   One link, given a section rather than a footer line, because it is the only
+   place the fest keeps talking after the five days are over. */
+.insta{position:relative;overflow:hidden;isolation:isolate;border-radius:34px;
+  padding:42px 24px 40px;text-align:center;
+  background:linear-gradient(168deg,#1c2d59,#111d3a);box-shadow:var(--sh-lg)}
+.insta-glow{position:absolute;z-index:-1;inset:auto -60px -120px;height:280px;
+  background:radial-gradient(60% 100% at 50% 100%,rgba(224,149,44,.28),transparent 68%)}
+.insta-t{margin:12px 0 0;font:300 clamp(31px,8vw,38px)/1.06 var(--display);color:#fdf7ec;text-wrap:balance}
+.insta-s{margin:13px auto 0;max-width:46ch;font:400 15px/1.62 var(--font-body);
+  color:rgba(253,247,236,.78);text-wrap:pretty}
+.insta-btn{display:inline-flex;align-items:center;gap:11px;margin-top:24px;padding:15px 26px;
+  border-radius:999px;background:var(--gold-fill);color:#18223f;
+  font:700 11px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;
+  box-shadow:0 10px 26px rgba(8,15,34,.36),inset 0 1px 0 rgba(255,255,255,.45)}
+.insta-btn:hover{color:#18223f}
+.insta-btn svg{width:19px;height:19px;flex:none}
+.insta-handle{display:block;margin-top:15px;font:400 14px/1 var(--font-body);color:rgba(247,217,162,.8)}
+@media (hover:hover){.insta-btn:hover{filter:brightness(1.05)}}
+@media (min-width:700px){.insta{padding:56px 40px 52px;border-radius:38px}}
+
+/* ---------- Hero lockup: the institutional mark ----------
+   The emblem sits directly above the fest name, so the association reads
+   before the name does and the header is left clean. It keeps its own
+   breathing room below it rather than crowding the display type. */
+.hero-brandmark{display:block;height:clamp(46px,11.5vw,62px);width:auto;
+  max-width:min(280px,72vw);object-fit:contain;margin-bottom:clamp(20px,5vw,28px);
+  /* A tight dark halo before the cast shadow: at tablet width the emblem falls
+     on the bright of the sari, and white on white needs the separation. */
+  filter:drop-shadow(0 0 13px rgba(7,13,30,.9)) drop-shadow(0 4px 16px rgba(0,0,0,.6))}
+
+/* ---------- Reveal on scroll ----------
+   A scroll-driven timeline rather than an observer: the browser ties the
+   animation to how far the element has travelled through the scrollport, so
+   there is no JS on the scroll path and nothing to get out of step when the
+   app re-renders. Where `view()` is unsupported the rule never applies and
+   every section is simply visible, which is also what a reduced-motion
+   preference gets. One movement, one distance, used everywhere — the restraint
+   is what makes it read as a single journey rather than a set of effects. */
+@keyframes revealUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{animation:revealUp linear both;animation-timeline:view();
+      animation-range:entry 2% cover 22%}
+  }
+}
+/* Smooth for the hero's Explore pill; the scroller is the app's own main. */
+@media (prefers-reduced-motion:no-preference){.appmain{scroll-behavior:smooth}}
+
+/* ---------- Hero: Explore pill ----------
+   The one thing on the cover asking to be touched, so it is the one thing
+   given a resting animation — a slow breath on the chevron, nothing more. */
+.hero-cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:14px 24px;
+  border-radius:999px;color:#fdf7ec;
+  background:rgba(253,247,236,.09);box-shadow:inset 0 0 0 1.4px rgba(251,230,189,.42);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font:700 10.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;text-indent:.24em}
+.hero-cta i{font-size:15px;color:#f3bc63;text-indent:0;animation:nudge 2.4s cubic-bezier(.32,.72,0,1) infinite}
+@keyframes nudge{0%,62%,100%{transform:translateY(0)}78%{transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.hero-cta i{animation:none}}
+@media (hover:hover){.hero-cta:hover{background:rgba(253,247,236,.17);box-shadow:inset 0 0 0 1.4px rgba(251,230,189,.8)}}
+
+/* ---------- Category tiles ----------
+   The events do not all land on the home screen any more. Six tiles stand in
+   for them, each opening its own page, so the home screen keeps its narrative
+   shape and the detail lives where someone has chosen to go looking for it. */
+.catgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}
+.catcard{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;
+  align-items:flex-start;text-align:left;gap:0;width:100%;min-height:172px;padding:20px 18px 18px;
+  border-radius:24px;background:linear-gradient(166deg,#f8faff,#e7eef7);box-shadow:var(--sh);
+  transition:box-shadow .34s cubic-bezier(.32,.72,0,1),transform .34s cubic-bezier(.32,.72,0,1)}
+/* A marigold wash that rises from the foot on hover — the tile warms rather
+   than lifting a shadow, which is quieter across six of them at once. */
+.catcard::before{content:"";position:absolute;z-index:-1;inset:auto 0 0;height:74%;opacity:0;
+  background:linear-gradient(0deg,rgba(224,149,44,.20),transparent);
+  transition:opacity .34s cubic-bezier(.32,.72,0,1)}
+.catcard-ic{flex:none;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:rgba(34,55,110,.07);box-shadow:inset 0 0 0 1px rgba(34,55,110,.10);
+  transition:background-color .34s,box-shadow .34s}
+.catcard-ic i{font-size:23px;color:var(--blue);transition:color .34s}
+.catcard-n{margin:15px 0 0;font:400 clamp(21px,5.6vw,25px)/1.06 var(--display);color:var(--night);text-wrap:balance}
+.catcard-l{margin-top:7px;font:400 13px/1.45 var(--font-body);color:var(--ink-3);text-wrap:pretty}
+.catcard-f{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:15px}
+.catcard-c{font:700 8.5px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-deep)}
+.catcard-go{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--ivory-3);color:var(--blue);
+  transition:background-color .34s,color .34s,transform .34s cubic-bezier(.32,.72,0,1)}
+.catcard-go i{font-size:15px}
+@media (hover:hover){
+  .catcard:hover{box-shadow:var(--sh-lg);transform:translateY(-3px)}
+  .catcard:hover::before{opacity:1}
+  .catcard:hover .catcard-ic{background:rgba(224,149,44,.16);box-shadow:inset 0 0 0 1px rgba(224,149,44,.3)}
+  .catcard:hover .catcard-ic i{color:var(--marigold-deep)}
+  .catcard:hover .catcard-go{background:var(--marigold-hi);color:#18223f;transform:translateX(3px)}
+}
+@media (min-width:700px){
+  .catgrid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .catcard{min-height:206px;padding:24px 22px 22px;border-radius:28px}
+  .catcard-n{font-size:27px}
+  .catcard-l{font-size:13.5px}
+}
+
+/* ---------- Sports page ----------
+   A tournament portal rather than a list: each sport takes a full navy panel
+   with its own hue, its name at poster size, the two settled facts spelled
+   out, and the fixture table underneath. No photographs are invented for it —
+   the identity is carried by type, number and colour. */
+.sportshero{position:relative;overflow:hidden;background:#0c1631;border-radius:0 0 32px 32px;
+  padding:calc(40px + env(safe-area-inset-top)) var(--gutter) 34px}
+.sportshero::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(90% 74% at 14% 6%,rgba(34,55,110,.85),transparent 62%),
+  radial-gradient(76% 68% at 92% 100%,rgba(224,149,44,.24),transparent 64%)}
+.sportshero>*{position:relative}
+.sportshero-t{margin:12px 0 0;font:300 clamp(42px,12vw,60px)/1 var(--display);color:#fdf7ec;letter-spacing:-.015em}
+.sportshero-s{margin:15px 0 0;max-width:48ch;font:400 15.5px/1.62 var(--font-body);color:rgba(253,247,236,.76);text-wrap:pretty}
+.sportshero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.sportshero-chip{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;
+  background:rgba(251,230,189,.10);box-shadow:inset 0 0 0 1px rgba(251,230,189,.24);
+  font:700 9px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:#f7d9a2}
+.sportshero-chip i{font-size:14px;color:#f3bc63}
+
+.sportpanel{position:relative;overflow:hidden;isolation:isolate;border-radius:30px;margin-top:18px;
+  background:var(--wash);box-shadow:var(--sh-lg)}
+/* The sport's number, set large enough to be texture rather than information. */
+.sportpanel-n{position:absolute;z-index:-1;top:16px;right:24px;font:300 clamp(72px,15vw,104px)/1 var(--display);
+  color:rgba(255,255,255,.07);pointer-events:none}
+.sportpanel-head{padding:28px 22px 24px}
+.sportpanel-kind{font:700 9px/1 var(--font-heading);letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(253,247,236,.62);text-indent:.28em}
+.sportpanel-name{margin:13px 0 0;font:400 clamp(38px,11vw,58px)/.98 var(--display);color:#fdf7ec;
+  letter-spacing:.012em;text-transform:uppercase}
+.sportpanel-rule{display:block;width:56px;height:2px;margin-top:16px;border-radius:2px;
+  background:linear-gradient(90deg,var(--accent),rgba(255,255,255,0))}
+.sportpanel-note{margin:16px 0 0;font:italic 300 18px/1.42 var(--display);color:rgba(253,247,236,.8);
+  max-width:40ch;text-wrap:pretty}
+.sportpanel-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:22px;
+  border-radius:18px;overflow:hidden;background:rgba(253,247,236,.14)}
+.sportpanel-facts>.sportfact:last-child{grid-column:1/-1}
+.sportfact{background:rgba(9,16,36,.42);padding:15px 16px;min-width:0;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sportfact-k{display:flex;align-items:center;gap:7px;font:700 8.5px/1 var(--font-heading);
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(253,247,236,.56)}
+.sportfact-k i{font-size:13px;color:var(--accent)}
+.sport-fact-v{margin-top:8px;font:400 16px/1.32 var(--font-body);color:#fdf7ec;text-wrap:pretty}
+.sport-fact-v.soft{color:rgba(253,247,236,.68)}
+
+/* The fixture area. It is a real table the moment a row is added, and one
+   honest line until then — the draw not being made is information too. */
+.fixwrap{padding:0 22px 26px}
+.fixhead{display:flex;align-items:center;gap:10px;padding:18px 0 14px;
+  border-top:1px solid rgba(253,247,236,.16)}
+.fixhead i{font-size:17px;color:var(--accent)}
+.fixhead span{font:700 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:rgba(253,247,236,.72)}
+.fixlist{display:flex;flex-direction:column;gap:9px}
+.fixrow{display:grid;grid-template-columns:1fr;gap:10px;padding:15px 17px;border-radius:17px;
+  background:rgba(253,247,236,.07);box-shadow:inset 0 0 0 1px rgba(253,247,236,.11);
+  transition:background-color .3s,box-shadow .3s}
+.fixrow-round{font:700 8.5px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.fixrow-tie{display:flex;align-items:baseline;gap:11px;margin-top:9px;flex-wrap:wrap}
+.fixrow-team{font:400 20px/1.16 var(--display);color:#fdf7ec}
+.fixrow-v{font:italic 300 15px/1 var(--display);color:rgba(253,247,236,.5)}
+.fixrow-when{margin-top:9px;font:400 13.5px/1.4 var(--font-body);color:rgba(253,247,236,.66)}
+.fixrow-note{margin-top:5px;font:400 12.5px/1.45 var(--font-body);color:rgba(253,247,236,.5)}
+@media (hover:hover){.fixrow:hover{background:rgba(253,247,236,.11);box-shadow:inset 0 0 0 1px rgba(253,247,236,.22)}}
+.fixnone{padding:17px 18px;border-radius:17px;font:400 14.5px/1.55 var(--font-body);
+  color:rgba(253,247,236,.66);text-wrap:pretty;
+  background:rgba(253,247,236,.05);box-shadow:inset 0 0 0 1px rgba(253,247,236,.11)}
+@media (min-width:700px){
+  .sportshero{padding:calc(56px + env(safe-area-inset-top)) clamp(30px,4vw,52px) 46px;border-radius:0 0 40px 40px}
+  .sportpanel{margin-top:22px;border-radius:36px}
+  .sportpanel-head{padding:38px 34px 30px}
+  .sportpanel-n{font-size:150px;top:22px;right:34px}
+  .sportpanel-facts{grid-template-columns:repeat(3,1fr)}
+  .sportpanel-facts>.sportfact:last-child{grid-column:auto}
+  .fixwrap{padding:0 34px 34px}
+  .fixrow{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:center;padding:18px 22px}
+  .fixrow-round{grid-column:1/-1}
+  .fixrow-tie{margin-top:0}
+  .fixrow-when{margin-top:0;text-align:right}
+  .fixrow-note{grid-column:1/-1;margin-top:2px}
+}
+
+/* ---------- Category page ---------- */
+.cathero{position:relative;overflow:hidden;background:#0c1631;border-radius:0 0 32px 32px;
+  padding:calc(40px + env(safe-area-inset-top)) var(--gutter) 32px}
+.cathero::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(86% 72% at 12% 8%,rgba(34,55,110,.9),transparent 62%),
+  radial-gradient(70% 64% at 94% 100%,rgba(224,149,44,.22),transparent 64%)}
+.cathero>*{position:relative}
+.cathero-ic{width:52px;height:52px;border-radius:17px;display:flex;align-items:center;justify-content:center;
+  background:rgba(251,230,189,.12);box-shadow:inset 0 0 0 1px rgba(251,230,189,.26)}
+.cathero-ic i{font-size:27px;color:#f3bc63}
+.cathero-t{margin:17px 0 0;font:300 clamp(38px,10.5vw,54px)/1.02 var(--display);color:#fdf7ec;letter-spacing:-.012em}
+.cathero-s{margin:14px 0 0;max-width:52ch;font:400 15.5px/1.62 var(--font-body);color:rgba(253,247,236,.76);text-wrap:pretty}
+@media (min-width:700px){.cathero{padding:calc(56px + env(safe-area-inset-top)) clamp(30px,4vw,52px) 44px;border-radius:0 0 40px 40px}}
+
+.plainrow{display:block;width:100%;text-align:left;padding:19px 20px;border-radius:22px;
+  background:linear-gradient(168deg,#f8faff,#eef3f9);box-shadow:var(--sh);
+  transition:box-shadow .3s cubic-bezier(.32,.72,0,1),transform .3s cubic-bezier(.32,.72,0,1)}
+.plainrow-when{font:700 10px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:var(--marigold-deep)}
+.plainrow-t{margin-top:10px;font:400 25px/1.1 var(--display);color:var(--night);text-wrap:balance}
+.plainrow-v{display:flex;align-items:center;gap:7px;margin-top:10px;font:400 13.5px/1.35 var(--font-body);color:var(--ink-3)}
+.plainrow-v i{font-size:16px;color:var(--blue)}
+.plainrow-d{margin-top:11px;font:400 14px/1.55 var(--font-body);color:var(--ink-2);text-wrap:pretty}
+@media (hover:hover){.plainrow:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}}
+.plainlist{display:flex;flex-direction:column;gap:14px}
+@media (min-width:700px){.plainlist{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}}
+@media (min-width:1080px){.plainlist{grid-template-columns:repeat(3,1fr);gap:18px}}
 </style>
 </helmet>
 
@@ -785,7 +1265,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   <div class="rail-veil"></div>
   <div class="rail-body">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px">
-      <img class="rail-emblem" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))">
+      <img class="rail-emblem" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham" width="77" height="36" style="height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))">
       <img class="rail-mark" src="assets/mark-73.png" alt="" style="margin-bottom:0">
     </div>
     <div class="rail-title">Brahm <span style="color:#f3bc63">2026</span></div>
@@ -804,17 +1284,20 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
 <section class="home-screen" data-screen-label="Home">
 
+  <!-- ======================= ONE · BRAHM ======================= -->
   <div class="hero">
     <div class="hero-art" aria-hidden="true"></div>
     <div class="hero-wash" aria-hidden="true"></div>
+    <img class="hero-figure" src="assets/amma-photos/amma-2.webp" alt="Sri Mata Amritanandamayi Devi" width="1000" height="1314" fetchpriority="high">
     <div class="hero-glow" aria-hidden="true"></div>
 
-    <div class="hero-top" style="justify-content:flex-end">
+    <div class="hero-top">
       <img class="hero-top-mark" src="assets/mark-73.png" alt="73 years of pure love and light">
     </div>
 
     <div class="hero-lock">
-      <img class="hero-brand-art" src="assets/brahm-logo.png" alt="Brahm 2026 – The Amrita Fest" width="856" height="443" fetchpriority="high">
+      <img class="hero-brandmark" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham" width="308" height="144">
+      <h1 class="hero-title">Brahm <span class="sun">2026</span></h1>
       <div class="hero-sub">
         <span class="hero-rule"></span>
         <span class="hero-sub-name">Founders&rsquo; Day Fest</span>
@@ -822,6 +1305,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
       </div>
       <div class="hero-dates">19th &ndash; 23rd September 2026</div>
       <p class="hero-line">Celebrating health, talent,<br>unity &amp; joy.</p>
+      <button onClick="{{ exploreBrahm }}" class="hero-cta">
+        Explore Brahm<i class="ph-duotone ph-caret-right" style="transform:rotate(90deg)" aria-hidden="true"></i>
+      </button>
       <div class="hero-count">
         <div class="hero-count-label">{{ cd.label }}</div>
         <div class="hero-count-cells">
@@ -835,55 +1321,167 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
       </div>
     </div>
   </div>
+
   <div class="homebelow">
 
-  <div class="homeband">
-  <div class="pad h-cta" style="padding-top:42px;display:flex;flex-direction:column;gap:16px">
+  <!-- ======================= TWO · About Brahm ======================= -->
+  <div class="pad story-start reveal" style="padding-top:44px">
+  <section class="spirit" aria-labelledby="spirit-h">
+    <div class="spirit-mandala" aria-hidden="true"></div>
+    <div class="spirit-glow" aria-hidden="true"></div>
 
-    <div class="callout">
-      <div class="callout-glow" aria-hidden="true"></div>
-      <div class="callout-body">
-        <span class="eyebrow-gold">Open to every college</span>
-        <h2 class="callout-title">Nine inter&#8209;college competitions</h2>
-        <p class="callout-text">Stage, page, lens and idea &mdash; on 19th and 20th September. Bring a team, or come alone and find one.</p>
-        <div class="btnrow" style="margin-top:19px">
-          <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary" style="flex:1 1 100%;min-height:58px;letter-spacing:.22em;font-size:11.5px">
-            <i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Register to compete
-          </a>
-          <button onClick="{{ goEvents }}" class="btn btn-outline" style="flex:1 1 100%">
-            <i class="ph-duotone ph-sparkle" aria-hidden="true"></i>See all nine
+    <span class="eyebrow-gold">Chapter one &middot; What Brahm is</span>
+    <h2 class="spirit-title" id="spirit-h">Celebrating the<br>Spirit of <em>Brahm</em></h2>
+    <span class="spirit-rule" aria-hidden="true"></span>
+
+    <p class="spirit-lead">Brahm is how Amrita Delhi NCR keeps its Founders&rsquo; Day &mdash; not with speeches alone, but with <span class="mark-gold">five days of seva, sport, stage and celebration</span> that every one of us has a hand in making.</p>
+
+    <p class="spirit-p">The week runs in one unbroken line, from the first health camp in the villages on the 19th to the Founders&rsquo; Day function in the Amriteshwari Auditorium on the 23rd. That line is the point. It is a reminder that learning here was never meant to stop at the classroom door, and that a university is measured by what it gives away.</p>
+
+    <p class="spirit-p">Every year the fest grows by whoever turns up. Students from colleges across the country arrive for the inter-college competitions; staff, families and neighbours fill the ground for the marathon and the carnival nights. What began as a single day of gratitude is now a week the campus builds together &mdash; and hands on.</p>
+
+    <div class="spirit-values">
+      <div class="spirit-val">
+        <span class="spirit-val-ic"><i class="ph-duotone ph-hand-heart" aria-hidden="true"></i></span>
+        <span style="min-width:0">
+          <span class="spirit-val-t">Gratitude</span>
+          <span class="spirit-val-s">For the vision that gave this campus its beginning, and for everyone who has carried it since.</span>
+        </span>
+      </div>
+      <div class="spirit-val">
+        <span class="spirit-val-ic"><i class="ph-duotone ph-users-three" aria-hidden="true"></i></span>
+        <span style="min-width:0">
+          <span class="spirit-val-t">Togetherness</span>
+          <span class="spirit-val-s">Colleges on one stage, villages at the health camps, families on the ground. Nobody watches from outside.</span>
+        </span>
+      </div>
+      <div class="spirit-val">
+        <span class="spirit-val-ic"><i class="ph-duotone ph-sparkle" aria-hidden="true"></i></span>
+        <span style="min-width:0">
+          <span class="spirit-val-t">The years ahead</span>
+          <span class="spirit-val-s">Each fest leaves something behind for the next batch to pick up &mdash; a record, a rivalry, a reason to come back.</span>
+        </span>
+      </div>
+    </div>
+
+    <p class="spirit-close">Come for a competition. Stay for the week. Leave having belonged to something.</p>
+  </section>
+  </div>
+
+  <!-- ======================= THREE · Founders' Day ======================= -->
+  <div class="chapter reveal">
+    <span class="chapter-rule" aria-hidden="true"></span>
+    <span class="chapter-n">Chapter two</span>
+    <h2 class="chapter-t">Founders&rsquo; <em>Day</em></h2>
+    <p class="chapter-s">The day Brahm is kept for &mdash; and the reason the five days are shaped the way they are.</p>
+  </div>
+
+  <div class="pad reveal" style="padding-top:26px">
+  <section class="fday" aria-label="About Founders&rsquo; Day">
+    <div class="fday-glow" aria-hidden="true"></div>
+
+    <p class="fday-p">Founders&rsquo; Day marks the birth anniversary of Sri Mata Amritanandamayi Devi. Across every Amrita campus it is kept the same way she has always asked for &mdash; by turning a day of remembrance outward, into service.</p>
+
+    <p class="fday-p">That is the thread tying Founders&rsquo; Day to Brahm. The fest does not sit alongside the occasion; it is the occasion, carried by students. The health camps come first and the auditorium comes last, and everything between &mdash; the competitions, the run, the sport, the carnival &mdash; is the campus saying thank you in the way it knows best.</p>
+
+    <p class="fday-p">So the week opens in the villages and closes in the Amriteshwari Auditorium on 23rd September, with the Founders&rsquo; Day function itself.</p>
+
+    <div class="fday-arc">
+      <sc-for list="{{ rollout }}" as="r" hint-placeholder-count="5">
+        <div class="fday-step">
+          <span class="fday-step-d">{{ r.num }}</span>
+          <span style="min-width:0">
+            <span class="fday-step-t">{{ r.title }}</span>
+            <span class="fday-step-s">{{ r.summary }}</span>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="btnrow" style="margin-top:24px">
+      <button onClick="{{ goAbout }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-flower-lotus" aria-hidden="true"></i>More on Founders&rsquo; Day
+      </button>
+      <button onClick="{{ goSchedule }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-calendar-dots" aria-hidden="true"></i>See the full schedule
+      </button>
+    </div>
+  </section>
+  </div>
+
+  <!-- ======================= FOUR · About our Founder ======================= -->
+  <div class="chapter reveal">
+    <span class="chapter-rule" aria-hidden="true"></span>
+    <span class="chapter-n">Chapter three</span>
+    <h2 class="chapter-t">About our <em>Founder</em></h2>
+    <p class="chapter-s">Whose vision decided what this university is for &mdash; and why a health camp opens the fest.</p>
+  </div>
+
+  <div class="pad reveal" style="padding-top:26px">
+  <section class="founder" aria-labelledby="founder-h">
+    <div class="founder-glow" aria-hidden="true"></div>
+
+    <span class="eyebrow-gold" id="founder-h">Founder &amp; Chancellor</span>
+
+    <div class="founder-grid">
+      <figure class="founder-figure">
+        <div class="founder-frame">
+          <sc-if value="{{ hasAmma }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ ammaSrc }}" alt="Sri Mata Amritanandamayi Devi" loading="lazy" decoding="async">
+          </sc-if>
+          <sc-if value="{{ noAmma }}" hint-placeholder-val="{{ true }}">
+            <div class="founder-plate">
+              <img src="assets/mark-73.png" alt="" aria-hidden="true">
+              <span>Sri Mata Amritanandamayi Devi<br>73 years of pure love &amp; light</span>
+            </div>
+          </sc-if>
+        </div>
+        <figcaption class="founder-cap">
+          <b>Sri Mata Amritanandamayi Devi</b>
+          <span>Founder &amp; Chancellor &middot; Amrita Vishwa Vidyapeetham</span>
+        </figcaption>
+      </figure>
+
+      <div>
+        <h2 class="founder-name">The vision behind Amrita</h2>
+        <p class="founder-amma">Known to everyone on this campus simply as Amma.</p>
+
+        <p class="founder-p">Amrita Vishwa Vidyapeetham was founded by Sri Mata Amritanandamayi Devi, and it is still her vision that decides what the university is for. She has said that education must reach the heart as surely as it reaches the head &mdash; that knowledge without compassion leaves a person unfinished.</p>
+
+        <p class="founder-p">From that one idea grew a university spread across campuses, hospitals that treat people regardless of what they can pay, research that begins with the problems India actually has, and village programmes that send students out of the lecture hall and into the places their learning is needed.</p>
+
+        <p class="founder-p">Compassion, service, knowledge and the dignity of every person are not a statement framed on a wall here. They are the reason a health camp opens Brahm on the morning of the 19th, before a single competition is judged.</p>
+
+        <div class="founder-pillars">
+          <span class="founder-pill"><i class="ph-duotone ph-books" aria-hidden="true"></i>Education</span>
+          <span class="founder-pill"><i class="ph-duotone ph-heart-straight" aria-hidden="true"></i>Healthcare</span>
+          <span class="founder-pill"><i class="ph-duotone ph-sparkle" aria-hidden="true"></i>Research</span>
+          <span class="founder-pill"><i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Service</span>
+        </div>
+
+        <div class="btnrow" style="margin-top:22px">
+          <button onClick="{{ goAbout }}" class="btn btn-secondary" style="flex:1 1 200px">
+            <i class="ph-duotone ph-arrow-right" aria-hidden="true"></i>Read more
           </button>
+          <a href="{{ amritaUrl }}" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1 1 200px">
+            <i class="ph-duotone ph-heart-straight" aria-hidden="true"></i>Visit Amrita Hospitals
+          </a>
         </div>
       </div>
     </div>
-
-    <div class="home-register">
-      <div class="home-register-copy">
-        <span class="eyebrow-gold">External college registration</span>
-        <h2 class="home-register-title">Scan. Register. Join Brahm.</h2>
-        <p class="home-register-text">Open the official Google Form on your phone, or use the direct link below.</p>
-        <a class="home-register-link" href="{{ formUrl }}" target="_blank" rel="noopener">
-          Open Google Form <i class="ph-duotone ph-arrow-up-right" aria-hidden="true"></i>
-        </a>
-      </div>
-      <a class="home-register-qr" href="{{ formUrl }}" target="_blank" rel="noopener" aria-label="Open the BRAHM 2026 Google registration form">
-        <img src="assets/qr-register.png" alt="QR code for the BRAHM 2026 Google registration form">
-      </a>
-    </div>
-
-    <div class="ctapair">
-      <button onClick="{{ addFestToGoogle }}" class="btn btn-secondary btn-block">
-        <i class="ph-duotone ph-google-logo" aria-hidden="true"></i>Google Calendar
-      </button>
-      <button onClick="{{ goMap }}" class="btn btn-secondary btn-block">
-        <i class="ph-duotone ph-map-trifold" aria-hidden="true"></i>Getting there
-      </button>
-    </div>
+  </section>
   </div>
+
+  <!-- ======================= FIVE · Brahm 2026 ======================= -->
+  <div class="chapter reveal">
+    <span class="chapter-rule" aria-hidden="true"></span>
+    <span class="chapter-n">Chapter four &middot; This year</span>
+    <h2 class="chapter-t">Brahm <em>2026</em></h2>
+    <p class="chapter-s">Five days on the Delhi NCR campus, 19th to 23rd September. Here is what is on.</p>
   </div>
 
   <sc-if value="{{ upNext }}" hint-placeholder-val="{{ false }}">
-  <div class="h-first" style="padding:39px var(--gutter) 0">
+  <div class="h-first" style="padding:28px var(--gutter) 0">
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:13px">
       <sc-if value="{{ upNext.live }}" hint-placeholder-val="{{ false }}">
         <span style="width:8px;height:8px;border-radius:50%;background:#d0452f;animation:pulseDot 1.8s ease-out infinite"></span>
@@ -900,7 +1498,65 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   </div>
   </sc-if>
 
-  <div style="padding:42px var(--gutter) 0">
+  <div class="homeband reveal">
+  <div class="pad h-cta" style="padding-top:28px;display:flex;flex-direction:column;gap:16px">
+
+    <div class="callout">
+      <div class="callout-glow" aria-hidden="true"></div>
+      <div class="callout-body">
+        <span class="eyebrow-gold">Open to every college</span>
+        <h2 class="callout-title">Inter&#8209;college competitions</h2>
+        <p class="callout-text">Stage, page, lens and idea &mdash; on 19th and 20th September. Bring a team, or come alone and find one.</p>
+        <sc-if value="{{ regClosed }}" hint-placeholder-val="{{ true }}">
+          <div class="closedbar dark" style="margin-top:19px">
+            <i class="ph-duotone ph-info" aria-hidden="true"></i>
+            <div>
+              <div class="closedbar-t">Registrations are closed</div>
+              <div class="closedbar-s">Entries have closed for every Brahm 2026 event. The line-up below is final &mdash; come and watch, and talk to the coordinators if you need anything.</div>
+            </div>
+          </div>
+        </sc-if>
+        <div class="btnrow" style="margin-top:19px">
+          <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary" style="flex:1 1 100%;min-height:58px;letter-spacing:.22em;font-size:11.5px">
+              <i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Register to compete
+            </a>
+          </sc-if>
+          <button onClick="{{ goEvents }}" class="btn btn-outline" style="flex:1 1 100%">
+            <i class="ph-duotone ph-sparkle" aria-hidden="true"></i>See every competition
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="home-register">
+      <div class="home-register-copy">
+        <span class="eyebrow-gold">External college registration</span>
+        <h2 class="home-register-title">Scan. Register. Join Brahm.</h2>
+        <p class="home-register-text">Open the official Google Form on your phone, or use the direct link below.</p>
+        <a class="home-register-link" href="{{ formUrl }}" target="_blank" rel="noopener">
+          Open Google Form <i class="ph-duotone ph-arrow-up-right" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a class="home-register-qr" href="{{ formUrl }}" target="_blank" rel="noopener" aria-label="Open the BRAHM 2026 Google registration form">
+        <img src="assets/qr-register.png" alt="QR code for the BRAHM 2026 Google registration form">
+      </a>
+    </div>
+    </sc-if>
+
+    <div class="ctapair">
+      <button onClick="{{ addFestToGoogle }}" class="btn btn-secondary btn-block">
+        <i class="ph-duotone ph-google-logo" aria-hidden="true"></i>Google Calendar
+      </button>
+      <button onClick="{{ goMap }}" class="btn btn-secondary btn-block">
+        <i class="ph-duotone ph-map-trifold" aria-hidden="true"></i>Getting there
+      </button>
+    </div>
+  </div>
+  </div>
+
+  <div class="reveal" style="padding:42px var(--gutter) 0">
     <div class="h-sec">Five days together</div>
     <div style="font:400 14.5px/1.55 var(--font-body);color:var(--ink-3);margin-top:7px;text-wrap:pretty">Seva, sport, stage and celebration &mdash; pick a day to see what&rsquo;s on.</div>
     <div class="daypicker">
@@ -914,29 +1570,86 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     </div>
   </div>
 
-  <div style="padding:42px var(--gutter) 0">
-    <div class="tilerow">
-      <button onClick="{{ goEvents }}" class="tile-hero">
-        <img src="assets/ev-malhar.jpg" alt="" loading="lazy" decoding="async">
-        <div class="tile-hero-veil"></div>
-        <div class="tile-hero-cap">
-          <div class="tile-hero-t">Competitions</div>
-          <div class="tile-hero-s">Nine events &middot; open to all</div>
-        </div>
+  <!-- ======================= SIX · Explore the events ======================= -->
+  <div class="chapter reveal">
+    <span class="chapter-rule" aria-hidden="true"></span>
+    <span class="chapter-n">Chapter five</span>
+    <h2 class="chapter-t">Explore the <em>events</em></h2>
+    <p class="chapter-s">Six ways into the week. Each one opens its own page &mdash; the line-up, the venues, the timings and what the rules ask of you.</p>
+  </div>
+
+  <div class="pad reveal">
+    <div class="catgrid">
+      <sc-for list="{{ categories }}" as="k" hint-placeholder-count="6">
+        <button onClick="{{ k.onOpen }}" class="catcard">
+          <span class="catcard-ic"><i class="ph-duotone {{ k.icon }}" aria-hidden="true"></i></span>
+          <h3 class="catcard-n">{{ k.name }}</h3>
+          <p class="catcard-l">{{ k.lead }}</p>
+          <span class="catcard-f">
+            <span class="catcard-c">{{ k.count }}</span>
+            <span class="catcard-go"><i class="ph-duotone ph-arrow-right" aria-hidden="true"></i></span>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div class="btnrow" style="margin-top:20px">
+      <button onClick="{{ goRules }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-scroll" aria-hidden="true"></i>Rules to know
       </button>
-      <div class="tilestack">
-        <button onClick="{{ goRules }}" class="tile-flat">
-          <i class="ph-duotone ph-scroll" aria-hidden="true"></i>
-          <span>Rules to know</span>
-        </button>
-        <button onClick="{{ goContacts }}" class="tile-flat">
-          <i class="ph-duotone ph-hand-waving" aria-hidden="true"></i>
-          <span>Say hello to us</span>
-        </button>
-      </div>
+      <button onClick="{{ goSchedule }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-calendar-dots" aria-hidden="true"></i>The full schedule
+      </button>
     </div>
   </div>
 
+  <!-- ======================= SEVEN · Founders' Day 2025 ======================= -->
+  <div class="chapter reveal">
+    <span class="chapter-rule" aria-hidden="true"></span>
+    <span class="chapter-n">Chapter six &middot; Last year</span>
+    <h2 class="chapter-t">Founders&rsquo; Day <em>2025</em></h2>
+    <p class="chapter-s">Before Brahm 2026 begins, a look back at the day the campus kept a year ago.</p>
+  </div>
+
+  <div class="pad reveal" style="padding-top:26px">
+    <sc-if value="{{ hasFd25 }}" hint-placeholder-val="{{ true }}">
+    <div class="memgrid">
+      <sc-for list="{{ fd25Photos }}" as="m" hint-placeholder-count="6">
+        <figure>
+          <img src="{{ m.src }}" alt="{{ m.caption }}" loading="lazy" decoding="async">
+          <figcaption>{{ m.caption }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <div class="btnrow" style="margin-top:20px">
+      <button onClick="{{ goWardrobe }}" class="btn btn-secondary" style="flex:1 1 100%">
+        <i class="ph-duotone ph-books" aria-hidden="true"></i>Every fest before this one
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================= EIGHT · Follow Brahm ======================= -->
+  <div class="pad reveal" style="padding-top:48px">
+  <section class="insta" aria-labelledby="insta-h">
+    <div class="insta-glow" aria-hidden="true"></div>
+    <span class="eyebrow-gold" style="color:#f3bc63">Stay with us</span>
+    <h2 class="insta-t" id="insta-h">Follow Brahm</h2>
+    <p class="insta-s">Stay connected with Brahm and follow the latest updates, events and memories as the five days unfold.</p>
+    <a class="insta-btn" href="{{ instaUrl }}" target="_blank" rel="noopener" aria-label="Follow BRAHM on Instagram, opens in a new tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"></rect>
+        <circle cx="12" cy="12" r="4.1"></circle>
+        <circle cx="17.5" cy="6.5" r="1.15" fill="currentColor" stroke="none"></circle>
+      </svg>
+      Follow on Instagram
+    </a>
+    <span class="insta-handle">{{ instaHandle }}</span>
+  </section>
+  </div>
+
+  <!-- ======================= Partners ======================= -->
   <div style="padding:42px var(--gutter) 0">
     <div style="background:linear-gradient(168deg,#f8faff,#edf2f8);border-radius:26px;padding:26px 20px;box-shadow:var(--sh)">
       <div style="font:700 10px/1 var(--font-heading);letter-spacing:.32em;color:var(--marigold-deep);text-transform:uppercase;text-align:center;text-indent:.32em;margin-bottom:18px">Sponsored By &bull; Official Fest Partners</div>
@@ -988,11 +1701,17 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   </div>
 
   <div class="closer">
+    <div class="closer-art">
+      <img src="assets/amma-photos/amma-1.jpg" alt="Sri Mata Amritanandamayi Devi" width="1200" height="630" loading="lazy" decoding="async">
+    </div>
     <i class="ph-duotone ph-flower-lotus" style="font-size:30px;color:#f3bc63"></i>
     <div style="font:italic 300 25px/1.42 var(--display);color:#fdf7ec;margin-top:14px;text-wrap:pretty">&ldquo;Where there is love,<br>there is no effort.&rdquo;</div>
     <div style="font:700 9px/1 var(--font-heading);letter-spacing:.26em;color:rgba(247,217,162,.85);text-transform:uppercase;margin-top:16px">Mata Amritanandamayi Mission Trust</div>
     <div style="height:1px;background:rgba(247,217,162,.22);margin:22px auto;max-width:120px"></div>
     <div style="font:400 12.5px/1.65 var(--font-body);color:rgba(253,247,236,.55)">Mata Amritanandamayi Marg, Sector 88<br>Faridabad, Haryana 121002</div>
+    <a class="closer-link" href="{{ amritaUrl }}" target="_blank" rel="noopener">
+      Visit Amrita Hospitals<i class="ph-duotone ph-arrow-right" aria-hidden="true"></i>
+    </a>
   </div>
   </div>
 </section>
@@ -1080,28 +1799,63 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     <img src="assets/plate-mandala.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,29,58,.24),rgba(17,29,58,.9))"></div>
     <div class="evbanner-cap">
-      <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:#f7d9a2;text-transform:uppercase">19th &amp; 20th September</div>
-      <div style="font:300 47px/1.02 var(--display);color:#fdf7ec;margin-top:10px">Inter&#8209;College<br>Competitions</div>
+      <div style="font:700 9.5px/1 var(--font-heading);letter-spacing:.3em;color:#f7d9a2;text-transform:uppercase">19th &ndash; 23rd September</div>
+      <div style="font:300 47px/1.02 var(--display);color:#fdf7ec;margin-top:10px">Explore the<br>Events</div>
     </div>
   </div>
   <div class="pad" style="padding-top:28px">
-    <p class="sub-screen" style="margin-top:0">Nine cultural events across two days. Bring your college, bring your people &mdash; and read the rules before you register.</p>
+    <p class="sub-screen" style="margin-top:0">Six ways into the week &mdash; the stage, the page, the lens, the grounds and the nights. Pick one and it opens on its own page.</p>
+  </div>
 
-    <div class="openbar">
-      <i class="ph-duotone ph-users-three" aria-hidden="true"></i>
-      <div>
-        <div class="openbar-t">Open to every college</div>
-        <div class="openbar-s">All nine competitions welcome entries from outside Amrita.</div>
-      </div>
+  <div class="pad" style="padding-top:22px">
+    <div class="catgrid" style="margin-top:0">
+      <sc-for list="{{ categories }}" as="k" hint-placeholder-count="6">
+        <button onClick="{{ k.onOpen }}" class="catcard">
+          <span class="catcard-ic"><i class="ph-duotone {{ k.icon }}" aria-hidden="true"></i></span>
+          <h3 class="catcard-n">{{ k.name }}</h3>
+          <p class="catcard-l">{{ k.lead }}</p>
+          <span class="catcard-f">
+            <span class="catcard-c">{{ k.count }}</span>
+            <span class="catcard-go"><i class="ph-duotone ph-arrow-right" aria-hidden="true"></i></span>
+          </span>
+        </button>
+      </sc-for>
     </div>
+  </div>
+
+  <div class="pad" style="padding-top:42px">
+    <div class="h-sec">Every competition</div>
+    <div style="font:400 14.5px/1.55 var(--font-body);color:var(--ink-3);margin-top:7px;text-wrap:pretty">The whole inter-college line-up in one list, in the order it runs.</div>
+
+    <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+      <div class="openbar">
+        <i class="ph-duotone ph-users-three" aria-hidden="true"></i>
+        <div>
+          <div class="openbar-t">Open to every college</div>
+          <div class="openbar-s">Every competition welcomes entries from outside Amrita.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ regClosed }}" hint-placeholder-val="{{ true }}">
+      <div class="closedbar" style="margin-top:17px">
+        <i class="ph-duotone ph-info" aria-hidden="true"></i>
+        <div>
+          <div class="closedbar-t">Registrations are closed</div>
+          <div class="closedbar-s">Entries have closed for every competition &mdash; they were open to every college, inside Amrita and out. Each event below still runs to schedule, so come and watch.</div>
+        </div>
+      </div>
+    </sc-if>
 
     <div class="btnrow" style="margin-top:15px">
-      <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary"><i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Register</a>
+      <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary"><i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Register</a>
+      </sc-if>
       <button onClick="{{ goRules }}" class="btn btn-outline"><i class="ph-duotone ph-scroll" aria-hidden="true"></i>The 21 rules</button>
     </div>
   </div>
 
-  <div class="pad grid-cards" style="padding-top:28px;padding-bottom:41px">
+  <div class="pad grid-cards" style="padding-top:18px;padding-bottom:41px">
     <sc-for list="{{ comps }}" as="c" hint-placeholder-count="9">
       <button onClick="{{ c.onOpen }}" class="compcard">
         <div class="compcard-art">
@@ -1116,6 +1870,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
           <div style="min-width:0">
             <div class="compcard-when">{{ c.when }}</div>
             <div class="compcard-venue">{{ c.venue }}</div>
+            <sc-if value="{{ regClosed }}" hint-placeholder-val="{{ true }}">
+              <span class="closedchip"><i class="ph-duotone ph-info" aria-hidden="true"></i>Entries closed</span>
+            </sc-if>
           </div>
           <span class="compcard-go"><i class="ph-duotone ph-arrow-right" aria-hidden="true"></i></span>
         </div>
@@ -1130,7 +1887,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   <div class="compbanner">
     <div aria-hidden="true" style="position:absolute;inset:0;background-image:url('{{ comp.img }}');background-size:cover;background-position:50% 30%"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,29,58,.45) 0%,rgba(17,29,58,.08) 32%,rgba(17,29,58,.94) 100%)"></div>
-    <button onClick="{{ goEvents }}" aria-label="Back to competitions" style="position:absolute;top:16px;left:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(253,247,236,.9);color:var(--night)" style-hover="background:#fdf7ec">
+    <button onClick="{{ goBack }}" aria-label="Go back" style="position:absolute;top:16px;left:16px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(253,247,236,.9);color:var(--night)" style-hover="background:#fdf7ec">
       <i class="ph-duotone ph-arrow-left" style="font-size:20px"></i>
     </button>
     <div style="position:absolute;left:20px;right:20px;bottom:20px">
@@ -1158,13 +1915,26 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   </div>
 
   <div class="pad" style="padding-top:20px">
-    <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
-      <i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Register for this
-    </a>
-    <div class="openbar" style="margin-top:13px;padding:12px 15px">
-      <i class="ph-duotone ph-users-three" aria-hidden="true" style="font-size:22px"></i>
-      <div><div class="openbar-s" style="margin-top:0">Open to students from every college.</div></div>
-    </div>
+    <sc-if value="{{ regClosed }}" hint-placeholder-val="{{ true }}">
+      <div class="closedbar">
+        <i class="ph-duotone ph-info" aria-hidden="true"></i>
+        <div>
+          <div class="closedbar-t">Registrations are closed</div>
+          <div class="closedbar-s">Entries for {{ comp.name }} have closed. The event runs as listed above &mdash; save it to your schedule and come along.</div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+      <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
+        <i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>Register for this
+      </a>
+    </sc-if>
+    <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+      <div class="openbar" style="margin-top:13px;padding:12px 15px">
+        <i class="ph-duotone ph-users-three" aria-hidden="true" style="font-size:22px"></i>
+        <div><div class="openbar-s" style="margin-top:0">Open to students from every college.</div></div>
+      </div>
+    </sc-if>
   </div>
 
   <div style="padding:15px var(--gutter) 0;display:flex;flex-wrap:wrap;gap:9px">
@@ -1192,12 +1962,172 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   </div>
 
   <div style="padding:42px var(--gutter) 46px;display:flex;flex-direction:column;gap:19px">
-    <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
-      <i class="ph-duotone ph-hand-heart" style="font-size:21px"></i>Register for {{ comp.name }}
-    </a>
+    <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+      <a href="{{ formUrl }}" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="min-height:58px;letter-spacing:.22em;font-size:11.5px">
+        <i class="ph-duotone ph-hand-heart" style="font-size:21px"></i>Register for {{ comp.name }}
+      </a>
+    </sc-if>
     <button onClick="{{ goRules }}" class="btn btn-secondary btn-block">
       <i class="ph-duotone ph-scroll" style="font-size:18px"></i>General rules also apply
     </button>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isSports }}" hint-placeholder-val="{{ false }}">
+<section data-screen-label="Sports" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
+  <div class="sportshero">
+    <span class="eyebrow-gold" style="color:#f3bc63">Brahm 2026 &middot; 21st &ndash; 23rd September</span>
+    <h2 class="sportshero-t">Sports</h2>
+    <p class="sportshero-s">Three sports, two grounds, three days. The campus plays from first light to the floodlights &mdash; badminton indoors at MVN School, football and cricket on the Amrita Ground.</p>
+    <div class="sportshero-meta">
+      <span class="sportshero-chip"><i class="ph-duotone ph-soccer-ball" aria-hidden="true"></i>Three sports</span>
+      <span class="sportshero-chip"><i class="ph-duotone ph-map-pin" aria-hidden="true"></i>Two venues</span>
+      <span class="sportshero-chip"><i class="ph-duotone ph-clock" aria-hidden="true"></i>6:00 AM &ndash; 10:00 PM</span>
+    </div>
+  </div>
+
+  <div class="backrow">
+    <button onClick="{{ goEvents }}" class="backbtn">
+      <i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>All events
+    </button>
+  </div>
+
+  <div class="pad">
+    <sc-for list="{{ sports }}" as="sp" hint-placeholder-count="3">
+      <article class="sportpanel reveal" style="--wash:{{ sp.wash }};--accent:{{ sp.tint }}">
+        <span class="sportpanel-n" aria-hidden="true">{{ sp.n }}</span>
+        <div class="sportpanel-head">
+          <span class="sportpanel-kind">{{ sp.kind }}</span>
+          <h3 class="sportpanel-name">{{ sp.name }}</h3>
+          <span class="sportpanel-rule" aria-hidden="true"></span>
+          <p class="sportpanel-note">{{ sp.note }}</p>
+
+          <div class="sportpanel-facts">
+            <div class="sportfact">
+              <div class="sportfact-k"><i class="ph-duotone ph-map-pin" aria-hidden="true"></i>Venue</div>
+              <div class="sport-fact-v">{{ sp.venue }}</div>
+            </div>
+            <div class="sportfact">
+              <div class="sportfact-k"><i class="ph-duotone ph-clock" aria-hidden="true"></i>Timing</div>
+              <div class="sport-fact-v">{{ sp.timing }}</div>
+            </div>
+            <div class="sportfact">
+              <div class="sportfact-k"><i class="ph-duotone ph-calendar-dots" aria-hidden="true"></i>Date</div>
+              <div class="{{ sp.dateCls }}">{{ sp.date }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fixwrap">
+          <div class="fixhead">
+            <i class="ph-duotone ph-flag-checkered" aria-hidden="true"></i>
+            <span>Fixtures</span>
+          </div>
+          <sc-if value="{{ sp.hasFixtures }}" hint-placeholder-val="{{ false }}">
+            <div class="fixlist">
+              <sc-for list="{{ sp.fixtures }}" as="f" hint-placeholder-count="3">
+                <div class="fixrow">
+                  <span class="fixrow-round">{{ f.round }}</span>
+                  <span class="fixrow-tie">
+                    <span class="fixrow-team">{{ f.a }}</span>
+                    <span class="fixrow-v">vs</span>
+                    <span class="fixrow-team">{{ f.b }}</span>
+                  </span>
+                  <span class="fixrow-when">{{ f.time }}</span>
+                  <sc-if value="{{ f.hasNote }}" hint-placeholder-val="{{ false }}">
+                    <span class="fixrow-note">{{ f.note }}</span>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ sp.noFixtures }}" hint-placeholder-val="{{ true }}">
+            <p class="fixnone">The draw has not been made yet. Fixtures, teams and match times will be published here as soon as they are settled.</p>
+          </sc-if>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+
+  <div class="pad" style="padding-top:26px">
+    <div class="btnrow">
+      <button onClick="{{ goMap }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-map-trifold" aria-hidden="true"></i>Find the grounds
+      </button>
+      <button onClick="{{ goContacts }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-hand-waving" aria-hidden="true"></i>Ask a coordinator
+      </button>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ cat }}" hint-placeholder-val="{{ false }}">
+<section data-screen-label="Event category" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
+  <div class="cathero">
+    <span class="cathero-ic"><i class="ph-duotone {{ cat.icon }}" aria-hidden="true"></i></span>
+    <h2 class="cathero-t">{{ cat.name }}</h2>
+    <p class="cathero-s">{{ cat.blurb }}</p>
+  </div>
+
+  <div class="backrow">
+    <button onClick="{{ goEvents }}" class="backbtn">
+      <i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>All events
+    </button>
+  </div>
+
+  <sc-if value="{{ cat.hasCards }}" hint-placeholder-val="{{ true }}">
+  <div class="pad grid-cards">
+    <sc-for list="{{ cat.cards }}" as="c" hint-placeholder-count="3">
+      <button onClick="{{ c.onOpen }}" class="compcard reveal">
+        <div class="compcard-art">
+          <img src="{{ c.img }}" alt="" loading="lazy" decoding="async">
+          <div class="compcard-veil"></div>
+          <div class="compcard-cap">
+            <div class="compcard-name">{{ c.name }}</div>
+            <div class="compcard-cat">{{ c.category }}</div>
+          </div>
+        </div>
+        <div class="compcard-foot">
+          <div style="min-width:0">
+            <div class="compcard-when">{{ c.when }}</div>
+            <div class="compcard-venue">{{ c.venue }}</div>
+            <sc-if value="{{ regClosed }}" hint-placeholder-val="{{ true }}">
+              <span class="closedchip"><i class="ph-duotone ph-info" aria-hidden="true"></i>Entries closed</span>
+            </sc-if>
+          </div>
+          <span class="compcard-go"><i class="ph-duotone ph-arrow-right" aria-hidden="true"></i></span>
+        </div>
+      </button>
+    </sc-for>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ cat.hasRows }}" hint-placeholder-val="{{ false }}">
+  <div class="pad">
+    <div class="plainlist">
+      <sc-for list="{{ cat.rows }}" as="r" hint-placeholder-count="6">
+        <button onClick="{{ r.onOpen }}" class="plainrow reveal">
+          <div class="plainrow-when">{{ r.when }}</div>
+          <div class="plainrow-t">{{ r.title }}</div>
+          <div class="plainrow-v"><i class="ph-duotone ph-map-pin" aria-hidden="true"></i>{{ r.venue }}</div>
+          <div class="plainrow-d">{{ r.detail }}</div>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <div class="pad" style="padding-top:26px">
+    <div class="btnrow">
+      <button onClick="{{ goSchedule }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-calendar-dots" aria-hidden="true"></i>See it on the schedule
+      </button>
+      <button onClick="{{ goRules }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-scroll" aria-hidden="true"></i>Rules to know
+      </button>
+    </div>
   </div>
 </section>
 </sc-if>
@@ -1267,7 +2197,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
       <div class="callout-glow" aria-hidden="true"></div>
       <div class="callout-body" style="padding-top:21px;padding-bottom:22px">
         <span class="eyebrow-gold">Open to every college</span>
-        <div class="callout-title" style="margin-top:9px;font-size:clamp(27px,7.4vw,32px)">The nine competitions</div>
+        <div class="callout-title" style="margin-top:9px;font-size:clamp(27px,7.4vw,32px)">The competitions</div>
         <div style="display:flex;align-items:center;gap:9px;margin-top:13px;font:700 10px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;color:#f3bc63">
           Browse and register<i class="ph-duotone ph-arrow-right" style="font-size:15px" aria-hidden="true"></i>
         </div>
@@ -1286,6 +2216,22 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
         <i class="ph-duotone ph-caret-right morerow-go" aria-hidden="true"></i>
       </button>
     </sc-for>
+    <a class="morerow" href="{{ instaUrl }}" target="_blank" rel="noopener">
+      <span class="morerow-ic"><i class="ph-duotone ph-share-network" aria-hidden="true"></i></span>
+      <span style="flex:1;min-width:0">
+        <span class="morerow-t">Follow Brahm on Instagram</span>
+        <span class="morerow-s">{{ instaHandle }} &mdash; updates, events and memories</span>
+      </span>
+      <i class="ph-duotone ph-arrow-right morerow-go" aria-hidden="true"></i>
+    </a>
+    <a class="morerow" href="{{ amritaUrl }}" target="_blank" rel="noopener">
+      <span class="morerow-ic"><i class="ph-duotone ph-heart-straight" aria-hidden="true"></i></span>
+      <span style="flex:1;min-width:0">
+        <span class="morerow-t">Visit Amrita Hospitals</span>
+        <span class="morerow-s">The official Amrita Hospital Faridabad site &mdash; opens in a new tab</span>
+      </span>
+      <i class="ph-duotone ph-arrow-right morerow-go" aria-hidden="true"></i>
+    </a>
   </div>
   <div style="padding:39px var(--gutter) 46px">
     <div style="background:linear-gradient(168deg,#eaf0f7,#e6edf6);border-radius:26px;padding:27px;text-align:center;box-shadow:var(--sh)">
@@ -1298,7 +2244,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Map and venues" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
-  <div style="padding:34px var(--gutter) 0">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
+  <div style="padding:22px var(--gutter) 0">
     <span class="eyebrow-gold">Come and find us</span>
       <h2 class="h-screen" style="margin-top:9px">Map &amp; venues</h2>
   </div>
@@ -1344,7 +2291,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isRegister }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Register" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
-  <div style="padding:34px var(--gutter) 0">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
+  <div style="padding:22px var(--gutter) 0">
     <span class="eyebrow-gold">Inter-college entries</span>
       <h2 class="h-screen" style="margin-top:9px">Register</h2>
     <div style="font:italic 300 23px/1.4 var(--display);color:var(--ink-2);margin-top:14px;text-wrap:pretty">We warmly invite every college to take part. Scan or tap to open the entry form &mdash; we&rsquo;d love to see you on stage.</div>
@@ -1381,7 +2329,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isRules }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="General rules" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
-  <div style="padding:34px var(--gutter) 0">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
+  <div style="padding:22px var(--gutter) 0">
     <span class="eyebrow-gold">All competitions</span>
     <h2 class="h-screen" style="margin-top:9px">Rules &amp; regulations</h2>
     <p class="sub-screen">Taking part means accepting these, along with the rules for your own event.</p>
@@ -1402,7 +2351,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isContacts }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Contacts" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
-  <div style="padding:34px var(--gutter) 0">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
+  <div style="padding:22px var(--gutter) 0">
     <span class="eyebrow-gold">Organising committee</span>
       <h2 class="h-screen" style="margin-top:9px">Say hello</h2>
     <div style="font:italic 300 22px/1.4 var(--display);color:var(--ink-2);margin-top:14px;text-wrap:pretty">Any question, however small &mdash; call, message or write to us.</div>
@@ -1445,7 +2395,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isSponsors }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Sponsors" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
-  <div style="padding:34px var(--gutter) 0">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
+  <div style="padding:22px var(--gutter) 0">
     <span class="eyebrow-gold">With thanks to</span>
     <h2 class="h-screen" style="margin-top:9px">Our partners</h2>
     <p class="sub-screen">Brahm 2026 is made possible by friends who believe in the students.</p>
@@ -1501,6 +2452,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="About" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
   <div class="legacy">
     <div class="legacy-art" aria-hidden="true">
       <img src="assets/hero-crowd-wide.jpg" alt="" loading="lazy" decoding="async">
@@ -1513,6 +2465,13 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     </div>
   </div>
 
+  <div class="pad" style="padding-top:30px">
+    <figure class="amma-band">
+      <img src="assets/amma-photos/amma-1.jpg" alt="Sri Mata Amritanandamayi Devi" width="1200" height="630" loading="lazy" decoding="async">
+      <figcaption>Sri Mata Amritanandamayi Devi</figcaption>
+    </figure>
+  </div>
+
   <div class="pad" style="padding-top:32px">
     <figure class="pullquote">
       <blockquote>Where there is love, everything is effortless.</blockquote>
@@ -1522,7 +2481,38 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
   <div class="pad" style="padding-top:30px;display:flex;flex-direction:column;gap:20px">
     <p class="prose lead">Brahm 2026 is the Founders&rsquo; Day Fest of Amrita Vishwa Vidyapeetham, Delhi NCR Campus &mdash; five days built around the birth anniversary of Sri Mata Amritanandamayi Devi, celebrated across every Amrita campus.</p>
-    <p class="prose">The week opens with seva &mdash; free health check-up camps in the villages nearby &mdash; and moves through nine inter-college cultural competitions, a marathon, an auto expo, carnival and DJ nights, three days of in-house sport, and closes with the Founders&rsquo; Day function in the Amriteshwari Auditorium on 23rd September.</p>
+    <p class="prose">The week opens with seva &mdash; free health check-up camps in the villages nearby &mdash; and moves through the inter-college cultural competitions, a marathon, an auto expo, carnival and DJ nights, three days of in-house sport, and closes with the Founders&rsquo; Day function in the Amriteshwari Auditorium on 23rd September.</p>
+  </div>
+
+  <div class="pad" style="padding-top:34px">
+    <div class="h-sec lg">How it rolls out</div>
+    <div style="font:400 14.5px/1.58 var(--font-body);color:var(--ink-3);margin-top:8px;text-wrap:pretty">Five days, in the order they happen &mdash; from the first health camp on the 19th to the Founders&rsquo; Day function on the 23rd.</div>
+    <div class="rollout">
+      <sc-for list="{{ rollout }}" as="r" hint-placeholder-count="5">
+        <div class="rollstep">
+          <div class="rollstep-d">
+            <span class="rollstep-n">{{ r.num }}</span>
+            <span class="rollstep-w">{{ r.dow }}</span>
+          </div>
+          <div style="min-width:0">
+            <div class="rollstep-t">{{ r.title }}</div>
+            <div class="rollstep-s">{{ r.summary }}</div>
+            <div class="rollstep-c">{{ r.count }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div class="btnrow" style="margin-top:20px">
+      <button onClick="{{ goSchedule }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-calendar-dots" aria-hidden="true"></i>The full schedule
+      </button>
+      <button onClick="{{ goWardrobe }}" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-books" aria-hidden="true"></i>Fests gone by
+      </button>
+      <a href="{{ amritaUrl }}" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1 1 200px">
+        <i class="ph-duotone ph-heart-straight" aria-hidden="true"></i>Visit Amrita Hospitals
+      </a>
+    </div>
   </div>
 
   <div class="pad" style="padding-top:28px">
@@ -1545,6 +2535,74 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 </section>
 </sc-if>
 
+<sc-if value="{{ isWardrobe }}" hint-placeholder-val="{{ false }}">
+<section data-screen-label="Amrita&rsquo;s Wardrobe" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
+  <div class="backrow"><button onClick="{{ goBack }}" class="backbtn"><i class="ph-duotone ph-arrow-left" aria-hidden="true"></i>Back</button></div>
+  <div style="padding:22px var(--gutter) 0">
+    <span class="eyebrow-gold">The years behind us</span>
+    <h2 class="h-screen" style="margin-top:9px">Amrita&rsquo;s Wardrobe</h2>
+    <p class="sub-screen">Founders&rsquo; Days, fests and campus evenings from the years before this one &mdash; what Brahm is built on.</p>
+  </div>
+
+  <sc-if value="{{ hasWardrobePhotos }}" hint-placeholder-val="{{ true }}">
+  <div class="pad" style="padding-top:30px">
+    <div class="h-sec">Photographs</div>
+    <div class="wardrobe-grid">
+      <sc-for list="{{ wardrobePhotos }}" as="p" hint-placeholder-count="6">
+        <figure class="wardrobe-fig">
+          <img src="{{ p.src }}" alt="{{ p.caption }}" loading="lazy" decoding="async">
+          <figcaption class="wardrobe-cap"><span class="wardrobe-year">{{ p.year }}</span>{{ p.caption }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ hasWardrobeVideos }}" hint-placeholder-val="{{ true }}">
+  <div class="pad" style="padding-top:34px">
+    <div class="h-sec">Films</div>
+    <div class="wardrobe-videos">
+      <sc-for list="{{ wardrobeVideos }}" as="v" hint-placeholder-count="2">
+        <div class="wardrobe-vid">
+          <video src="{{ v.src }}" controls="true" preload="metadata" playsinline="true"></video>
+          <div class="wardrobe-cap"><span class="wardrobe-year">{{ v.year }}</span>{{ v.caption }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ noWardrobe }}" hint-placeholder-val="{{ false }}">
+    <div class="empty">
+      <div class="empty-ic"><i class="ph-duotone ph-books" aria-hidden="true"></i></div>
+      <div class="empty-t">The wardrobe is being filled</div>
+      <p class="empty-s">Photographs and films from the fests before this one are being gathered. Look in again shortly.</p>
+      <div class="ctapair empty-cta">
+        <button onClick="{{ goSchedule }}" class="btn btn-primary">
+          <i class="ph-duotone ph-calendar-dots" aria-hidden="true"></i>This year&rsquo;s schedule
+        </button>
+        <button onClick="{{ goEvents }}" class="btn btn-secondary">
+          <i class="ph-duotone ph-sparkle" aria-hidden="true"></i>The competitions
+        </button>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="padding:38px var(--gutter) 46px">
+    <div class="openbar">
+      <i class="ph-duotone ph-hand-heart" aria-hidden="true"></i>
+      <div>
+        <div class="openbar-t">Have something to add?</div>
+        <div class="openbar-s">If you have photographs or footage from an Amrita fest gone by, send them to the coordinators and we will hang them here.</div>
+      </div>
+    </div>
+    <button onClick="{{ goContacts }}" class="btn btn-secondary btn-block" style="margin-top:15px">
+      <i class="ph-duotone ph-hand-waving" aria-hidden="true"></i>Send them to us
+    </button>
+  </div>
+</section>
+</sc-if>
+
 </main>
 
 <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
@@ -1552,13 +2610,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 </sc-if>
 
 <nav class="navbar" aria-label="Primary">
-  <a class="navbrand" href="https://brahm2026.com/" aria-label="Open the deployed BRAHM 2026 website">
-    <img class="navbrand-emblem" src="assets/AVVP_Emblem-new-Red.png" alt="Amrita Vishwa Vidyapeetham" height="28">
-    <span class="navbrand-divider" aria-hidden="true"></span>
-    <span class="navbrand-text">
-      <i class="ph-duotone ph-flower-lotus" aria-hidden="true"></i>
-      <span>Brahm <em>2026</em></span>
-    </span>
+  <a class="navbrand" href="https://brahm2026.com/" aria-label="Amrita Vishwa Vidyapeetham — open the BRAHM 2026 website">
+    <img class="navbrand-emblem" src="assets/AVVP_Emblem-new-Red.png" alt="Amrita Vishwa Vidyapeetham" width="60" height="28">
   </a>
   <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
     <button onClick="{{ t.onSelect }}" class="{{ t.cls }}" aria-current="{{ t.cur }}">
@@ -1577,9 +2630,97 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 const IST = "+05:30";
 const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSc7sg6b9mLVtD_WhTb7ia7YcnUVZGN1wE42n2puywMTvcnLWw/viewform";
 const ADDR = "Amrita Vishwa Vidyapeetham, Mata Amritanandamayi Marg, Sector 88, Faridabad, Haryana 121002";
+// The official Amrita Hospital Faridabad site. Every "Visit Amrita Hospitals"
+// link reads this one constant, so changing it here changes all of them.
+const AMRITA_SITE = "https://www.amritahospitals.org/faridabad";
+
 const MAPS_SEARCH = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ADDR);
 const MAPS_DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(ADDR);
+// Amma's portrait for the "About the Founder" section on the home screen. It
+// reuses the hero cut-out, which is already preloaded by the time the section
+// scrolls into view. Point this at another file to use a different one -- the
+// app probes the path on load, the same way the sponsor logos are probed, so a
+// path with nothing behind it falls back to the emblem plate rather than
+// leaving a broken frame.
+const AMMA_PORTRAIT = "assets/amma-photos/amma-3.png";
+
+// The official fest Instagram. The "Follow Brahm" section at the foot of the
+// home screen is the only thing that reads it.
+const INSTAGRAM = "https://www.instagram.com/brahmamritafest/?hl=en";
+const INSTAGRAM_HANDLE = "@brahmamritafest";
+
+// ---- Sports at Brahm 2026 ----
+// The Sports page is driven entirely by this array. Venue and timing are
+// confirmed; the draw is not, so `fixtures` starts empty and the page prints
+// its own "the draw is still to be made" line in place of the table.
+//
+// To publish a fixture, push a row:
+//
+//   fixtures:[ { round:"League · Match 1", a:"Amrita XI", b:"MVN XI",
+//                time:"6:00 PM", note:"Toss at 5:45" } ]
+//
+// `note` is optional. `round` groups nothing — it is simply the label printed
+// above the pairing, so "Semi-final", "Final" and "League · Match 3" all work.
+// `date` fills the date cell once it is fixed. A fourth sport is a fourth row:
+// `accent` is the hue the page tints that sport with, in degrees.
+const SPORTS = [
+  { id:"badminton", name:"Badminton", kind:"Racquet · Indoor", accent:188,
+    venue:"MVN School", timing:"4:00 PM – 6:00 PM", date:null,
+    note:"Singles and doubles, played to the campus draw.",
+    fixtures:[] },
+  { id:"football", name:"Football", kind:"Field · Eleven-a-side", accent:142,
+    venue:"Amrita Ground", timing:"6:00 PM – 10:00 PM", date:null,
+    note:"Played under lights, on the main ground.",
+    fixtures:[] },
+  { id:"cricket", name:"Cricket", kind:"Field · Limited overs", accent:28,
+    venue:"Amrita Ground", timing:"6:00 AM – 2:30 PM", date:null,
+    note:"First ball at dawn; the ground runs all morning.",
+    fixtures:[] }
+];
+
+// ---- Event categories ----
+// The home screen and the Events hub show one tile per category rather than
+// every event at once; each tile opens its own screen. A category either
+// gathers competitions by id from COMPS (`comps`), or names schedule items by
+// id from DAYS (`items`), or — for Sports — hands off to the Sports page.
+// Adding a category means adding a row here and its screen id to SCREENS.
+const CATEGORIES = [
+  { id:"dance", screen:"cat-dance", name:"Dance", icon:"ph-mask-happy",
+    lead:"Classical, folk and cinematic",
+    blurb:"Three competitions on the Amriteshwari stage — precise footwork, a full company, and the storm of a group set.",
+    comps:["malhar","junoon","thillana"] },
+  { id:"music", screen:"cat-music", name:"Music", icon:"ph-microphone-stage",
+    lead:"One voice, one stage",
+    blurb:"A semi-classical solo and a Western solo, three minutes each, nothing between the singer and the room.",
+    comps:["dhwani","euphony"] },
+  { id:"words", screen:"cat-words", name:"Words & Ideas", icon:"ph-books",
+    lead:"An hour, a blank page",
+    blurb:"An essay written to a topic revealed at the venue, and an idea pitched against the clock.",
+    comps:["inkspire","yukti"] },
+  { id:"lens", screen:"cat-lens", name:"Art & Lens", icon:"ph-sparkle",
+    lead:"Colour, imagery, a single frame",
+    blurb:"A poster made in an hour from a theme nobody has seen, and a photograph you already took.",
+    comps:["vistara","frames"] },
+  { id:"sports", screen:"sports", name:"Sports", icon:"ph-soccer-ball",
+    lead:"Three grounds, three days",
+    blurb:"Badminton, football and cricket — venues and timings settled, fixtures to follow.",
+    sports:true },
+  { id:"campus", screen:"cat-campus", name:"Campus & Nights", icon:"ph-tent",
+    lead:"Seva, the run, the nights",
+    blurb:"Everything the whole campus turns out for: the health camps, the community run, the auto expo, carnival and DJ night.",
+    items:["d19-health","d20-marathon","d20-cars","d20-lap","d19-comedy","d19-bhajan","d20-carnival","d20-dj","d23-main"] }
+];
+
 const SAVE_KEY = "brahm2026.saved.v1";
+
+// Entries for Brahm 2026 have closed. Every registration call-to-action in the
+// app reads this one flag — set it back to false and they all return.
+const REG_CLOSED = true;
+
+// One hash per screen, so the device back button walks the same stack the app does.
+const SCREENS = ["home","schedule","events","saved","more","map","register",
+  "rules","contacts","sponsors","about","wardrobe","sports"]
+  .concat(CATEGORIES.filter(c => c.screen.indexOf("cat-") === 0).map(c => c.screen));
 
 // Dates read as ordinals throughout — "19th Sep", not "19 Sep".
 const ord = (n) => { const v = Number(n); const r = v % 100;
@@ -1599,6 +2740,42 @@ const SPONSORS = [
 ];
 
 const GOLD_SHADOW = "0 8px 20px rgba(200,130,40,.32)";
+
+// Amrita's Wardrobe — the fests before this one. The Founders' Day 2025 rows
+// point at real files; the 2024 and 2023 rows are empty slots waiting on
+// assets/wardrobe/. Anything not yet supplied is probed for first and quietly
+// skipped, the same way the sponsor logos are, so no broken frame ever shows.
+// Add, remove or rename rows freely — nothing else needs changing.
+const WARDROBE_PHOTOS = [
+  { src:"assets/founders-2025/fd25-address.jpg", year:"Founders’ Day 2025", caption:"The Founders’ Day address, from the podium in the Amriteshwari Auditorium." },
+  { src:"assets/founders-2025/fd25-memento.jpg", year:"Founders’ Day 2025", caption:"A memento for the chief guest." },
+  { src:"assets/founders-2025/fd25-classical.jpg", year:"Founders’ Day 2025", caption:"Classical dance on the auditorium stage." },
+  { src:"assets/founders-2025/fd25-bharatanatyam.jpg", year:"Founders’ Day 2025", caption:"The red-and-green ensemble, holding the closing pose." },
+  { src:"assets/founders-2025/fd25-ensemble.jpg", year:"Founders’ Day 2025", caption:"Group dance — the final tableau." },
+  { src:"assets/founders-2025/fd25-tandava.jpg", year:"Founders’ Day 2025", caption:"A dance drama, staged with the full company." },
+  { src:"assets/founders-2025/fd25-tableau.jpg", year:"Founders’ Day 2025", caption:"A devotional piece in white and red." },
+  { src:"assets/founders-2025/fd25-diversity.jpg", year:"Founders’ Day 2025", caption:"Folk dances from across India, in one set." },
+  { src:"assets/founders-2025/fd25-voice.jpg", year:"Founders’ Day 2025", caption:"A voice opens the evening." },
+  { src:"assets/founders-2025/fd25-gathering.jpg", year:"Founders’ Day 2025", caption:"Everyone on stage, at the close of the day." },
+  { src:"assets/wardrobe/fest-2024-01.jpg", year:"Fest 2024", caption:"Group dance — the inter-college finals." },
+  { src:"assets/wardrobe/fest-2024-02.jpg", year:"Fest 2024", caption:"Carnival night on the main ground." },
+  { src:"assets/wardrobe/fest-2024-03.jpg", year:"Fest 2024", caption:"The crowd at DJ night." },
+  { src:"assets/wardrobe/fest-2023-01.jpg", year:"Fest 2023", caption:"Prize-giving at the close of the fest." },
+  { src:"assets/wardrobe/fest-2023-02.jpg", year:"Fest 2023", caption:"Campus decorated for Founders’ Day." }
+];
+const WARDROBE_VIDEOS = [
+  { src:"assets/wardrobe/founders-day-2025-film.mp4", year:"Founders’ Day 2025", caption:"The day in three minutes." },
+  { src:"assets/wardrobe/fest-2024-aftermovie.mp4", year:"Fest 2024", caption:"The aftermovie." }
+];
+
+// Short headings for the five-day rollout on the About screen, keyed by date.
+const ROLLOUT_TITLES = {
+  "19": "Seva, then the stage",
+  "20": "Run, expo and carnival",
+  "21": "Sport takes the campus",
+  "22": "Sport continues",
+  "23": "Founders’ Day itself"
+};
 
 const COMPS = [
   { id:"yukti", name:"Yukti", category:"Ideathon", img:"assets/ev-yukti.jpg", date:"2026-09-19",
@@ -1678,12 +2855,12 @@ const DAYS = [
   { key:"21", num:"21", dow:"Mon", dateLong:"Monday 21st September 2026",
     summary:"In-house sport takes over the campus.",
     items:[
-      { id:"d21-sports", time:"Day", title:"In-House Sports Competitions", venue:"Sports Venues", detail:"Badminton, cricket and football competitions across the campus sports venues.", s:"2026-09-21T09:00", e:"2026-09-21T17:00", badge:"Sport" }
+      { id:"d21-sports", time:"6:00 AM – 10:00 PM", title:"In-House Sports Competitions", venue:"Amrita Ground & MVN School", detail:"Cricket at Amrita Ground, 6:00 AM – 2:30 PM. Badminton at MVN School, 4:00 – 6:00 PM. Football at Amrita Ground, 6:00 – 10:00 PM. Fixtures to be announced.", s:"2026-09-21T06:00", e:"2026-09-21T22:00", badge:"Sport" }
     ]},
   { key:"22", num:"22", dow:"Tue", dateLong:"Tuesday 22nd September 2026",
     summary:"In-house sport continues.",
     items:[
-      { id:"d22-sports", time:"Day", title:"In-House Sports Competitions", venue:"Sports Venues", detail:"Badminton, cricket and football competitions continue.", s:"2026-09-22T09:00", e:"2026-09-22T17:00", badge:"Sport" }
+      { id:"d22-sports", time:"6:00 AM – 10:00 PM", title:"In-House Sports Competitions", venue:"Amrita Ground & MVN School", detail:"Cricket, badminton and football continue at the same grounds and times. Fixtures to be announced.", s:"2026-09-22T06:00", e:"2026-09-22T22:00", badge:"Sport" }
     ]},
   { key:"23", num:"23", dow:"Wed", dateLong:"Wednesday 23rd September 2026",
     summary:"The Founders’ Day function itself.",
@@ -1725,12 +2902,13 @@ const ORGANISERS = [
 ];
 
 const VENUES = [
-  ["Amriteshwari Auditorium","ph-microphone-stage","All nine inter-college cultural competitions on stage — dance, singing, photography prize-giving — plus stand-up comedy, bhajan jamming and the Founders’ Day function on 23rd September."],
+  ["Amriteshwari Auditorium","ph-microphone-stage","The inter-college cultural competitions on stage — dance, singing, photography prize-giving — plus stand-up comedy, bhajan jamming and the Founders’ Day function on 23rd September."],
   ["Research Building","ph-books","Yukti ideathon, Inkspire essay writing (Classroom 1) and Vistara poster making."],
   ["Main Ground","ph-tent","Carnival night and DJ night — games, rides and food stalls."],
   ["Gate 2","ph-flag-checkered","Marathon starting point, 6:00 AM on 20th September."],
   ["Designated Expo Area","ph-car-profile","Auto expo lap race and the car exhibition."],
-  ["Sports Venues","ph-soccer-ball","Badminton, cricket and football through 21st–23rd September."]
+  ["Amrita Ground","ph-soccer-ball","Cricket (6:00 AM – 2:30 PM) and football (6:00 – 10:00 PM) through 21st–23rd September."],
+  ["MVN School","ph-soccer-ball","Badminton, 4:00 – 6:00 PM, through 21st–23rd September."]
 ];
 
 const REG_NOTES = [
@@ -1742,24 +2920,78 @@ const REG_NOTES = [
 ];
 
 class Component extends DCLogic {
-  state = { screen:"home", day:0, compId:null, open:{}, saved:{}, now:Date.now(), toast:null, canInstall:false, logos:{} };
+  state = { screen:"home", day:0, compId:null, open:{}, saved:{}, now:Date.now(), toast:null, canInstall:false, logos:{}, media:{}, mediaProbed:false, amma:false };
 
   componentDidMount(){
-    this.markScreen(this.state.screen);
+    const route = this.parseHash();
+    this.applyRoute(route.screen, route.compId);
+    try{ history.replaceState({ brahmDepth:0, screen:route.screen, compId:route.compId }, "",
+      this.hashFor(route.screen, route.compId)); }catch(e){}
+    this._pop = () => { const r = this.parseHash(); this.applyRoute(r.screen, r.compId); };
+    window.addEventListener("popstate", this._pop);
     this.probeLogos();
+    this.probeMedia();
+    this.probeAmma();
     try{ const raw = localStorage.getItem(SAVE_KEY); if(raw) this.setState({ saved: JSON.parse(raw)||{} }); }catch(e){}
     this.timer = setInterval(()=>this.setState({ now: Date.now() }), 1000);
     this._ip = (e)=>{ e.preventDefault(); this._prompt = e; this.setState({ canInstall:true }); };
     window.addEventListener("beforeinstallprompt", this._ip);
   }
-  componentWillUnmount(){ this._dead = true; if(this._scroll && this._onScroll) this._scroll.removeEventListener("scroll", this._onScroll); clearInterval(this.timer); clearTimeout(this._tt); window.removeEventListener("beforeinstallprompt", this._ip); }
+  componentWillUnmount(){ this._dead = true; if(this._scroll && this._onScroll) this._scroll.removeEventListener("scroll", this._onScroll); clearInterval(this.timer); clearTimeout(this._tt); window.removeEventListener("beforeinstallprompt", this._ip); window.removeEventListener("popstate", this._pop); }
 
-  go(screen, compId){
+  // The app is one static file, so a screen lives in the hash rather than the
+  // path: a reload or a pasted link resolves with no server rewrite, and the
+  // device back button, the browser arrow and the in-app Back pill all walk the
+  // same history stack.
+  parseHash(){
+    const raw = (location.hash || "").replace(/^#\/?/, "");
+    if(!raw) return { screen:"home", compId:null };
+    const parts = raw.split("/");
+    if(parts[0] === "comp" && COMPS.some(c => c.id === parts[1])) return { screen:"comp", compId:parts[1] };
+    return { screen: SCREENS.indexOf(parts[0]) >= 0 ? parts[0] : "home", compId:null };
+  }
+  hashFor(screen, compId){
+    if(screen === "comp" && compId) return "#/comp/" + compId;
+    return screen === "home" ? "#/" : "#/" + screen;
+  }
+  // Show a screen without touching history — what a popstate resolves to.
+  applyRoute(screen, compId){
     this.setState({ screen, compId: compId || null });
     this.markScreen(screen);
     if(this._scroll) this._scroll.scrollTop = 0;
     this._docked = false;
     try{ document.documentElement.setAttribute("data-scrolled","0"); }catch(e){}
+  }
+  go(screen, compId){
+    compId = compId || null;
+    if(!(this.state.screen === screen && this.state.compId === compId)){
+      const depth = ((history.state && history.state.brahmDepth) || 0) + 1;
+      try{ history.pushState({ brahmDepth:depth, screen, compId }, "", this.hashFor(screen, compId)); }catch(e){}
+    }
+    this.applyRoute(screen, compId);
+  }
+  // Back steps the stack when this session put something on it; on the first
+  // screen of a fresh visit there is nothing of ours behind, so Home stands in
+  // rather than throwing the visitor out of the site.
+  back(){
+    if(((history.state && history.state.brahmDepth) || 0) > 0){ history.back(); return; }
+    this.go("home");
+  }
+  // How many things a category tile promises. Sports counts its own rows;
+  // everything else counts whichever list it is built from.
+  catCount(c){
+    const n = c.sports ? SPORTS.length : ((c.comps || c.items || []).length);
+    return n + (n === 1 ? " event" : " events");
+  }
+  // The hero's "Explore Brahm" pill. The scroller is the app's own <main>, not
+  // the window, so the jump is made on that element; `.story-start` marks the
+  // first section under the cover.
+  scrollToStory(){
+    const el = this._scroll;
+    if(!el) return;
+    const t = el.querySelector(".story-start");
+    const top = t ? Math.max(0, t.offsetTop - 6) : el.clientHeight;
+    try{ el.scrollTo({ top, behavior:"smooth" }); }catch(e){ el.scrollTop = top; }
   }
   markScreen(screen){
     try{ document.documentElement.setAttribute("data-screen", screen); }catch(e){}
@@ -1776,6 +3008,32 @@ class Component extends DCLogic {
         this.setState({ logos });
       }).catch(()=>{});
     });
+  }
+  // Same contract as the sponsor logos: a path with no file behind it yet must
+  // not leave a broken frame, so each one is checked before it is rendered. The
+  // results accumulate on the instance because several probes land at once and
+  // a plain copy of state would drop all but the last.
+  probeMedia(){
+    this._media = {};
+    const all = WARDROBE_PHOTOS.concat(WARDROBE_VIDEOS);
+    let left = all.length;
+    const settle = () => { if(--left === 0 && !this._dead) this.setState({ mediaProbed:true }); };
+    if(!all.length){ this.setState({ mediaProbed:true }); return; }
+    all.forEach(m => {
+      fetch(m.src, { method:"HEAD" }).then(res => {
+        if(res.ok && !this._dead){
+          this._media[m.src] = true;
+          this.setState({ media: Object.assign({}, this._media) });
+        }
+      }).catch(()=>{}).then(settle);
+    });
+  }
+  // One more of the same: the founder portrait is only rendered once the file
+  // is known to be there, so the frame shows the emblem plate until it is.
+  probeAmma(){
+    fetch(AMMA_PORTRAIT, { method:"HEAD" }).then(res => {
+      if(res.ok && !this._dead) this.setState({ amma:true });
+    }).catch(()=>{});
   }
   flash(msg){ clearTimeout(this._tt); this.setState({ toast: msg }); this._tt = setTimeout(()=>this.setState({ toast:null }), 2200); }
 
@@ -1886,8 +3144,8 @@ class Component extends DCLogic {
   openOn(id, dayNum){
     const idx = DAYS.findIndex(d => d.num === dayNum);
     const open = Object.assign({}, this.state.open); open[id] = true;
-    this.setState({ screen:"schedule", day: idx < 0 ? 0 : idx, open });
-    if(this._scroll) this._scroll.scrollTop = 0;
+    this.setState({ day: idx < 0 ? 0 : idx, open });
+    this.go("schedule");
   }
 
   decorate(it){
@@ -1939,12 +3197,35 @@ class Component extends DCLogic {
       });
     }
 
+    const catDef = CATEGORIES.find(c => c.screen === s.screen) || null;
+    const catVals = catDef ? Object.assign({}, catDef, {
+      cards: (catDef.comps || []).map(id => COMPS.find(c => c.id === id)).filter(Boolean).map(c => ({
+        img:c.img, name:c.name, category:c.category, venue:c.venue,
+        when: ord(c.date.slice(-2)) + " Sep · " + c.timeText,
+        onOpen: () => this.go("comp", c.id)
+      })),
+      hasCards: (catDef.comps || []).length > 0,
+      rows: (catDef.items || []).map(id => {
+        let found = null;
+        DAYS.forEach(d => d.items.forEach(raw => { if(raw.id === id) found = this.hydrate(raw, d); }));
+        return found;
+      }).filter(Boolean).map(it => Object.assign({}, it, {
+        when: ord(it.dayNum) + " Sep · " + it.time,
+        onOpen: () => this.openOn(it.id, it.dayNum)
+      })),
+      hasRows: (catDef.items || []).length > 0
+    }) : null;
+
     const tabDefs = [
       ["home","Home","ph-house"],["schedule","Schedule","ph-calendar-dots"],
       ["events","Events","ph-sparkle"],["saved","Mine","ph-heart-straight"],["more","More","ph-dots-three-circle"]
     ];
+    // Everything reached through the Events hub — a competition, a category
+    // page, the Sports page — keeps the Events tab lit, so the tab bar always
+    // says where in the app you are.
+    const underEvents = s.screen === "comp" || s.screen === "sports" || !!catDef;
     const activeTab = ["home","schedule","events","saved","more"].indexOf(s.screen) >= 0 ? s.screen
-      : (s.screen === "comp" ? "events" : "more");
+      : (underEvents ? "events" : "more");
 
     const dayState = i => i === s.day
       ? { bg:GOLD_FILL, fg:"#18223f", shadow:GOLD_SHADOW }
@@ -1976,7 +3257,13 @@ class Component extends DCLogic {
       isContacts: s.screen === "contacts",
       isSponsors: s.screen === "sponsors",
       isAbout: s.screen === "about",
+      isWardrobe: s.screen === "wardrobe",
+      isSports: s.screen === "sports",
+      isCat: !!catVals,
       comp: compVals,
+
+      regOpen: !REG_CLOSED,
+      regClosed: REG_CLOSED,
       toast: s.toast,
 
       goSchedule: () => this.go("schedule"),
@@ -1985,6 +3272,64 @@ class Component extends DCLogic {
       goMap: () => this.go("map"),
       goRules: () => this.go("rules"),
       goContacts: () => this.go("contacts"),
+      goWardrobe: () => this.go("wardrobe"),
+      goAbout: () => this.go("about"),
+      instaUrl: INSTAGRAM,
+      instaHandle: INSTAGRAM_HANDLE,
+
+      // One tile per category, shown on the home screen and on the Events hub.
+      // The Sports tile hands off to the Sports page; the rest open their own
+      // category screen.
+      categories: CATEGORIES.map(c => ({
+        name: c.name, icon: c.icon, lead: c.lead,
+        count: this.catCount(c),
+        onOpen: () => this.go(c.screen)
+      })),
+      cat: catVals,
+
+      // The Sports page. Venue and timing always print. A sport with no
+      // fixtures yet prints one line saying so, in place of the table, rather
+      // than an empty frame.
+      sports: SPORTS.map((sp,i) => ({
+        n: String(i + 1).padStart(2, "0"),
+        name: sp.name, kind: sp.kind, venue: sp.venue, timing: sp.timing, note: sp.note,
+        tint: "hsl(" + sp.accent + " 62% 42%)",
+        wash: "linear-gradient(152deg,hsl(" + sp.accent + " 46% 22%),hsl(" + ((sp.accent + 24) % 360) + " 52% 13%))",
+        date: sp.date || "Across 21st – 23rd September",
+        dateCls: sp.date ? "sport-fact-v" : "sport-fact-v soft",
+        fixtures: sp.fixtures.map(f => ({
+          round: f.round, a: f.a, b: f.b,
+          time: f.time || "Time to be confirmed",
+          note: f.note || "",
+          hasNote: !!f.note
+        })),
+        hasFixtures: sp.fixtures.length > 0,
+        noFixtures: sp.fixtures.length === 0
+      })),
+
+      // Only the 2025 photographs, and only the ones actually on disk — the
+      // same probe the Wardrobe and the sponsor logos use.
+      fd25Photos: WARDROBE_PHOTOS.filter(x => x.year.indexOf("2025") >= 0 && s.media[x.src]),
+      hasFd25: WARDROBE_PHOTOS.some(x => x.year.indexOf("2025") >= 0 && s.media[x.src]),
+
+      exploreBrahm: () => this.scrollToStory(),
+
+      hasAmma: s.amma,
+      noAmma: !s.amma,
+      ammaSrc: AMMA_PORTRAIT,
+      goBack: () => this.back(),
+
+      rollout: DAYS.map(d => ({
+        num: d.num, dow: d.dow,
+        title: ROLLOUT_TITLES[d.key] || d.dateLong,
+        summary: d.summary,
+        count: d.items.length + (d.items.length === 1 ? " item on the programme" : " items on the programme")
+      })),
+      wardrobePhotos: WARDROBE_PHOTOS.filter(p => s.media[p.src]),
+      wardrobeVideos: WARDROBE_VIDEOS.filter(v => s.media[v.src]),
+      hasWardrobePhotos: WARDROBE_PHOTOS.some(p => s.media[p.src]),
+      hasWardrobeVideos: WARDROBE_VIDEOS.some(v => s.media[v.src]),
+      noWardrobe: s.mediaProbed && !WARDROBE_PHOTOS.concat(WARDROBE_VIDEOS).some(m => s.media[m.src]),
 
       cd: this.countdown(),
       upNext: this.upNext(),
@@ -2026,7 +3371,8 @@ class Component extends DCLogic {
         { icon:"ph-scroll", title:"Rules to know", sub:"The 21 rules that apply to every competition", onSelect:()=>this.go("rules") },
         { icon:"ph-hand-waving", title:"Say hello to us", sub:"Call or WhatsApp the student coordinators", onSelect:()=>this.go("contacts") },
         { icon:"ph-handshake", title:"Our partners", sub:"BMR, Coca-Cola, Strada, Marrow, Monster & Decathlon", onSelect:()=>this.go("sponsors") },
-        { icon:"ph-flower-lotus", title:"About Founders’ Day", sub:"73 years of pure love and light", onSelect:()=>this.go("about") },
+        { icon:"ph-flower-lotus", title:"About Founders’ Day", sub:"73 years of pure love and light, and how the five days roll out", onSelect:()=>this.go("about") },
+        { icon:"ph-books", title:"Amrita’s Wardrobe", sub:"Photographs and films from the fests before this one", onSelect:()=>this.go("wardrobe") },
         { icon:"ph-calendar-heart", title:"Add the fest to Google Calendar", sub:"Opens Google Calendar with all five days", onSelect:()=>this.addFest() }
       ],
 
@@ -2036,6 +3382,7 @@ class Component extends DCLogic {
       assocSponsors: SPONSORS.filter(x => x.tier === "assoc").map(x => this.sponsorVals(x)),
       logosPending: SPONSORS.some(x => !s.logos[x.id]),
 
+      amritaUrl: AMRITA_SITE,
       mapsUrl: MAPS_SEARCH,
       directionsUrl: MAPS_DIRECTIONS,
       shareLocation: () => this.share("BRAHM 2026 venue", ADDR),
