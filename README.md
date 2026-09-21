@@ -185,10 +185,28 @@ well as a cast shadow, because at tablet width it falls on the bright of the
 sari and white on white needs the separation. The `73 Years` mark keeps the
 opposite corner at every width.
 
-**Sizing.** On phones and tablets she is centred, capped by `max-height:63%` so
-the figure keeps the same relation to the frame from 360px to 1079px — capping
-by width alone let her grow past the lockup on a tablet. From 1080px the lockup
-holds the left of the cover and she stands to its right at `width:min(46vw,620px)`.
+**Sizing.** Below 1080px the cover is a flex column: `.hero-figwrap` takes
+whatever height is left once `.hero-lock` has what it needs, and she is capped
+at 160% of that track and pushed down by 38% of her own height. Because both
+numbers are shares of her rendered size rather than fixed distances, the lockup
+always meets her at the same point on the robe and her face — which sits in the
+top 40% of the cut-out — always clears it, at every window size. She shrinks
+instead of colliding.
+
+She used to be positioned against the top of the cover and capped at a share of
+*its* height, with the lockup anchored to the foot. On a short or square window
+the two met in the middle and the emblem and the fest name landed across her
+face. Two `min-height` floors, 790px in the base rule and 780px in the tablet
+one, made it worse by holding the cover taller than the window, so the
+countdown fell behind the tab bar and all that was left on screen was a cropped
+portrait. The cover is now `min(100dvh,920px)` — `min(92dvh,1000px)` from 700px
+up — so it is exactly the window and never more, and from 780px of window
+height down the lockup gives room back rather than squeezing her out: the
+tagline goes first, then the type steps down and the countdown compacts.
+
+From 1080px the cover is a row again — the wrapper goes `display:contents`, the
+figure returns to being positioned against the hero itself, the lockup holds the
+left and she stands to its right at `width:min(46vw,620px)`.
 
 **Adjusting.** `--hero-focus-x` / `--hero-focus-y` on `.hero` place the crowd
 frame behind her. If a future photograph needs more or less shade, change the

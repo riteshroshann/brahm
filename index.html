@@ -113,13 +113,24 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
    to edge and the lockup sits on it in cream. The photo is a background rather
    than an <img> so each device fetches only its own crop instead of both — the
    head preloads the matching one to keep it the LCP candidate. */
+/* The cover is a column — Amma in the track above, the lockup in the track
+   below. She used to be positioned against the top of the hero and capped at a
+   share of its height, which meant that on any short or square window the
+   lockup, anchored to the foot, climbed until the emblem and the fest name sat
+   across her face. Giving her a flex track instead makes the two share the
+   height: she takes what is left once the lockup has what it needs, and shrinks
+   rather than colliding. */
 .hero{position:relative;isolation:isolate;overflow:hidden;background:#0c1631;
-  display:flex;align-items:flex-end;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding-top:calc(12px + env(safe-area-inset-top));
   /* Where the crop sits. Nudging these two moves Amma’s face in the frame on a
      given device without recutting the file — raise Y to bring her lower in the
      picture up into view, move X to slide her out from under the lockup. */
   --hero-focus-x:50%; --hero-focus-y:24%;
-  min-height:clamp(790px,100vh,920px);min-height:clamp(790px,100dvh,920px)}
+  /* Exactly the window, never more: a floor here used to make the cover taller
+     than a short laptop viewport, which pushed the countdown under the tab bar
+     and left nothing on screen but a cropped portrait. */
+  height:min(100vh,920px);height:min(100dvh,920px)}
 .hero-art{position:absolute;inset:-3%;z-index:0;background-color:#0c1631;
   background-image:url("assets/hero-crowd.jpg");
   background-position:var(--hero-focus-x) var(--hero-focus-y);
@@ -150,9 +161,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 /* Amma, cut out and standing in front of the frame. She is masked away at the
    foot rather than cropped, so there is no cut edge where she meets the type,
    and the wash never falls on her — it sits behind. */
-.hero-figure{position:absolute;z-index:2;top:3%;left:50%;transform:translateX(-50%);
-  width:min(104%,560px);height:auto;max-height:61%;pointer-events:none;
-  object-fit:contain;object-position:50% 0%;
+.hero-figwrap{position:relative;z-index:2;flex:1 1 0%;min-height:0;width:100%;
+  display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+/* She is pushed down by a share of her own height, not by a fixed distance, so
+   the lockup always meets her at the same point on the robe however large or
+   small she has been drawn. Her face is in the top third; the overlap starts at
+   82%, and the mask has already faded the hem to nothing by then. */
+.hero-figure{width:auto;height:auto;max-width:min(104%,560px);max-height:160%;
+  transform:translateY(38%);pointer-events:none;
   filter:drop-shadow(0 22px 52px rgba(4,9,24,.62));
   -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%);
   mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%)}
@@ -165,7 +181,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-top-mark{width:clamp(72px,20vw,96px);height:auto;flex:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
 /* The bottom reserve clears the docked tab bar, so the countdown is never
    tucked in behind it. */
-.hero-lock{position:relative;z-index:4;width:100%;
+.hero-lock{position:relative;z-index:4;flex:0 0 auto;width:100%;
   padding:0 var(--gutter) calc(72px + env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-mark{display:none;width:min(178px,50vw);height:auto;filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
@@ -204,9 +220,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   text-shadow:0 3px 16px rgba(7,13,30,.55)}
 .hero-count-k{font:700 8.5px/1 var(--font-heading);letter-spacing:.22em;color:rgba(253,247,236,.72);text-transform:uppercase}
 @media (min-width:700px){
-  .hero{min-height:clamp(780px,92vh,1000px);min-height:clamp(780px,92dvh,1000px)}
+  .hero{height:min(92vh,1000px);height:min(92dvh,1000px)}
   .hero-title{font-size:clamp(78px,10.4vw,98px)}
-  .hero-eyebrow{font-size:11px;letter-spacing:.3em;text-indent:.3em;margin-bottom:18px}
   .hero-sub-name{font-size:29px}
   .hero-count{max-width:520px;margin-top:30px;padding:24px 22px 26px}
   .hero-count-v{font-size:52px}
@@ -814,7 +829,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .pane{width:100%;flex:1 1 100%;background:var(--ivory);box-shadow:none}
   html[data-screen="home"] .app .appmain>section{max-width:none}
 
-  html[data-screen="home"] .app .hero{min-height:calc(100vh - var(--navh));min-height:calc(100dvh - var(--navh))}
+  html[data-screen="home"] .app .hero{height:auto;
+    min-height:calc(100vh - var(--navh));min-height:calc(100dvh - var(--navh));
+    flex-direction:row;align-items:flex-end;justify-content:flex-start;padding-top:0}
+  .hero-figwrap{display:contents}
   /* Shade rakes in from the left instead of straight down, because the lockup
      is left-aligned here — the right of the frame keeps its stage lights. */
   html[data-screen="home"] .app .hero-wash{background:
@@ -834,9 +852,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
      window and rode up behind the tab bar, which cut the top of her head off.
      Capping the height makes her shrink to fit instead; the width follows,
      because a replaced element keeps its ratio when max-height clamps it. */
-  html[data-screen="home"] .app .hero-figure{left:auto;transform:none;
-    right:clamp(4px,3vw,72px);top:auto;bottom:0;width:min(46vw,620px);
-    max-height:calc(100% - 26px);object-fit:contain;object-position:100% 100%;
+  html[data-screen="home"] .app .hero-figure{position:absolute;left:auto;transform:none;
+    right:clamp(4px,3vw,72px);top:auto;bottom:0;width:min(46vw,620px);height:auto;
+    max-width:none;max-height:calc(100% - 26px);object-fit:contain;object-position:100% 100%;
     -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%);
     mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%)}
   html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px)}
@@ -982,6 +1000,41 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+/* On a short or square window the lockup is what runs the cover out of room,
+   so it gives some back rather than squeezing Amma out of the frame: the type
+   steps down a size and the gaps close. Nothing is dropped. */
+@media (max-height:900px) and (max-width:1079px){
+  .hero-brandmark{height:clamp(34px,8vw,44px);margin-bottom:clamp(12px,3vw,16px)}
+  .hero-title{font-size:clamp(42px,12vw,60px)}
+  .hero-sub{margin-top:10px}
+  .hero-sub-name{font-size:clamp(18px,5.2vw,22px)}
+  .hero-dates{margin-top:10px;font-size:11px}
+  .hero-line{margin-top:10px;font-size:clamp(17px,4.8vw,20px)}
+  .hero-cta{margin-top:15px;padding:11px 20px}
+  .hero-count{margin-top:15px;padding:11px 14px 12px;border-radius:18px}
+  .hero-count-label{font-size:8.5px;letter-spacing:.26em}
+  .hero-count-cells{margin-top:10px}
+  .hero-count-v{font-size:clamp(26px,7.4vw,34px)}
+  .hero-lock{padding-bottom:calc(62px + env(safe-area-inset-bottom))}
+}
+/* Below this the lockup no longer fits the window alongside the portrait, and
+   a cover that clips its own countdown is worse than one that says less. The
+   tagline goes first — the dates and the clock under it carry the facts. */
+@media (max-height:780px) and (max-width:1079px){
+  .hero-line{display:none}
+  .hero-cta{margin-top:4px}
+}
+@media (max-height:680px) and (max-width:1079px){
+  .hero-title{font-size:clamp(38px,11vw,50px)}
+  .hero-sub{margin-top:8px}
+  .hero-dates{margin-top:8px}
+  .hero-cta{margin-top:2px;padding:10px 18px}
+  .hero-count{margin-top:12px;padding:9px 12px 10px}
+  .hero-count-label{display:none}
+  .hero-count-cells{margin-top:0}
+  .hero-count-v{font-size:clamp(23px,6.6vw,30px)}
 }
 
 /* ---------- Story chapters (home) ----------
@@ -1288,7 +1341,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   <div class="hero">
     <div class="hero-art" aria-hidden="true"></div>
     <div class="hero-wash" aria-hidden="true"></div>
-    <img class="hero-figure" src="assets/amma-photos/amma-2.webp" alt="Sri Mata Amritanandamayi Devi" width="1000" height="1314" fetchpriority="high">
+    <div class="hero-figwrap">
+      <img class="hero-figure" src="assets/amma-photos/amma-2.webp" alt="Sri Mata Amritanandamayi Devi" width="1000" height="1314" fetchpriority="high">
+    </div>
     <div class="hero-glow" aria-hidden="true"></div>
 
     <div class="hero-top">
