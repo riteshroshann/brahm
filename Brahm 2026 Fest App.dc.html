@@ -170,8 +170,17 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-figure{width:auto;height:auto;max-width:min(104%,560px);max-height:160%;
   transform:translateY(38%);pointer-events:none;
   filter:drop-shadow(0 22px 52px rgba(4,9,24,.62));
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%)}
+  /* The cut-out is a tight crop: the robe runs flat off the right edge of the
+     file from halfway down and off both edges from three-quarters down, so a
+     hard vertical line showed where the white met the photograph. The hem was
+     already masked away for the same reason; these two masks intersect so the
+     sides dissolve the way the hem does. Where mask-composite is unsupported
+     the layers union instead, which is the old behaviour rather than a blank. */
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%),
+    linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.42) 78%,transparent 96%),
+    linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
 .hero-glow{position:absolute;inset:0;z-index:3;background:
   radial-gradient(120% 74% at 50% 100%,rgba(224,149,44,.17),transparent 62%),
   linear-gradient(180deg,transparent 33%,rgba(9,16,36,.46) 51%,rgba(10,18,40,.82) 67%,
@@ -855,8 +864,11 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-figure{position:absolute;left:auto;transform:none;
     right:clamp(4px,3vw,72px);top:auto;bottom:0;width:min(46vw,620px);height:auto;
     max-width:none;max-height:calc(100% - 26px);object-fit:contain;object-position:100% 100%;
-    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%);
-    mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%)}
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%),
+      linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
+    mask-image:linear-gradient(180deg,#000 0%,#000 88%,transparent 100%),
+      linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-composite:intersect}
   html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px)}
   /* Left-aligned on the cover, so the rules can no longer stretch to fill a
      centred row: the leading one takes a fixed length and the trailing one goes. */

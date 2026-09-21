@@ -212,8 +212,25 @@ left and she stands to its right at `width:min(46vw,620px)`.
 frame behind her. If a future photograph needs more or less shade, change the
 stops on `.hero-wash` and `.hero-glow`, not the image.
 
+**The crop, and the mask that hides it.** `amma-2.webp` is a tight cut-out: the
+robe runs flat off the right edge of the file from halfway down and off both
+edges from three-quarters down. Those pixels do not exist, so nothing in CSS
+can restore them — a hard vertical line simply showed where the white met the
+photograph. `.hero-figure` therefore carries two mask layers that intersect: the
+original top-to-bottom fade that takes the hem away, and a left-to-right one
+that feathers 11% in from each side. The sides now dissolve the way the hem
+already did. Where `mask-composite` is unsupported the layers union instead,
+which is the old behaviour rather than a blank frame.
+
+`amma-3.png` in the same folder is an uncropped cut-out — the robe tapers back
+in at the hem and touches no edge — but it is a full seated figure, so using it
+on the cover would make her face about a quarter of its present size. It is
+what *About our Founder* uses, where the whole figure is the point.
+
 **Replacing her.** Export a cut-out with a transparent background, trim to the
-alpha bounding box, resize to ~1000px wide and save as WebP q86. The originals
+alpha bounding box, resize to ~1000px wide and save as WebP q86. Leave the robe
+whole if you can: a file whose subject touches the frame needs the side mask,
+and the wider the contact the more of her the mask has to take. The originals
 supplied for this pass are kept in `uploads/` (excluded from both the repository
 and the deployment).
 
