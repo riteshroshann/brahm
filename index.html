@@ -94,7 +94,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   backdrop-filter:blur(24px) saturate(1.35);-webkit-backdrop-filter:blur(24px) saturate(1.35);
   box-shadow:0 -12px 30px rgba(8,15,34,.20),inset 0 1px 0 rgba(255,236,205,.13);
   border-top:1px solid rgba(255,225,180,.13)}
-.navbrand{display:none}
 .navb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
   min-height:44px;border-radius:14px;isolation:isolate;overflow:hidden;color:rgba(253,247,236,.62)}
 .navb i{font-size:18px;line-height:1;transition:transform .3s cubic-bezier(.32,.72,0,1)}
@@ -213,8 +212,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
 .hero-rule.flip{background:linear-gradient(90deg,rgba(224,149,44,.85),rgba(224,149,44,0))}
 .hero-dates{margin-top:16px;font:600 12px/1 var(--font-heading);letter-spacing:.22em;color:#f3bc63;
   text-transform:uppercase;text-indent:.22em;text-shadow:0 2px 12px rgba(7,13,30,.7)}
-.hero-line{margin:16px 0 0;font:italic 300 clamp(21px,6.2vw,25px)/1.32 var(--display);
-  color:rgba(253,247,236,.92);text-wrap:pretty;text-shadow:0 2px 14px rgba(7,13,30,.7)}
+.hero-line{margin:16px 0 0;font:italic 300 clamp(14px,4.35vw,25px)/1.32 var(--display);
+  color:rgba(253,247,236,.92);white-space:nowrap;text-shadow:0 2px 14px rgba(7,13,30,.7)}
 /* The countdown closes the lockup: the fest's own clock, in the fest's own
    numerals, on the screen people open first. Glass rather than cream — a card
    would punch a hole in the photograph. */
@@ -240,7 +239,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;o
   .hero{--hero-focus-x:50%; --hero-focus-y:46%}
   .hero-art{inset:-3%;height:auto;background-size:cover;
     background-image:url("assets/hero-crowd-wide.jpg")}
-  .hero-line{max-width:34ch}
+  .hero-line{max-width:none}
 }
 
 /* ---------- Buttons ---------- */
@@ -790,8 +789,8 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .screenpad{padding-bottom:70px}
 
   /* ---- Docked top bar ----
-     A hairline header pinned to the top edge of the reading pane: the wordmark
-     on the left, tabs on the right, content scrolling underneath. Opaque rather
+     A hairline header pinned to the top edge of the reading pane: the tabs on
+     the right, content scrolling underneath. Opaque rather
      than glass, so it reads identically over the photographic cover and over an
      ivory schedule, and nothing smears through at the seam. */
   .navbar{order:1;position:absolute;top:0;left:0;right:0;bottom:auto;transform:none;
@@ -801,14 +800,6 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     border:0;border-bottom:1px solid rgba(34,55,110,.11);border-radius:0;
     background:var(--ivory);backdrop-filter:none;-webkit-backdrop-filter:none;
     box-shadow:none;transition:box-shadow .3s cubic-bezier(.32,.72,0,1)}
-  .navbrand{display:flex;align-items:center;gap:10px;margin-right:auto;padding-left:2px;
-    color:var(--night);border-radius:10px;padding-block:6px;padding-right:10px}
-  .navbrand-emblem{display:block;height:32px;width:auto;max-width:210px;object-fit:contain}
-  .navbrand-divider{display:inline-block;width:1px;height:20px;background:rgba(34,55,110,.2);margin:0 2px}
-  .navbrand-text{display:flex;align-items:center;gap:6px}
-  .navbrand-text span{font:600 19px/1 var(--display);letter-spacing:.005em;white-space:nowrap}
-  .navbrand-text em{font-style:normal;color:var(--marigold-deep)}
-  .navbrand i{font-size:18px;color:var(--marigold-deep)}
   .navb{flex:0 0 auto;flex-direction:row;gap:8px;min-height:34px;padding:0 13px;
     border-radius:10px;color:var(--ink-3)}
   .navb i{font-size:16px}
@@ -852,7 +843,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
     align-items:flex-start;text-align:left;max-width:min(650px,44vw)}
   html[data-screen="home"] .app .hero-mark{display:block;width:clamp(128px,10vw,158px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
-  html[data-screen="home"] .app .hero-brandmark{height:clamp(50px,4.2vw,64px);max-width:320px;margin-bottom:clamp(26px,2.4vw,34px)}
+  html[data-screen="home"] .app .hero-brandmark{height:clamp(96px,7.6vw,124px);max-width:470px;margin-bottom:clamp(26px,2.4vw,34px)}
   /* The lockup holds the left of the cover here, so Amma stands to the right of
      it, full height, with only the hem of the frame masked away. */
   /* The cut-out has almost no headroom of its own -- her crown sits 0.3% from
@@ -870,6 +861,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
       linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
     -webkit-mask-composite:source-in;mask-composite:intersect}
   html[data-screen="home"] .app .hero-title{font-size:clamp(88px,6.8vw,120px)}
+  html[data-screen="home"] .app .hero-line{font-size:clamp(16px,1.85vw,25px)}
   /* Left-aligned on the cover, so the rules can no longer stretch to fill a
      centred row: the leading one takes a fixed length and the trailing one goes. */
   html[data-screen="home"] .app .hero-sub{width:auto;justify-content:flex-start;margin-top:17px;gap:16px}
@@ -889,9 +881,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 /* Compact, but retain, the branding on short laptop screens. */
 @media (min-width:1080px) and (max-height:820px){
   html[data-screen="home"] .app .hero-title{margin-top:0;font-size:clamp(76px,6.2vw,104px)}
-  html[data-screen="home"] .app .hero-brandmark{height:clamp(42px,3.4vw,52px);margin-bottom:20px}
+  html[data-screen="home"] .app .hero-brandmark{height:clamp(80px,6.4vw,100px);margin-bottom:20px}
   html[data-screen="home"] .app .hero-count{margin-top:22px;padding-block:18px 20px}
-  html[data-screen="home"] .app .hero-line{margin-top:13px}
+  html[data-screen="home"] .app .hero-line{margin-top:13px;font-size:clamp(16px,1.85vw,24px)}
   .rail-body{padding:16px 30px 20px}
   .rail-mark{width:76px;margin-bottom:8px}
   .rail-title{font-size:clamp(34px,3vw,46px);margin-top:7px}
@@ -1018,12 +1010,12 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
    so it gives some back rather than squeezing Amma out of the frame: the type
    steps down a size and the gaps close. Nothing is dropped. */
 @media (max-height:900px) and (max-width:1079px){
-  .hero-brandmark{height:clamp(34px,8vw,44px);margin-bottom:clamp(12px,3vw,16px)}
+  .hero-brandmark{height:clamp(64px,15vw,84px);margin-bottom:clamp(12px,3vw,16px)}
   .hero-title{font-size:clamp(42px,12vw,60px)}
   .hero-sub{margin-top:10px}
   .hero-sub-name{font-size:clamp(18px,5.2vw,22px)}
   .hero-dates{margin-top:10px;font-size:11px}
-  .hero-line{margin-top:10px;font-size:clamp(17px,4.8vw,20px)}
+  .hero-line{margin-top:10px;font-size:clamp(13px,3.9vw,20px)}
   .hero-cta{margin-top:15px;padding:11px 20px}
   .hero-count{margin-top:15px;padding:11px 14px 12px;border-radius:18px}
   .hero-count-label{font-size:8.5px;letter-spacing:.26em}
@@ -1071,6 +1063,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .chapter-s{font-size:17px}
 }
 
+
 /* ---------- Founders' Day (home, chapter two) ----------
    Warm paper like the Spirit section above it, but narrower and quieter: this
    one is a bridge between what Brahm is and who it is kept for, not a
@@ -1092,7 +1085,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .fday{padding:48px 42px 44px;border-radius:38px}
   .fday-arc{grid-template-columns:repeat(2,1fr);gap:13px}
 }
-@media (min-width:1080px){.fday-arc{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1080px){
+  .fday-arc{grid-template-columns:repeat(3,1fr)}
+}
 
 /* ---------- Memories (home, chapter seven) ----------
    Last year's photographs at the size they deserve, with empty slots after
@@ -1137,10 +1132,10 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
    The emblem sits directly above the fest name, so the association reads
    before the name does and the header is left clean. It keeps its own
    breathing room below it rather than crowding the display type. */
-.hero-brandmark{display:block;height:clamp(46px,11.5vw,62px);width:auto;
-  max-width:min(280px,72vw);object-fit:contain;margin-bottom:clamp(20px,5vw,28px);
-  /* A tight dark halo before the cast shadow: at tablet width the emblem falls
-     on the bright of the sari, and white on white needs the separation. */
+.hero-brandmark{display:block;height:clamp(82px,20vw,116px);width:auto;
+  max-width:min(400px,90vw);object-fit:contain;margin-bottom:clamp(20px,5vw,28px);
+  /* A tight dark halo before the cast shadow: at tablet width the mark falls on
+     the bright of the sari, and white on white needs the separation. */
   filter:drop-shadow(0 0 13px rgba(7,13,30,.9)) drop-shadow(0 4px 16px rgba(0,0,0,.6))}
 
 /* ---------- Reveal on scroll ----------
@@ -1265,17 +1260,41 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   border-top:1px solid rgba(253,247,236,.16)}
 .fixhead i{font-size:17px;color:var(--accent)}
 .fixhead span{font:700 9.5px/1 var(--font-heading);letter-spacing:.24em;text-transform:uppercase;color:rgba(253,247,236,.72)}
-.fixlist{display:flex;flex-direction:column;gap:9px}
-.fixrow{display:grid;grid-template-columns:1fr;gap:10px;padding:15px 17px;border-radius:17px;
-  background:rgba(253,247,236,.07);box-shadow:inset 0 0 0 1px rgba(253,247,236,.11);
-  transition:background-color .3s,box-shadow .3s}
-.fixrow-round{font:700 8.5px/1 var(--font-heading);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
-.fixrow-tie{display:flex;align-items:baseline;gap:11px;margin-top:9px;flex-wrap:wrap}
-.fixrow-team{font:400 20px/1.16 var(--display);color:#fdf7ec}
-.fixrow-v{font:italic 300 15px/1 var(--display);color:rgba(253,247,236,.5)}
-.fixrow-when{margin-top:9px;font:400 13.5px/1.4 var(--font-body);color:rgba(253,247,236,.66)}
-.fixrow-note{margin-top:5px;font:400 12.5px/1.45 var(--font-body);color:rgba(253,247,236,.5)}
-@media (hover:hover){.fixrow:hover{background:rgba(253,247,236,.11);box-shadow:inset 0 0 0 1px rgba(253,247,236,.22)}}
+.fixhead-c{margin-left:auto;font:400 12px/1 var(--font-body);font-style:normal;
+  color:rgba(253,247,236,.5);font-variant-numeric:tabular-nums}
+/* One group per date (cricket, football) or per category (badminton), each
+   headed by a hairline that fades out across the panel. */
+.fixgroup{margin-top:20px}
+.fixgroup:first-of-type{margin-top:2px}
+.fixgroup-h{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+.fixgroup-h span{flex:none;font:700 8.5px/1 var(--font-heading);letter-spacing:.24em;
+  text-transform:uppercase;color:var(--accent)}
+.fixgroup-h::after{content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(253,247,236,.26),rgba(253,247,236,0))}
+
+/* A match: the number and its kick-off on one line, the tie under it. The two
+   sides sit at the ends with "vs" between, so the eye reads across the fold
+   rather than down a column of names. */
+.fixmatch{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:3px 11px;
+  padding:13px 15px 14px;border-radius:16px;margin-bottom:8px;
+  background:rgba(253,247,236,.05);box-shadow:inset 0 0 0 1px rgba(253,247,236,.1)}
+.fixmatch-no{font:700 9px/1 var(--font-heading);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);white-space:nowrap}
+.fixmatch-meta{font:400 12.5px/1.3 var(--font-body);color:rgba(253,247,236,.6);
+  font-variant-numeric:tabular-nums;min-width:0}
+.fixmatch-tie{grid-column:1/-1;display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:baseline;gap:10px;margin-top:9px}
+.fixmatch-team{font:400 17.5px/1.22 var(--display);color:#fdf7ec;text-wrap:pretty;min-width:0}
+.fixmatch-team.b{text-align:right}
+/* A side still waiting on an earlier result is not a team yet, and is not
+   dressed as one. */
+.fixmatch-team.tbd{font:italic 300 15px/1.3 var(--display);color:rgba(253,247,236,.5)}
+.fixmatch-v{flex:none;font:italic 300 13px/1 var(--display);color:rgba(253,247,236,.42)}
+/* The one match everything else leads to. */
+.fixmatch.is-final{background:rgba(224,149,44,.13);box-shadow:inset 0 0 0 1px rgba(243,188,99,.42)}
+.fixmatch.is-final .fixmatch-no{color:#f3bc63}
+.fixmatch.is-final .fixmatch-team{color:#fff8ec}
+@media (hover:hover){.fixmatch:hover{background:rgba(253,247,236,.085)}}
 .fixnone{padding:17px 18px;border-radius:17px;font:400 14.5px/1.55 var(--font-body);
   color:rgba(253,247,236,.66);text-wrap:pretty;
   background:rgba(253,247,236,.05);box-shadow:inset 0 0 0 1px rgba(253,247,236,.11)}
@@ -1287,11 +1306,11 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   .sportpanel-facts{grid-template-columns:repeat(3,1fr)}
   .sportpanel-facts>.sportfact:last-child{grid-column:auto}
   .fixwrap{padding:0 34px 34px}
-  .fixrow{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:center;padding:18px 22px}
-  .fixrow-round{grid-column:1/-1}
-  .fixrow-tie{margin-top:0}
-  .fixrow-when{margin-top:0;text-align:right}
-  .fixrow-note{grid-column:1/-1;margin-top:2px}
+  .fixmatch{grid-template-columns:58px minmax(112px,auto) minmax(0,1fr);
+    align-items:center;gap:0 20px;padding:15px 22px}
+  .fixmatch-tie{grid-column:3;margin-top:0;gap:14px}
+  .fixmatch-team{font-size:19px}
+  .fixmatch-team.tbd{font-size:16px}
 }
 
 /* ---------- Category page ---------- */
@@ -1363,7 +1382,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     </div>
 
     <div class="hero-lock">
-      <img class="hero-brandmark" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham" width="308" height="144">
+      <img class="hero-brandmark" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham, Delhi NCR Campus" width="308" height="144">
       <h1 class="hero-title">Brahm <span class="sun">2026</span></h1>
       <div class="hero-sub">
         <span class="hero-rule"></span>
@@ -1371,7 +1390,7 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
         <span class="hero-rule flip"></span>
       </div>
       <div class="hero-dates">19th &ndash; 23rd September 2026</div>
-      <p class="hero-line">Celebrating health, talent,<br>unity &amp; joy.</p>
+      <p class="hero-line">Celebrating health, talent, unity &amp; joy.</p>
       <button onClick="{{ exploreBrahm }}" class="hero-cta">
         Explore Brahm<i class="ph-duotone ph-caret-right" style="transform:rotate(90deg)" aria-hidden="true"></i>
       </button>
@@ -2044,13 +2063,14 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 <sc-if value="{{ isSports }}" hint-placeholder-val="{{ false }}">
 <section data-screen-label="Sports" style="padding-bottom:calc(78px + env(safe-area-inset-bottom))">
   <div class="sportshero">
-    <span class="eyebrow-gold" style="color:#f3bc63">Brahm 2026 &middot; 21st &ndash; 23rd September</span>
+    <span class="eyebrow-gold" style="color:#f3bc63">Brahm 2026 &middot; 21st &amp; 22nd September</span>
     <h2 class="sportshero-t">Sports</h2>
-    <p class="sportshero-s">Three sports, two grounds, three days. The campus plays from first light to the floodlights &mdash; badminton indoors at MVN School, football and cricket on the Amrita Ground.</p>
+    <p class="sportshero-s">Three sports, two grounds, two days. The campus plays from first light to the floodlights &mdash; badminton indoors at MVN School, football and cricket on the Amrita Ground. The Founders Cup draw is below.</p>
     <div class="sportshero-meta">
       <span class="sportshero-chip"><i class="ph-duotone ph-soccer-ball" aria-hidden="true"></i>Three sports</span>
       <span class="sportshero-chip"><i class="ph-duotone ph-map-pin" aria-hidden="true"></i>Two venues</span>
       <span class="sportshero-chip"><i class="ph-duotone ph-clock" aria-hidden="true"></i>6:00 AM &ndash; 10:00 PM</span>
+      <span class="sportshero-chip"><i class="ph-duotone ph-flag-checkered" aria-hidden="true"></i>{{ sportsMatches }}</span>
     </div>
   </div>
 
@@ -2090,26 +2110,29 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
           <div class="fixhead">
             <i class="ph-duotone ph-flag-checkered" aria-hidden="true"></i>
             <span>Fixtures</span>
+            <sc-if value="{{ sp.hasFixtures }}" hint-placeholder-val="{{ true }}">
+              <em class="fixhead-c">{{ sp.fixCount }}</em>
+            </sc-if>
           </div>
-          <sc-if value="{{ sp.hasFixtures }}" hint-placeholder-val="{{ false }}">
-            <div class="fixlist">
-              <sc-for list="{{ sp.fixtures }}" as="f" hint-placeholder-count="3">
-                <div class="fixrow">
-                  <span class="fixrow-round">{{ f.round }}</span>
-                  <span class="fixrow-tie">
-                    <span class="fixrow-team">{{ f.a }}</span>
-                    <span class="fixrow-v">vs</span>
-                    <span class="fixrow-team">{{ f.b }}</span>
-                  </span>
-                  <span class="fixrow-when">{{ f.time }}</span>
-                  <sc-if value="{{ f.hasNote }}" hint-placeholder-val="{{ false }}">
-                    <span class="fixrow-note">{{ f.note }}</span>
-                  </sc-if>
-                </div>
-              </sc-for>
-            </div>
+          <sc-if value="{{ sp.hasFixtures }}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{ sp.fixtures }}" as="g" hint-placeholder-count="2">
+              <div class="fixgroup">
+                <div class="fixgroup-h"><span>{{ g.group }}</span></div>
+                <sc-for list="{{ g.rows }}" as="f" hint-placeholder-count="4">
+                  <div class="{{ f.cls }}">
+                    <span class="fixmatch-no">{{ f.no }}</span>
+                    <span class="fixmatch-meta">{{ f.meta }}</span>
+                    <span class="fixmatch-tie">
+                      <span class="{{ f.aCls }}">{{ f.a }}</span>
+                      <span class="fixmatch-v">vs</span>
+                      <span class="{{ f.bCls }}">{{ f.b }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
           </sc-if>
-          <sc-if value="{{ sp.noFixtures }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ sp.noFixtures }}" hint-placeholder-val="{{ false }}">
             <p class="fixnone">The draw has not been made yet. Fixtures, teams and match times will be published here as soon as they are settled.</p>
           </sc-if>
         </div>
@@ -2677,9 +2700,6 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 </sc-if>
 
 <nav class="navbar" aria-label="Primary">
-  <a class="navbrand" href="https://brahm2026.com/" aria-label="Amrita Vishwa Vidyapeetham — open the BRAHM 2026 website">
-    <img class="navbrand-emblem" src="assets/AVVP_Emblem-new-Red.png" alt="Amrita Vishwa Vidyapeetham" width="60" height="28">
-  </a>
   <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
     <button onClick="{{ t.onSelect }}" class="{{ t.cls }}" aria-current="{{ t.cur }}">
       <i class="ph-duotone {{ t.icon }}" aria-hidden="true"></i>
@@ -2730,19 +2750,73 @@ const INSTAGRAM_HANDLE = "@brahmamritafest";
 // above the pairing, so "Semi-final", "Final" and "League · Match 3" all work.
 // `date` fills the date cell once it is fixed. A fourth sport is a fourth row:
 // `accent` is the hue the page tints that sport with, in degrees.
+//
+// `fixtures` is a list of groups, each with its own rows, so one shape covers
+// both a dated schedule (cricket, football) and a category draw (badminton):
+//
+//   fixtures:[ { group:"Monday 21st September", rows:[
+//                { no:"M1", meta:"6:00 – 7:30 AM", a:"AHS", b:"Gods Own XI B" } ] } ]
+//
+// `no` is the short chip on the left, `meta` the line beside it — a kick-off
+// time where there is one, the round where there is not. A side still waiting
+// on an earlier result is written as "M1 winner"; the page detects that and
+// sets it in muted italic rather than presenting it as a team. A row whose
+// `no` is "Final" is given the gold treatment.
+//
+// Transcribed from the Founders Cup fixture posters in assets/.
 const SPORTS = [
   { id:"badminton", name:"Badminton", kind:"Racquet · Indoor", accent:188,
-    venue:"MVN School", timing:"4:00 PM – 6:00 PM", date:null,
-    note:"Singles and doubles, played to the campus draw.",
-    fixtures:[] },
+    venue:"MVN School", timing:"4:00 PM – 6:00 PM", date:"21st & 22nd September",
+    note:"Four teams a side of the draw, in both categories.",
+    fixtures:[
+      { group:"Male category", rows:[
+        { no:"SF 1", meta:"", a:"MBBS", b:"BTech" },
+        { no:"SF 2", meta:"", a:"Nursing", b:"AHS" },
+        { no:"Final", meta:"", a:"SF 1 winner", b:"SF 2 winner" }
+      ]},
+      { group:"Female category", rows:[
+        { no:"SF 1", meta:"", a:"MBBS", b:"BTech" },
+        { no:"SF 2", meta:"", a:"Nursing", b:"AHS" },
+        { no:"Final", meta:"", a:"SF 1 winner", b:"SF 2 winner" }
+      ]}
+    ] },
   { id:"football", name:"Football", kind:"Field · Eleven-a-side", accent:142,
-    venue:"Amrita Ground", timing:"6:00 PM – 10:00 PM", date:null,
+    venue:"Amrita Ground", timing:"6:00 PM – 10:00 PM", date:"21st & 22nd September",
     note:"Played under lights, on the main ground.",
-    fixtures:[] },
+    fixtures:[
+      { group:"Monday 21st September", rows:[
+        { no:"M1", meta:"6:00 – 6:45 PM", a:"AHS A", b:"BTech" },
+        { no:"M2", meta:"7:00 – 7:45 PM", a:"MBBS", b:"Amrita Labs" },
+        { no:"M3", meta:"8:00 – 8:45 PM", a:"Nursing B", b:"Knights" },
+        { no:"M4", meta:"9:00 – 9:45 PM", a:"AHS B", b:"Deadly Beast" }
+      ]},
+      { group:"Tuesday 22nd September", rows:[
+        { no:"M5", meta:"6:00 – 6:45 PM", a:"Nursing A", b:"M1 winner" },
+        { no:"M6", meta:"7:00 – 7:45 PM", a:"M2 winner", b:"M3 winner" },
+        { no:"M7", meta:"8:00 – 8:45 PM", a:"M4 winner", b:"M5 winner" },
+        { no:"Final", meta:"9:00 – 9:45 PM", a:"M6 winner", b:"M7 winner" }
+      ]}
+    ] },
   { id:"cricket", name:"Cricket", kind:"Field · Limited overs", accent:28,
-    venue:"Amrita Ground", timing:"6:00 AM – 2:30 PM", date:null,
-    note:"First ball at dawn; the ground runs all morning.",
-    fixtures:[] }
+    venue:"Amrita Ground", timing:"6:00 AM – 5:00 PM", date:"21st & 22nd September",
+    note:"First ball at dawn; the ground runs until the final.",
+    fixtures:[
+      { group:"Monday 21st September", rows:[
+        { no:"M1", meta:"6:00 – 7:30 AM", a:"AHS", b:"Gods Own XI B" },
+        { no:"M2", meta:"7:30 – 9:00 AM", a:"BTech", b:"Torpedo" },
+        { no:"M3", meta:"9:00 – 10:30 AM", a:"Sales & Marketing", b:"Gods Own XI A" },
+        { no:"M4", meta:"10:30 AM – 12:00 PM", a:"MBBS", b:"F&B" },
+        { no:"M5", meta:"1:00 – 2:30 PM", a:"Nursing Super Kings", b:"M1 winner" }
+      ]},
+      { group:"Tuesday 22nd September", rows:[
+        { no:"M6", meta:"6:00 – 7:30 AM", a:"Project Team Amrita", b:"M4 winner" },
+        { no:"M7", meta:"7:30 – 9:00 AM", a:"Nursing", b:"M2 winner" },
+        { no:"M8", meta:"9:00 – 10:30 AM", a:"Devils XI", b:"M3 winner" },
+        { no:"M9", meta:"10:30 AM – 12:00 PM", a:"M5 winner", b:"M7 winner" },
+        { no:"M10", meta:"1:00 – 2:30 PM", a:"M6 winner", b:"M8 winner" },
+        { no:"Final", meta:"3:30 – 5:00 PM", a:"M9 winner", b:"M10 winner" }
+      ]}
+    ] }
 ];
 
 // ---- Event categories ----
@@ -2769,8 +2843,8 @@ const CATEGORIES = [
     blurb:"A poster made in an hour from a theme nobody has seen, and a photograph you already took.",
     comps:["vistara","frames"] },
   { id:"sports", screen:"sports", name:"Sports", icon:"ph-soccer-ball",
-    lead:"Three grounds, three days",
-    blurb:"Badminton, football and cricket — venues and timings settled, fixtures to follow.",
+    lead:"Two grounds, two days",
+    blurb:"Badminton, football and cricket — the full Founders Cup draw, match by match.",
     sports:true },
   { id:"campus", screen:"cat-campus", name:"Campus & Nights", icon:"ph-tent",
     lead:"Seva, the run, the nights",
@@ -2922,12 +2996,12 @@ const DAYS = [
   { key:"21", num:"21", dow:"Mon", dateLong:"Monday 21st September 2026",
     summary:"In-house sport takes over the campus.",
     items:[
-      { id:"d21-sports", time:"6:00 AM – 10:00 PM", title:"In-House Sports Competitions", venue:"Amrita Ground & MVN School", detail:"Cricket at Amrita Ground, 6:00 AM – 2:30 PM. Badminton at MVN School, 4:00 – 6:00 PM. Football at Amrita Ground, 6:00 – 10:00 PM. Fixtures to be announced.", s:"2026-09-21T06:00", e:"2026-09-21T22:00", badge:"Sport" }
+      { id:"d21-sports", time:"6:00 AM – 10:00 PM", title:"In-House Sports Competitions", venue:"Amrita Ground & MVN School", detail:"Founders Cup round one. Cricket at Amrita Ground from 6:00 AM, badminton at MVN School 4:00 – 6:00 PM, football under lights at Amrita Ground from 6:00 PM. Full fixtures on the Sports page.", s:"2026-09-21T06:00", e:"2026-09-21T22:00", badge:"Sport" }
     ]},
   { key:"22", num:"22", dow:"Tue", dateLong:"Tuesday 22nd September 2026",
     summary:"In-house sport continues.",
     items:[
-      { id:"d22-sports", time:"6:00 AM – 10:00 PM", title:"In-House Sports Competitions", venue:"Amrita Ground & MVN School", detail:"Cricket, badminton and football continue at the same grounds and times. Fixtures to be announced.", s:"2026-09-22T06:00", e:"2026-09-22T22:00", badge:"Sport" }
+      { id:"d22-sports", time:"6:00 AM – 10:00 PM", title:"In-House Sports Competitions", venue:"Amrita Ground & MVN School", detail:"Finals day. The cricket final is at 3:30 – 5:00 PM, the football final at 9:00 – 9:45 PM, and both badminton finals at MVN School. Full fixtures on the Sports page.", s:"2026-09-22T06:00", e:"2026-09-22T22:00", badge:"Sport" }
     ]},
   { key:"23", num:"23", dow:"Wed", dateLong:"Wednesday 23rd September 2026",
     summary:"The Founders’ Day function itself.",
@@ -3357,6 +3431,13 @@ class Component extends DCLogic {
       // The Sports page. Venue and timing always print. A sport with no
       // fixtures yet prints one line saying so, in place of the table, rather
       // than an empty frame.
+      // Every match in the draw, counted, so the figure cannot fall out of step
+      // with the fixtures printed below it.
+      sportsMatches: (() => {
+        const n = SPORTS.reduce((t,sp) => t + sp.fixtures.reduce((u,g) => u + g.rows.length, 0), 0);
+        return n + (n === 1 ? " match" : " matches");
+      })(),
+
       sports: SPORTS.map((sp,i) => ({
         n: String(i + 1).padStart(2, "0"),
         name: sp.name, kind: sp.kind, venue: sp.venue, timing: sp.timing, note: sp.note,
@@ -3364,12 +3445,21 @@ class Component extends DCLogic {
         wash: "linear-gradient(152deg,hsl(" + sp.accent + " 46% 22%),hsl(" + ((sp.accent + 24) % 360) + " 52% 13%))",
         date: sp.date || "Across 21st – 23rd September",
         dateCls: sp.date ? "sport-fact-v" : "sport-fact-v soft",
-        fixtures: sp.fixtures.map(f => ({
-          round: f.round, a: f.a, b: f.b,
-          time: f.time || "Time to be confirmed",
-          note: f.note || "",
-          hasNote: !!f.note
+        // A side reading "M1 winner" is a placeholder, not a team, and is set
+        // as one. The count is the real number of matches, group totals added.
+        fixtures: sp.fixtures.map(g => ({
+          group: g.group,
+          rows: g.rows.map(f => ({
+            no: f.no, meta: f.meta, a: f.a, b: f.b,
+            cls: /^final$/i.test(f.no) ? "fixmatch is-final" : "fixmatch",
+            aCls: / winner$/i.test(f.a) ? "fixmatch-team tbd" : "fixmatch-team",
+            bCls: / winner$/i.test(f.b) ? "fixmatch-team b tbd" : "fixmatch-team b"
+          }))
         })),
+        fixCount: (() => {
+          const n = sp.fixtures.reduce((t,g) => t + g.rows.length, 0);
+          return n + (n === 1 ? " match" : " matches");
+        })(),
         hasFixtures: sp.fixtures.length > 0,
         noFixtures: sp.fixtures.length === 0
       })),
