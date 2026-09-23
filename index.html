@@ -843,7 +843,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
   html[data-screen="home"] .app .hero-lock{padding:0 clamp(40px,4.4vw,72px) clamp(56px,6vh,80px);
     align-items:flex-start;text-align:left;max-width:min(650px,44vw)}
   html[data-screen="home"] .app .hero-mark{display:block;width:clamp(128px,10vw,158px);filter:drop-shadow(0 7px 22px rgba(0,0,0,.5))}
-  html[data-screen="home"] .app .hero-brandmark{height:clamp(96px,7.6vw,124px);max-width:470px;margin-bottom:clamp(26px,2.4vw,34px)}
+  html[data-screen="home"] .app .hero-marks{justify-content:flex-start;margin-bottom:clamp(26px,2.4vw,34px)}
+  html[data-screen="home"] .app .hero-brandmark{height:clamp(62px,4.9vw,80px);max-width:none}
+  html[data-screen="home"] .app .hero-festmark{height:clamp(80px,6.4vw,104px);max-width:none}
   /* The lockup holds the left of the cover here, so Amma stands to the right of
      it, full height, with only the hem of the frame masked away. */
   /* The cut-out has almost no headroom of its own -- her crown sits 0.3% from
@@ -881,7 +883,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 /* Compact, but retain, the branding on short laptop screens. */
 @media (min-width:1080px) and (max-height:820px){
   html[data-screen="home"] .app .hero-title{margin-top:0;font-size:clamp(76px,6.2vw,104px)}
-  html[data-screen="home"] .app .hero-brandmark{height:clamp(80px,6.4vw,100px);margin-bottom:20px}
+  html[data-screen="home"] .app .hero-marks{margin-bottom:20px}
+  html[data-screen="home"] .app .hero-brandmark{height:clamp(52px,4.1vw,66px)}
+  html[data-screen="home"] .app .hero-festmark{height:clamp(68px,5.4vw,88px)}
   html[data-screen="home"] .app .hero-count{margin-top:22px;padding-block:18px 20px}
   html[data-screen="home"] .app .hero-line{margin-top:13px;font-size:clamp(16px,1.85vw,24px)}
   .rail-body{padding:16px 30px 20px}
@@ -1010,7 +1014,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
    so it gives some back rather than squeezing Amma out of the frame: the type
    steps down a size and the gaps close. Nothing is dropped. */
 @media (max-height:900px) and (max-width:1079px){
-  .hero-brandmark{height:clamp(64px,15vw,84px);margin-bottom:clamp(12px,3vw,16px)}
+  .hero-marks{margin-bottom:clamp(12px,3vw,16px)}
+  .hero-brandmark{height:clamp(42px,11.5vw,58px)}
+  .hero-festmark{height:clamp(52px,15vw,74px)}
   .hero-title{font-size:clamp(42px,12vw,60px)}
   .hero-sub{margin-top:10px}
   .hero-sub-name{font-size:clamp(18px,5.2vw,22px)}
@@ -1132,11 +1138,29 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
    The emblem sits directly above the fest name, so the association reads
    before the name does and the header is left clean. It keeps its own
    breathing room below it rather than crowding the display type. */
-.hero-brandmark{display:block;height:clamp(82px,20vw,116px);width:auto;
-  max-width:min(400px,90vw);object-fit:contain;margin-bottom:clamp(20px,5vw,28px);
+/* The university and the fest, paired on one line with a hairline between
+   them, the way the printed lockups set it. They share a height so neither
+   outranks the other, and the pair -- not either mark -- owns the space under
+   it. Below 420px the rule is dropped and the gap tightens; the marks stay
+   side by side. */
+.hero-marks{display:flex;align-items:center;justify-content:center;
+  gap:clamp(11px,3.2vw,20px);width:100%;margin-bottom:clamp(20px,5vw,28px)}
+.hero-marks-rule{flex:none;width:1px;height:clamp(30px,7vw,44px);border-radius:1px;
+  background:linear-gradient(180deg,rgba(251,230,189,0),rgba(251,230,189,.5),rgba(251,230,189,0))}
+.hero-brandmark{display:block;height:clamp(50px,15.5vw,78px);width:auto;
+  max-width:42vw;object-fit:contain;
   /* A tight dark halo before the cast shadow: at tablet width the mark falls on
      the bright of the sari, and white on white needs the separation. */
-  filter:drop-shadow(0 0 13px rgba(7,13,30,.9)) drop-shadow(0 4px 16px rgba(0,0,0,.6))}
+  filter:drop-shadow(0 0 10px rgba(7,13,30,.5)) drop-shadow(0 4px 14px rgba(0,0,0,.45))}
+/* The fest mark is artwork rather than a flat emblem, so it takes a plain cast
+   shadow -- a halo would only fight its own glow. */
+.hero-festmark{display:block;height:clamp(66px,21vw,106px);width:auto;
+  max-width:50vw;object-fit:contain;
+  filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
+@media (max-width:419px){
+  .hero-marks{gap:9px}
+  .hero-marks-rule{display:none}
+}
 
 /* ---------- Reveal on scroll ----------
    A scroll-driven timeline rather than an observer: the browser ties the
@@ -1382,7 +1406,11 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
     </div>
 
     <div class="hero-lock">
-      <img class="hero-brandmark" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham, Delhi NCR Campus" width="308" height="144">
+      <div class="hero-marks">
+        <img class="hero-brandmark" src="assets/AVVP_Emblem-new-white.png" alt="Amrita Vishwa Vidyapeetham, Delhi NCR Campus" width="308" height="144" fetchpriority="high">
+        <span class="hero-marks-rule" aria-hidden="true"></span>
+        <img class="hero-festmark" src="assets/brahm-logo-mark.webp" alt="Brahm 2026 — the Amrita fest" width="520" height="260" fetchpriority="high">
+      </div>
       <h1 class="hero-title">Brahm <span class="sun">2026</span></h1>
       <div class="hero-sub">
         <span class="hero-rule"></span>
@@ -1422,9 +1450,9 @@ html[data-screen="home"] .appmain>section{padding-bottom:0}
 
     <p class="spirit-lead">Brahm is how Amrita Delhi NCR keeps its Founders&rsquo; Day &mdash; not with speeches alone, but with <span class="mark-gold">five days of seva, sport, stage and celebration</span> that every one of us has a hand in making.</p>
 
-    <p class="spirit-p">The week runs in one unbroken line, from the first health camp in the villages on the 19th to the Founders&rsquo; Day function in the Amriteshwari Auditorium on the 23rd. That line is the point. It is a reminder that learning here was never meant to stop at the classroom door, and that a university is measured by what it gives away.</p>
+    <p class="spirit-p">The week runs in one unbroken line &mdash; from a health camp in a village on the morning of the 19th to the last word spoken in the Amriteshwari Auditorium on the 23rd. That line is the whole of it. It says that what we are taught here was never meant to stop at the classroom door, and that a university is measured less by what it keeps than by what it is willing to give away.</p>
 
-    <p class="spirit-p">Every year the fest grows by whoever turns up. Students from colleges across the country arrive for the inter-college competitions; staff, families and neighbours fill the ground for the marathon and the carnival nights. What began as a single day of gratitude is now a week the campus builds together &mdash; and hands on.</p>
+    <p class="spirit-p">And it is ours in the most literal way. Colleges arrive from across Delhi-NCR and leave having competed against people who were strangers that morning. Staff, families and neighbours fill the ground for the run and stay long into the carnival nights. What began as a single day of gratitude is now a week the campus carries on its own shoulders &mdash; and hands on, a little larger, to the batch that comes next.</p>
 
     <div class="spirit-values">
       <div class="spirit-val">
